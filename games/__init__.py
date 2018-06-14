@@ -25,5 +25,8 @@ def create_app(test_config=None):
         pass
 
     # register apps and blueprints
+    @app.route('/hello')
+    def hello():
+        return "Hello World"
 
     return app
