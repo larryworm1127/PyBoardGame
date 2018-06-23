@@ -1,6 +1,6 @@
 from flask import (Blueprint, flash, g, redirect, render_template, request, url_for)
 
-blue_print = Blueprint('games', __name__, url_prefix='/games')
+blue_print = Blueprint('board_games', __name__, url_prefix='/board_games')
 
 
 @blue_print.route('/')
