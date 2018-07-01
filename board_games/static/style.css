@@ -1,25 +1,26 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600);
+
 body {
-  font-family: 'Source Sans Pro';
-  background: #29335C;
-  background-size: cover;
+    font-family: 'Source Sans Pro', serif;
+    background: #29335C;
+    background-size: cover;
 }
 
 .game {
-  background-color: transparent;
-  width: 402px;
-  height: 402px;
-  margin: 50px auto;
+    background-color: transparent;
+    width: 402px;
+    height: 402px;
+    margin: 50px auto;
 }
 
 .game-field {
-  width: 134px;
-  height: 134px;
-  display: block;
-  float: left;
-  color: #EAEAEA;
-  font-size: 6.3em;
-  padding: 1px 27px;
+    width: 134px;
+    height: 134px;
+    display: block;
+    float: left;
+    color: #EAEAEA;
+    font-size: 6.3em;
+    padding: 1px 27px;
 }
 
 .win {
@@ -89,8 +90,4 @@ body {
 .modal-footer button:hover {
   background-color: #E4572E;
   color: white;
-}
-
-.signature {
-  padding-top: 10px;
 }
