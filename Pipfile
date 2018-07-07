@@ -6,9 +6,9 @@ name = "pypi"
 [packages]
 flask = "*"
 pytest = "*"
-coverage = "*"
 
 [dev-packages]
+coverage = "*"
 
 [requires]
 python_version = "3.6"
