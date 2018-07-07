@@ -2,6 +2,14 @@
 
 {% block title %}Tic Tac Toe{% endblock %}
 
+{% block head %}
+  <!-- Custom stylesheet -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <!-- Javascript script -->
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+{% endblock %}
+
 {% block content %}
   <div class="container">
     <div class="modal fade" id="startModal" tabindex="-1" role="dialog">
@@ -24,9 +32,9 @@
           <!-- Modal Footer -->
           <div class="modal-footer">
             <button type="button" id="x" class="btn" data-dismiss="modal" onClick="setFig(this.id)"><span
-                    class="fas fa-times"></span></button>
+                class="fas fa-times"></span></button>
             <button type="button" id="o" class="btn" data-dismiss="modal" onClick="setFig(this.id)"><span
-                    class="far fa-circle"></span></button>
+                class="far fa-circle"></span></button>
           </div>
         </div>
       </div>
@@ -45,21 +53,4 @@
     </div>
   </div>
 
-  <script>
-      function start() {
-          $('#startModal').modal('show');
-      }
-
-      function setFig(id) {
-          if (id === 'x') {
-              game.user = '<span class="fa fa-times"></span>';
-              game.computer = '<span class="fa fa-circle-o"></span>';
-          } else if (id === 'o') {
-              game.user = '<span class="fa fa-circle-o"></span>';
-              game.computer = '<span class="fa fa-times"></span>';
-          }
-      }
-
-      setTimeout(start, 600);
-  </script>
 {% endblock %}

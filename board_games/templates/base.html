@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}{% endblock %}</title>
 
-  <!-- Custom stylesheet -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  {% block head %}
+  {% endblock %}
 
   <!-- FontAwesome stylesheets -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
@@ -23,7 +23,6 @@
 </head>
 <body>
 {% block content %}
-
 {% endblock %}
 </body>
 </html>
