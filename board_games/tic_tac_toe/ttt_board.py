@@ -60,7 +60,7 @@ class TTTBoard:
 
     def get_square(self, row, col):
         """
-        Returns one of the three constants EMPTY, PLAYERX, or PLAYERO
+        Get one of the three constants EMPTY, PLAYERX, or PLAYERO
         that correspond to the contents of the board at position (row, col).
 
         :param row: the row on the board

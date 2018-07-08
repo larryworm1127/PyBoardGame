@@ -6,7 +6,7 @@ Mini-max Tic-Tac-Toe Player
 """
 
 # general imports
-from board_games.tic_tac_toe import ttt_board
+from . import ttt_board
 
 # SCORING VALUES
 SCORES = {ttt_board.PLAYERX: 1,

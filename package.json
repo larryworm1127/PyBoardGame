@@ -1,0 +1,25 @@
+{
+  "name": "boardgames",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/larryworm1127/BoardGames.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/larryworm1127/BoardGames/issues"
+  },
+  "homepage": "https://github.com/larryworm1127/BoardGames#readme",
+  "devDependencies": {
+    "bower": "^1.8.4"
+  }
+}
