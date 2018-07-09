@@ -4,29 +4,30 @@
 
 {% block head %}
   <!-- Custom stylesheet -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='tic_tac_toe/style.css') }}">
 
   <!-- Javascript script -->
-  <script src="{{ url_for('static', filename='script.js') }}"></script>
+  <script src="{{ url_for('static', filename='tic_tac_toe/script.js') }}"></script>
 {% endblock %}
 
 {% block content %}
   <div class="container">
     <div class="row">
-      <div class="col-md-12 text-center"><h1>Tic Tac Toe</h1></div>
+      <div class="col-md-12 text-center">
+        <h1>Tic Tac Toe</h1>
+        <br>
+        <a class="home" id="home" href="{{ url_for('board_games.index') }}"><i class="fas fa-home fa-2x"></i></a>
+      </div>
     </div>
 
+    <!-- Tic Tac Toe grid -->
     <div class="row">
       <div class="game">
-        <div id="first" onClick="icon(this.id)" class="game-field"></div>
-        <div id="second" onClick="icon(this.id)" class="game-field"></div>
-        <div id="third" onClick="icon(this.id)" class="game-field"></div>
-        <div id="fourth" onClick="icon(this.id)" class="game-field"></div>
-        <div id="fifth" onClick="icon(this.id)" class="game-field"></div>
-        <div id="sixth" onClick="icon(this.id)" class="game-field"></div>
-        <div id="seventh" onClick="icon(this.id)" class="game-field"></div>
-        <div id="eight" onClick="icon(this.id)" class="game-field"></div>
-        <div id="nineth" onClick="icon(this.id)" class="game-field"></div>
+        {% for row in dim %}
+          {% for column in dim %}
+            <div id="{{ row }}-{{ column }}" onClick="icon(this.id)" class="game-field"></div>
+          {% endfor %}
+        {% endfor %}
       </div>
     </div>
 
@@ -38,7 +39,7 @@
       </div>
 
       <div class="col-md-4 text-center">
-        <h3 class="subheader prompt" id="prompt">Who starts?</h3>
+        <h3 class="subheader" id="prompt">Who starts?</h3>
       </div>
 
       <div class="col-md-4 text-center">

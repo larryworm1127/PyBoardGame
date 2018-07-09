@@ -15,25 +15,25 @@
     padding: 1px 27px;
 }
 
-#first, #second, #third {
+#one-one, #one-two, #one-three {
     border-bottom: 3px solid #525B76;
 }
 
-#second {
+#one-two {
     border-left: 3px solid #525B76;
     border-right: 3px solid #525B76;
 }
 
-#fourth, #fifth, #sixth {
+#two-one, #two-two, #two-three {
     border-bottom: 3px solid #525B76;
 }
 
-#fifth {
+#two-two {
     border-left: 3px solid #525B76;
     border-right: 3px solid #525B76;
 }
 
-#eight {
+#three-two {
     border-left: 3px solid #525B76;
     border-right: 3px solid #525B76;
 }
@@ -45,7 +45,7 @@
 }
 
 body {
-    background: white;
+    background: beige;
     color: #222222;
     padding: 0;
     margin: 0;
@@ -106,6 +106,14 @@ a.computer:hover {
     color: #443532
 }
 
+.home {
+    color: #443532
+}
+
+a.home:hover {
+    color: #000000;
+}
+
 .space {
     color: #DCEBDF
 }
@@ -122,10 +130,77 @@ a.computer:hover {
     margin-left: auto
 }
 
+.col-md-auto {
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none
+}
+
+.col-md-1 {
+    -ms-flex: 0 0 8.333333%;
+    flex: 0 0 8.333333%;
+    max-width: 8.333333%
+}
+
+.col-md-2 {
+    -ms-flex: 0 0 16.666667%;
+    flex: 0 0 16.666667%;
+    max-width: 16.666667%
+}
+
+.col-md-3 {
+    -ms-flex: 0 0 25%;
+    flex: 0 0 25%;
+    max-width: 25%
+}
+
 .col-md-4 {
     -ms-flex: 0 0 33.333333%;
     flex: 0 0 33.333333%;
     max-width: 33.333333%
+}
+
+.col-md-5 {
+    -ms-flex: 0 0 41.666667%;
+    flex: 0 0 41.666667%;
+    max-width: 41.666667%
+}
+
+.col-md-6 {
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%
+}
+
+.col-md-7 {
+    -ms-flex: 0 0 58.333333%;
+    flex: 0 0 58.333333%;
+    max-width: 58.333333%
+}
+
+.col-md-8 {
+    -ms-flex: 0 0 66.666667%;
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%
+}
+
+.col-md-9 {
+    -ms-flex: 0 0 75%;
+    flex: 0 0 75%;
+    max-width: 75%
+}
+
+.col-md-10 {
+    -ms-flex: 0 0 83.333333%;
+    flex: 0 0 83.333333%;
+    max-width: 83.333333%
+}
+
+.col-md-11 {
+    -ms-flex: 0 0 91.666667%;
+    flex: 0 0 91.666667%;
+    max-width: 91.666667%
 }
 
 .col-md-12 {

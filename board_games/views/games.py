@@ -17,7 +17,7 @@ def index():
 
 @game.route('/tic_tac_toe')
 def tic_tac_toe():
-    return render_template('games/tic_tac_toe.html')
+    return render_template('games/tic_tac_toe.html', dim=['one', 'two', 'three'])
 
 
 @game.route('/2048')
