@@ -1,21 +1,13 @@
-@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600);
-
-body {
-    font-family: 'Source Sans Pro', serif;
-    background: #29335C;
-    background-size: cover;
-}
-
 .game {
     background-color: transparent;
-    width: 402px;
-    height: 402px;
+    width: 450px;
+    height: 450px;
     margin: 50px auto;
 }
 
 .game-field {
-    width: 134px;
-    height: 134px;
+    width: 150px;
+    height: 150px;
     display: block;
     float: left;
     color: #EAEAEA;
@@ -23,71 +15,121 @@ body {
     padding: 1px 27px;
 }
 
-.win {
-  color: #E4572E;
-  transition: 200ms;
-}
-
 #first, #second, #third {
-  border-bottom: 3px solid #525B76;
+    border-bottom: 3px solid #525B76;
 }
 
 #second {
-  border-left: 3px solid #525B76;
-  border-right: 3px solid #525B76;
+    border-left: 3px solid #525B76;
+    border-right: 3px solid #525B76;
 }
 
 #fourth, #fifth, #sixth {
-  border-bottom: 3px solid #525B76;
+    border-bottom: 3px solid #525B76;
 }
 
 #fifth {
-  border-left: 3px solid #525B76;
-  border-right: 3px solid #525B76;
+    border-left: 3px solid #525B76;
+    border-right: 3px solid #525B76;
 }
 
 #eight {
-  border-left: 3px solid #525B76;
-  border-right: 3px solid #525B76;
+    border-left: 3px solid #525B76;
+    border-right: 3px solid #525B76;
 }
 
-.modal-content {
-  background-color: #EAEAEA;
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
 }
 
-.modal-header {
-  background-color: #29335C;
-  width: 100%;
-  height: 100%;
-  color: #EAEAEA;
-}
-.modal-header button {
-  color: #EAEAEA;
-}
-.modal-header button:hover {
-  color: #EAEAEA;
-}
-.modal-header h4 {
-  font-size: 2.3em;
+body {
+    background: white;
+    color: #222222;
+    padding: 0;
+    margin: 0;
+    font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    position: relative;
+    cursor: default
 }
 
-.modal-body {
-  padding: 30px;
-  margin: 10px 0;
-  text-align: center;
+a:hover {
+    cursor: pointer
 }
 
-.modal-footer {
-  padding: 10px 80px 10px 0px;
+.text-center {
+    text-align: center !important
 }
-.modal-footer button {
-  background-color: white;
-  color: black;
-  width: 40%;
-  font-size: 2em;
-  transition: 500ms;
+
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px
 }
-.modal-footer button:hover {
-  background-color: #E4572E;
-  color: white;
+
+.subheader {
+    line-height: 1.4;
+    color: #6f6f6f;
+    font-weight: 200;
+    margin-top: 0.2em;
+    margin-bottom: 0.5em
+}
+
+h1 {
+    font-size: 2.5em
+}
+
+h3 {
+    font-size: 1.375em
+}
+
+.human {
+    color: #afd9c8
+}
+
+a.human:hover {
+    color: #8cc9b0
+}
+
+.computer {
+    color: #624c47
+}
+
+a.computer:hover {
+    color: #443532
+}
+
+.space {
+    color: #DCEBDF
+}
+
+.winning {
+    color: #F7374B
+}
+
+.container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto
+}
+
+.col-md-4 {
+    -ms-flex: 0 0 33.333333%;
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%
+}
+
+.col-md-12 {
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%
 }
