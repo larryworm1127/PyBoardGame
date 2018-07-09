@@ -22,10 +22,10 @@
 
     <!-- Tic Tac Toe grid -->
     <div class="row">
-      <div class="game">
+      <div class="game" id="wrapper">
         {% for row in dim %}
           {% for column in dim %}
-            <div id="{{ row }}-{{ column }}" onClick="icon(this.id)" class="game-field"></div>
+            <div id="{{ row }}-{{ column }}" onclick="draw(this.id)" class="game-field"></div>
           {% endfor %}
         {% endfor %}
       </div>
@@ -33,7 +33,7 @@
 
     <div class="row">
       <div class="col-md-4 text-center">
-        <a class="computer" id="start-computer"><i class="fas fa-laptop fa-5x"></i>
+        <a class="computer" id="start-computer" onclick="setFig(this.id)"><i class="fas fa-laptop fa-5x"></i>
           <p>You Start</p>
         </a>
       </div>
@@ -43,7 +43,7 @@
       </div>
 
       <div class="col-md-4 text-center">
-        <a class="human" id="start-human"><i class="fas fa-user fa-5x"></i>
+        <a class="human" id="start-human" onclick="setFig(this.id)"><i class="fas fa-user fa-5x"></i>
           <p>I'll Start</p>
         </a>
       </div>

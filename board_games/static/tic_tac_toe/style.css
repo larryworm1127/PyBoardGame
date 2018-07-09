@@ -1,13 +1,13 @@
 .game {
     background-color: transparent;
-    width: 450px;
-    height: 450px;
+    width: 402px;
+    height: 402px;
     margin: 50px auto;
 }
 
 .game-field {
-    width: 150px;
-    height: 150px;
+    width: 134px;
+    height: 134px;
     display: block;
     float: left;
     color: #EAEAEA;
@@ -114,12 +114,21 @@ a.home:hover {
     color: #000000;
 }
 
-.space {
-    color: #DCEBDF
+#circle {
+    color: slategrey;
+    position: relative;
+    right: 16%;
+    line-height: 1.25em;
 }
 
-.winning {
-    color: #F7374B
+#cross {
+    color: slategrey;
+    position: relative;
+    line-height: 1.25em;
+}
+
+.space {
+    color: #DCEBDF
 }
 
 .container {
