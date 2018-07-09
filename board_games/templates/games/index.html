@@ -18,10 +18,14 @@
     </button>
     <div class="collapse navbar-collapse" id="nav-bar">
       <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" href="{{ url_for('board_games.index') }}">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ url_for('board_games.tic_tac_toe') }}">Tic Tac Toe</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ url_for('board_games.twenty_forty_eight') }}">2048</a></li>
-        <li class="nav-item"><a class="nav-link" href="{{ url_for('board_games.blackjack') }}">Blackjack</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('board_games.index') }}">
+          <i class="fas fa-home"></i> Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('board_games.tic_tac_toe') }}">
+          <i class="fas fa-gamepad"></i> Tic Tac Toe</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('board_games.twenty_forty_eight') }}">
+          <i class="fas fa-gamepad"></i> 2048</a></li>
+        <li class="nav-item"><a class="nav-link" href="{{ url_for('board_games.blackjack') }}">
+          <i class="fas fa-gamepad"></i> Blackjack</a></li>
       </ul>
     </div>
   </nav>
