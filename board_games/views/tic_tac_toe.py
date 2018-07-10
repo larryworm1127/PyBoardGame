@@ -45,3 +45,10 @@ def check_win():
         return jsonify(result="Player " + STRMAP[state] + " wins!", state='end')
 
     return jsonify(state=None)
+
+
+@ttt.route('/ttt/get_move', methods=['GET', 'POST'])
+def get_move():
+    move = game.get_comp_move()
+
+    return jsonify(result=move, id=row_num[move[0]] + '-' + row_num[move[1]])

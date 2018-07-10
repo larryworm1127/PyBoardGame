@@ -4,7 +4,7 @@ var game = {
     user_two: '',
     computer: '',
     currentPlayer: '',
-    pvp: false
+    pvp: false,
 };
 
 // constants
@@ -26,7 +26,8 @@ function setFig(id) {
         game.currentPlayer = computer;
 
         $('#prompt').text(promptText(game.computer[1]));
-        comp_move()
+        setup();
+        comp_first_move()
 
     } else if (id === 'start-human') {
         game.user = symbol.cross;
@@ -34,18 +35,19 @@ function setFig(id) {
         game.currentPlayer = user;
 
         $('#prompt').text(promptText(game.user[1]));
+        setup();
 
-    } else {
+    } else if (id === 'pvp') {
         game.user = symbol.cross;
         game.user_two = symbol.circle;
         game.currentPlayer = user;
         game.pvp = true;
 
         $('#prompt').text(promptText(game.user[1]));
+        setup();
     }
 
     $('.game-field').attr('onclick', 'draw(this.id)');
-    setup();
 
     // disable other options
     $('#start-human').removeAttr('onclick');
@@ -70,16 +72,32 @@ function draw(id) {
 
         update(id, game.user_two[1]);
         switchPlayer(user_two);
+
+    } else if (game.currentPlayer === computer) {
+        cell.html(game.computer[0]);
+        cell.removeAttr('onclick');
+
+        update(id, game.computer[1]);
+        switchPlayer(computer)
     }
 
     checkWin()
 }
 
 // computer player control functions
-function comp_move() {
-    console.log("computer move");
+function comp_first_move() {
+    draw('two-two')
+}
 
-    switchPlayer(computer)
+function comp_move() {
+    $(function () {
+        $.getJSON("/games/ttt/get_move", {}, function (data) {
+            console.log(data.result);
+            console.log(data.id);
+            draw(data.id)
+        });
+        return false;
+    });
 }
 
 /* util functions */
@@ -91,6 +109,10 @@ function switchPlayer(currentUser) {
         } else {
             game.currentPlayer = computer;
             $('#prompt').text(promptText(game.computer[1]));
+
+            setTimeout(function () {
+                comp_move()
+            }, 500)
         }
 
     } else if (currentUser === computer || currentUser === user_two) {

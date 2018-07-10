@@ -17,7 +17,7 @@ STRMAP = {PLAYERX: 'X',
           EMPTY: ' '}
 
 # Map front-end grid IDs with corresponding (row, col)
-row_num = ['one', 'two', 'three']
+row_num = {0: 'one', 1: 'two', 2: 'three'}
 ID = {row_num[row] + '-' + row_num[col]: (row, col) for row in range(3) for col in range(3)}
 
 

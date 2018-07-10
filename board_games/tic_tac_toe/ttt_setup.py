@@ -32,3 +32,6 @@ class TTTSetUp:
         rep += "computer: " + str(STRMAP[self.computer]) + "\n"
 
         return rep
+
+    def get_comp_move(self):
+        return get_move(self.board, self.computer)[1]
