@@ -114,6 +114,14 @@ a.home:hover {
     color: #000000;
 }
 
+.pvp {
+    color: indianred;
+}
+
+a.pvp:hover {
+    color: red;
+}
+
 #circle {
     color: slategrey;
     position: relative;
