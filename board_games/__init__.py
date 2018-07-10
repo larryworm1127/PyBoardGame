@@ -31,8 +31,12 @@ def create_app(test_config=None):
         pass
 
     # register apps and blueprints
-    from board_games.views import games
+    from .views import games
     app.register_blueprint(games.game)
+    app.add_url_rule('/', endpoint='index')
+
+    from .views import tic_tac_toe
+    app.register_blueprint(tic_tac_toe.ttt)
     app.add_url_rule('/', endpoint='index')
 
     return app

@@ -25,7 +25,7 @@
       <div class="game" id="wrapper">
         {% for row in dim %}
           {% for column in dim %}
-            <div id="{{ row }}-{{ column }}" onclick="draw(this.id)" class="game-field"></div>
+            <div id="{{ row }}-{{ column }}" class="game-field"></div>
           {% endfor %}
         {% endfor %}
       </div>
