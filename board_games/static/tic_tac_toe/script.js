@@ -98,6 +98,8 @@ function comp_move() {
         });
         return false;
     });
+
+    $('.game-field').attr('onclick', 'draw(this.id)')
 }
 
 /* util functions */
@@ -108,6 +110,7 @@ function switchPlayer(currentUser) {
             $('#prompt').text(promptText(game.user_two[1]));
         } else {
             game.currentPlayer = computer;
+            $('.game-field').removeAttr('onclick');
             $('#prompt').text(promptText(game.computer[1]));
 
             setTimeout(function () {
