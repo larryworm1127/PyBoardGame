@@ -20,5 +20,5 @@ Here is a list of features that might be implemented:
 ## Screenshots
 Here are some screenshot of the website:
 
-Tic Tac Toe:
+**_Tic Tac Toe:_**
 ![Image of Tic Tac Toe](screenshots/screenshot_ttt.png)
