@@ -96,7 +96,7 @@ def register():
 
         if error is None:
             db.execute(
-                'INSERT INTO "user" (username, email, password) VALUES (?, ?, ?)',
+                'INSERT INTO main.user (username, email, password) VALUES (?, ?, ?)',
                 (username, email, generate_password_hash(password))
             )
             db.commit()
@@ -111,3 +111,13 @@ def register():
 def logout():
     session.clear()
     return redirect(url_for('index'))
+
+
+@bp.route('/delete_account')
+def delete_account():
+    db = get_db()
+
+    db.execute('DELETE FROM main.user WHERE id = ?', (session['user_id'],))
+    db.commit()
+
+    return redirect(url_for('auth.logout'))

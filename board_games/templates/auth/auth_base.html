@@ -38,6 +38,8 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ url_for('auth.logout') }}"><i class="fas fa-sign-out-alt"></i> Log
                 out</a>
+              <a class="dropdown-item" href="{{ url_for('auth.delete_account') }}" style="color: red"><i
+                  class="fas fa-trash-alt"></i> Delete Account</a>
             </div>
           </li>
         {% else %}
