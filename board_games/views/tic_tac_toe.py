@@ -12,16 +12,16 @@ from ..tic_tac_toe.ttt_setup import *
 from .auth import login_required
 
 # init blueprint
-ttt = Blueprint('ttt', __name__, url_prefix='/games')
+bp = Blueprint('ttt', __name__, url_prefix='/games')
 
 
-@ttt.route('/ttt')
+@bp.route('/ttt')
 @login_required
 def tic_tac_toe():
     return render_template('games/tic_tac_toe.html', dim=['one', 'two', 'three'])
 
 
-@ttt.route('/ttt/setup', methods=['GET', 'POST'])
+@bp.route('/ttt/setup', methods=['GET', 'POST'])
 def setup():
     global game
 
@@ -31,7 +31,7 @@ def setup():
     return jsonify(result=str(game))
 
 
-@ttt.route('/ttt/update', methods=['GET', 'POST'])
+@bp.route('/ttt/update', methods=['GET', 'POST'])
 def update():
     cell = ID[request.args.get('id', 0, type=str)]
     symbol = request.args.get('symbol', 0, type=str)
@@ -39,7 +39,7 @@ def update():
     return jsonify(result=str(game.board))
 
 
-@ttt.route('/ttt/check_win', methods=['GET', 'POST'])
+@bp.route('/ttt/check_win', methods=['GET', 'POST'])
 def check_win():
     state = game.board.check_win()
 
@@ -51,7 +51,7 @@ def check_win():
     return jsonify(state=None)
 
 
-@ttt.route('/ttt/get_move', methods=['GET', 'POST'])
+@bp.route('/ttt/get_move', methods=['GET', 'POST'])
 def get_move():
     move = game.get_comp_move()
 

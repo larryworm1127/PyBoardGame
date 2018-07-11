@@ -37,15 +37,19 @@ def create_app(test_config=None):
         return render_template('index.html')
 
     from .views import auth
-    app.register_blueprint(auth.auth)
+    app.register_blueprint(auth.bp)
     app.add_url_rule('/', endpoint='index')
 
-    from .views import games
-    app.register_blueprint(games.game)
+    from .views import twenty_forty_eight
+    app.register_blueprint(twenty_forty_eight.bp)
     app.add_url_rule('/', endpoint='index')
 
     from .views import tic_tac_toe
-    app.register_blueprint(tic_tac_toe.ttt)
+    app.register_blueprint(tic_tac_toe.bp)
+    app.add_url_rule('/', endpoint='index')
+
+    from .views import blackjack
+    app.register_blueprint(blackjack.bp)
     app.add_url_rule('/', endpoint='index')
 
     # register database

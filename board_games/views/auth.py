@@ -14,7 +14,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from board_games.db import get_db
 
 # init blueprint
-auth = Blueprint('auth', __name__, url_prefix='/auth')
+bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 
 def login_required(view):
@@ -30,7 +30,7 @@ def login_required(view):
     return wrapped_view
 
 
-@auth.before_app_request
+@bp.before_app_request
 def load_logged_in_user():
     """If a user id is stored in the session, load the user object from
     the database into ``g.user``."""
@@ -44,7 +44,7 @@ def load_logged_in_user():
         ).fetchone()
 
 
-@auth.route('/login', methods=('GET', 'POST'))
+@bp.route('/login', methods=('GET', 'POST'))
 def login():
     if request.method == 'POST':
         username = request.form['username']
@@ -70,7 +70,7 @@ def login():
     return render_template('auth/login.html')
 
 
-@auth.route('/register', methods=('GET', 'POST'))
+@bp.route('/register', methods=('GET', 'POST'))
 def register():
     if request.method == 'POST':
         username = request.form['username']
@@ -107,7 +107,7 @@ def register():
     return render_template('auth/register.html')
 
 
-@auth.route('/logout')
+@bp.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('index'))
