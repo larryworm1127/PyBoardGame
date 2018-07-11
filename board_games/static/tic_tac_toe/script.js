@@ -182,5 +182,6 @@ function reset() {
 
     $('#start-human').attr('onclick', 'setFig(this.id)');
     $('#start-computer').attr('onclick', 'setFig(this.id)');
-    $('#pvp').attr('onclick', 'setFig(this.id)')
+    $('#pvp').attr('onclick', 'setFig(this.id)');
+    game.pvp = false
 }

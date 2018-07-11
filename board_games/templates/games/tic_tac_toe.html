@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'layout.html' %}
 
 {% block title %}Tic Tac Toe{% endblock %}
 
@@ -15,43 +15,38 @@
     <div class="row">
       <div class="col-md-12 text-center">
         <h1>Tic Tac Toe</h1>
-        <br>
-        <a class="home" id="home" href="{{ url_for('board_games.index') }}"><i class="fas fa-home fa-2x"></i></a>
+        <a class="home" id="home" href="{{ url_for('index') }}"><i class="fas fa-home fa-2x"></i></a>
       </div>
     </div>
 
     <!-- Tic Tac Toe grid -->
     <div class="row">
-      <div class="game" id="wrapper">
-        {% for row in dim %}
-          {% for column in dim %}
-            <div id="{{ row }}-{{ column }}" class="game-field"></div>
-          {% endfor %}
-        {% endfor %}
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-4 text-center">
+      <div class="col-md-2"></div>
+      <div class="col-md-1 text-center">
         <a class="computer" id="start-computer" onclick="setFig(this.id)"><i class="fas fa-laptop fa-5x"></i>
           <p>You Start</p>
-        </a>
-      </div>
-
-      <div class="col-md-4 text-center">
-        <h3 class="subheader" id="prompt">Who starts?</h3>
-      </div>
-
-      <div class="col-md-4 text-center">
+        </a><br>
         <a class="human" id="start-human" onclick="setFig(this.id)"><i class="fas fa-user fa-5x"></i>
           <p>I'll Start</p>
-        </a>
-      </div>
-
-      <div class="col-md-12 text-center">
+        </a><br>
         <a class="pvp" id="pvp" onclick="setFig(this.id)"><i class="fas fa-users fa-5x"></i>
           <p>PVP</p>
         </a>
+      </div>
+      <div class="col-md-6 text-center ">
+        <div class="game" id="wrapper">
+          {% for row in dim %}
+            {% for column in dim %}
+              <div id="{{ row }}-{{ column }}" class="game-field"></div>
+            {% endfor %}
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col-md-2" style="text-align: left">
+        <h2>Message Box</h2>
+        <div class="jumbotron">
+          <h3 class="subheader" id="prompt">Who starts?</h3>
+        </div>
       </div>
     </div>
   </div>

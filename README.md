@@ -6,13 +6,19 @@ The website is a collection of board games
 
 ## Features
 Here is a list of features that will be implemented:
-- A secure database user authentication.
+- [x] A secure database user authentication.
 - A number of simple board games for users to play:
-    - [ ] Tic Tac Toe (under development)
+    - [x] Tic Tac Toe
     - [ ] 2048
-    - [ ] Pong
+    - [ ] Sudoko
     - [ ] Blackjack
     - [ ] Etc.
 
 Here is a list of features that might be implemented:
 - A leveling and coin system
+
+## Screenshots
+Here are some screenshot of the website:
+
+Tic Tac Toe:
+![Image of Tic Tac Toe](screenshots/screenshot_ttt.png)

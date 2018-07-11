@@ -5,14 +5,18 @@ Flask "Tic Tac Toe" game blueprint
 @author: Larry Shi
 """
 
+# general imports
 from flask import Blueprint, render_template, jsonify, request
 
 from ..tic_tac_toe.ttt_setup import *
+from .auth import login_required
 
+# init blueprint
 ttt = Blueprint('ttt', __name__, url_prefix='/games')
 
 
 @ttt.route('/ttt')
+@login_required
 def tic_tac_toe():
     return render_template('games/tic_tac_toe.html', dim=['one', 'two', 'three'])
 
@@ -51,4 +55,7 @@ def check_win():
 def get_move():
     move = game.get_comp_move()
 
-    return jsonify(result=move, id=row_num[move[0]] + '-' + row_num[move[1]])
+    try:
+        return jsonify(result=move, id=row_num[move[0]] + '-' + row_num[move[1]])
+    except KeyError:
+        return jsonify(result=move)

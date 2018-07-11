@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+
+{% block head %}
+  <!-- Bootstrap core stylesheets -->
+  <link rel="stylesheet"
+        href="{{ url_for('static', filename='bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
+  <script src="{{ url_for('static', filename='bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+
+{% endblock %}
+
+{% block content %}
+
+  <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <strong><a class="navbar-brand" href="#">Board Games</a></strong>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-bar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav-bar">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="{{ url_for('index') }}"><i class="fas fa-home"></i> Home</a>
+        </li>
+
+        {% if g.user %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false"><i class="fas fa-gamepad"></i> Games</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ url_for('ttt.tic_tac_toe') }}">Tic Tac Toe</a>
+              <a class="dropdown-item" href="{{ url_for('board_games.twenty_forty_eight') }}">2048</a>
+              <a class="dropdown-item" href="{{ url_for('board_games.blackjack') }}">Blackjack</a>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i> User</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ url_for('auth.logout') }}">Log out</a>
+            </div>
+          </li>
+        {% else %}
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.register') }}">Register</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.login') }}">Login</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+  <br>
+
+  {% block body %}
+  {% endblock %}
+
+{% endblock %}

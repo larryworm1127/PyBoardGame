@@ -7,14 +7,15 @@ Flask app factory
 
 import os
 
-from flask import Flask
+from flask import Flask, render_template
 
 
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
-        SECRET_KEY='dev'
+        SECRET_KEY='dev',
+        DATABASE=os.path.join(app.instance_path, 'board_games.sqlite')
     )
 
     if test_config is None:
@@ -31,6 +32,14 @@ def create_app(test_config=None):
         pass
 
     # register apps and blueprints
+    @app.route('/')
+    def index():
+        return render_template('index.html')
+
+    from .views import auth
+    app.register_blueprint(auth.auth)
+    app.add_url_rule('/', endpoint='index')
+
     from .views import games
     app.register_blueprint(games.game)
     app.add_url_rule('/', endpoint='index')
@@ -38,5 +47,9 @@ def create_app(test_config=None):
     from .views import tic_tac_toe
     app.register_blueprint(tic_tac_toe.ttt)
     app.add_url_rule('/', endpoint='index')
+
+    # register database
+    from . import db
+    db.init_app(app)
 
     return app

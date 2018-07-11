@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+
+    <!-- Custom icon -->
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+    <!-- FontAwesome stylesheets -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='bower_components/components-font-awesome/css/fontawesome-all.min.css') }}">
+
+    <!-- Jquery and popper scripts -->
+    <script src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bower_components/popper.js/dist/umd/popper.min.js') }}"></script>
+
+    {% block head %}
+    {% endblock %}
+
+  </head>
+  <body>
+    {% block content %}
+    {% endblock %}
+  </body>
+</html>
