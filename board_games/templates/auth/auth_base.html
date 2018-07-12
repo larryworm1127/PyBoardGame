@@ -10,6 +10,29 @@
 
 {% block content %}
 
+  <!-- Warning modal for delete user -->
+  <div class="modal fade" id="warning_modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete Account</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p><strong>Are you sure you want to delete this account?</strong></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <a role="button" class="btn btn-danger" href="{{ url_for('auth.delete_account') }}">Delete Account
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation bar -->
   <nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <strong><a class="navbar-brand" href="#">Board Games</a></strong>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-bar">
@@ -38,10 +61,11 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ url_for('auth.logout') }}"><i class="fas fa-sign-out-alt"></i> Log
                 out</a>
-              <a class="dropdown-item" href="{{ url_for('auth.delete_account') }}" style="color: red"><i
+              <a class="dropdown-item" data-toggle="modal" data-target="#warning_modal" style="color: red"><i
                   class="fas fa-trash-alt"></i> Delete Account</a>
             </div>
           </li>
+
         {% else %}
           <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.register') }}"><i
               class="fas fa-registered"></i> Register</a></li>

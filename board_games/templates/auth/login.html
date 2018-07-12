@@ -12,7 +12,7 @@
           <h1 class="h3 mb-3 font-weight-normal">Login</h1>
 
           <label for="username" class="sr-only">Username/Email</label>
-          <input name="username" id="username" class="form-control" placeholder="Username/Email" required autofocus>
+          <input name="username" id="username" class="form-control" placeholder="Username" required autofocus>
           <label for="password" class="sr-only">Password</label>
           <input type="password" name="password" id="password" class="form-control mb-2" placeholder="Password"
                  required>
@@ -26,7 +26,9 @@
             <div class="flash p mb-3">{{ message }}</div>
           {% endfor %}
 
-          <button id="btnSignUp" class="btn btn-lg btn-primary btn-block" value="Log In" type="submit">Sign up</button>
+          <button id="btnSignIn" class="btn btn-lg btn-primary btn-block" value="Login" type="submit">Sign in</button>
+          <p class="m-3">Don't have an account yet? Click the link below to create an account.</p>
+          <a id="btnRegister" class="btn btn-lg btn-primary btn-block" href="{{ url_for('auth.register') }}">Register</a>
           <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
         </form>
       </div>
