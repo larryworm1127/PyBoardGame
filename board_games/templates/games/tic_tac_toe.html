@@ -3,11 +3,9 @@
 {% block title %}Tic Tac Toe{% endblock %}
 
 {% block head %}
-  <!-- Custom stylesheet -->
-  <link rel="stylesheet" href="{{ url_for('static', filename='tic_tac_toe/style.css') }}">
-
-  <!-- Javascript script -->
-  <script src="{{ url_for('static', filename='tic_tac_toe/script.js') }}"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/ttt.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/custom_bootstrap.css') }}">
+  <script src="{{ url_for('static', filename='js/ttt.js') }}"></script>
 {% endblock %}
 
 {% block content %}
@@ -19,9 +17,10 @@
       </div>
     </div>
 
-    <!-- Tic Tac Toe grid -->
     <div class="row">
       <div class="col-md-2"></div>
+
+      <!-- Icons -->
       <div class="col-md-1 text-center">
         <a class="computer" id="start-computer" onclick="setFig(this.id)"><i class="fas fa-laptop fa-5x"></i>
           <p>You Start</p>
@@ -33,6 +32,8 @@
           <p>PVP</p>
         </a>
       </div>
+
+      <!-- Tic Tac Toe grid -->
       <div class="col-md-6 text-center ">
         <div class="game" id="wrapper">
           {% for row in dim %}
@@ -42,10 +43,17 @@
           {% endfor %}
         </div>
       </div>
+
+      <!-- Messages -->
       <div class="col-md-2" style="text-align: left">
         <h2>Message Box</h2>
         <div class="jumbotron">
           <h3 class="subheader" id="prompt">Who starts?</h3>
+        </div>
+        <div class="container text-center">
+          <a class="surrender" id="surrender" onclick="reset()"><i class="fas fa-handshake fa-5x"></i>
+            <p>Surrender</p>
+          </a>
         </div>
       </div>
     </div>

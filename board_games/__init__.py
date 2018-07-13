@@ -52,6 +52,10 @@ def create_app(test_config=None):
     app.register_blueprint(blackjack.bp)
     app.add_url_rule('/', endpoint='index')
 
+    from .views import sudoko
+    app.register_blueprint(sudoko.bp)
+    app.add_url_rule('/', endpoint='index')
+
     # register database
     from . import db
     db.init_app(app)

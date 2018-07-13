@@ -167,6 +167,7 @@ function checkWin() {
             if (data.state === 'end') {
                 console.log(data.result);
                 $('#prompt').text(data.result + '\nPress any figure to restart.');
+                reset_game_var();
                 endGame()
             }
         });
@@ -176,6 +177,7 @@ function checkWin() {
 
 /* reset function */
 function reset() {
+    reset_game_var();
     let gameField = $('.game-field');
     gameField.html('');
     $('#prompt').text('Who will start over?');
@@ -183,5 +185,12 @@ function reset() {
     $('#start-human').attr('onclick', 'setFig(this.id)');
     $('#start-computer').attr('onclick', 'setFig(this.id)');
     $('#pvp').attr('onclick', 'setFig(this.id)');
-    game.pvp = false
+}
+
+function reset_game_var() {
+    game.currentPlayer = '';
+    game.computer = '';
+    game.user_two = '';
+    game.user = '';
+    game.pvp = false;
 }
