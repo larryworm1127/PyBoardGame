@@ -86,7 +86,7 @@
 body {
     background: beige;
     color: #222222;
-    padding: 0;
+    padding: 20px;
     margin: 0;
     font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
     font-weight: normal;
@@ -97,7 +97,8 @@ body {
 }
 
 h1 {
-    font-size: 2.5em
+    font-size: 2.5em;
+    font-weight: bold;
 }
 
 h3 {
@@ -114,4 +115,12 @@ a:hover {
 
 a.home:hover {
     color: #000000;
+}
+
+.space {
+    margin-top: 15px;
+}
+
+.space-2 {
+    margin-top: 50px;
 }

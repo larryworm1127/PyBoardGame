@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+
+{% block title %}Sudoko{% endblock %}
+
+{% block head %}
+  <!-- Bootstrap core stylesheets -->
+  <link rel="stylesheet"
+        href="{{ url_for('static', filename='bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
+  <script src="{{ url_for('static', filename='bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/sudoku.css') }}">
+  <script src="{{ url_for('static', filename='js/sudoku.js') }}"></script>
+
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h1>Sudoku</h1>
+        <div class="space"></div>
+        <a class="home m-3" id="home" href="{{ url_for('index') }}"><i class="fas fa-home fa-2x"></i></a>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-2">
+        <div class="space-2"></div>
+        <div class="btn-toolbar" role="toolbar" aria-label="Sudoku numbers">
+          <div class="btn-group mr-2" role="group" aria-label="First group">
+            <button type="button" id="one" onclick="selectNum(this.id)" class="btn btn-secondary">1</button>
+            <button type="button" id="two" onclick="selectNum(this.id)" class="btn btn-secondary">2</button>
+            <button type="button" id="three" onclick="selectNum(this.id)" class="btn btn-secondary">3</button>
+          </div>
+        </div>
+        <div class="btn-toolbar" role="toolbar" aria-label="Sudoku numbers">
+          <div class="btn-group mr-2" role="group" aria-label="First group">
+            <button type="button" id="four" onclick="selectNum(this.id)" class="btn btn-secondary">4</button>
+            <button type="button" id="five" onclick="selectNum(this.id)" class="btn btn-secondary">5</button>
+            <button type="button" id="six" onclick="selectNum(this.id)" class="btn btn-secondary">6</button>
+          </div>
+        </div>
+        <div class="btn-toolbar" role="toolbar" aria-label="Sudoku numbers">
+          <div class="btn-group mr-2" role="group" aria-label="First group">
+            <button type="button" id="seven" onclick="selectNum(this.id)" class="btn btn-secondary">7</button>
+            <button type="button" id="eight" onclick="selectNum(this.id)" class="btn btn-secondary">8</button>
+            <button type="button" id="nine" onclick="selectNum(this.id)" class="btn btn-secondary">9</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8 text-center">
+        <div class="game" id="wrapper">
+          {% for row in dim %}
+            {% for column in dim %}
+              <div id="{{ row }}-{{ column }}" onclick="setNum(this.id)" class="game-field text-center"></div>
+            {% endfor %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
