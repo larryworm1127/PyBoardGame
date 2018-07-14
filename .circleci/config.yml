@@ -29,9 +29,9 @@ jobs:
 
       - run:
           name: install dependencies
-          command:
-            - echo $(python3 --version)
-            - pipenv sync
+          command: |
+            echo $(python3 --version)
+            pipenv sync
 
       - save_cache:
           paths:
