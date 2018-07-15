@@ -11,8 +11,8 @@
     display: block;
     float: left;
     color: #EAEAEA;
-    font-size: 6.3em;
-    padding: 1px 27px;
+    font-size: 3em;
+    padding: 8px 15px;
 }
 
 #one-one, #one-two, #one-three, #one-four, #one-five, #one-six, #one-seven, #one-eight, #one-nine {
@@ -117,10 +117,35 @@ a.home:hover {
     color: #000000;
 }
 
+#pencil-toggle {
+    color: #afd9c8;
+}
+
+#pencil-toggle:hover {
+    color: #8cc9b0
+}
+
 .space {
     margin-top: 15px;
 }
 
 .space-2 {
     margin-top: 50px;
+}
+
+p.pencil {
+    font-size: 0.3em;
+    color: #000000;
+}
+
+p.not-pencil {
+    color: #000000;
+}
+
+.subheader {
+    line-height: 1.4;
+    color: #6f6f6f;
+    font-weight: 200;
+    margin-top: 0;
+    margin-bottom: 0.5em
 }
