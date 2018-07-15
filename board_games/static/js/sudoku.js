@@ -2,7 +2,7 @@ var game = {
     currentNumHtml: '',
     currentNum: 0,
     pencil: false,
-    start: new Date().getTime(),
+    start: '',
     time: 0,
     elapsed: '0.0',
     paused: false,
@@ -41,7 +41,28 @@ function selectNum(id) {
     $('#currentNum').text("Current Number: " + game.currentNum)
 }
 
+function timer() {
+    game.time += 100;
+
+    game.elapsed = Math.floor(game.time / 100) / 10;
+    if (Math.round(game.elapsed) === game.elapsed) {
+        game.elapsed += '.0';
+    }
+
+    $('#time').text("Time: " + game.elapsed + 's');
+
+    var diff = (new Date().getTime() - game.start) - game.time;
+    window.setTimeout(timer, (100 - diff));
+}
+
+
 // util functions
+function start() {
+    game.start = new Date().getTime();
+    window.setTimeout(timer, 100);
+    $('#start').removeAttr('onclick')
+}
+
 function togglePencil() {
     if (game.pencil) {
         game.pencil = false;
@@ -77,19 +98,3 @@ function getLastMove() {
         });
     });
 }
-
-function timer() {
-    game.time += 100;
-
-    game.elapsed = Math.floor(game.time / 100) / 10;
-    if (Math.round(game.elapsed) === game.elapsed) {
-        game.elapsed += '.0';
-    }
-
-    $('#time').text("Time: " + game.elapsed + 's');
-
-    var diff = (new Date().getTime() - game.start) - game.time;
-    window.setTimeout(timer, (100 - diff));
-}
-
-window.setTimeout(timer, 100);
