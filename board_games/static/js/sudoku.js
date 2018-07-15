@@ -1,5 +1,12 @@
-var currentNum = '';
-var pencil = false;
+var game = {
+    currentNumHtml: '',
+    currentNum: 0,
+    pencil: false,
+    start: new Date().getTime(),
+    time: 0,
+    elapsed: '0.0',
+    paused: false
+};
 
 const num_ref = {
     'one': ['<p class="not-pencil">1</p>', '<p class="pencil">1</p>', 1],
@@ -16,51 +23,46 @@ const num_ref = {
 // game core functions
 function setNum(id) {
     console.log(id);
-    $('#' + id).html(currentNum);
-    $('#currentNum').text("Current Number: " + currentNum)
+    $('#' + id).html(game.currentNumHtml);
 }
 
 function selectNum(id) {
     console.log(id);
-    if (pencil) {
-        currentNum = num_ref[id][1]
+    if (game.pencil) {
+        game.currentNumHtml = num_ref[id][1]
     } else {
-        currentNum = num_ref[id][0];
+        game.currentNumHtml = num_ref[id][0];
     }
+
+    game.currentNum = num_ref[id][2];
+    $('#currentNum').text("Current Number: " + game.currentNum)
 }
 
 // util functions
 function togglePencil() {
-    if (pencil) {
-        pencil = false;
+    if (game.pencil) {
+        game.pencil = false;
         $('#pencilOn').text("Pencil: Off")
     } else {
-        pencil = true;
+        game.pencil = true;
         $('#pencilOn').text("Pencil: On")
     }
 
-    console.log(pencil)
+    console.log(game.pencil)
 }
 
+function timer() {
+    game.time += 100;
 
-var start = new Date().getTime(),
-    time = 0,
-    elapsed = '0.0';
-
-function instance() {
-    time += 100;
-
-    elapsed = Math.floor(time / 100) / 10;
-    if (Math.round(elapsed) === elapsed) {
-        elapsed += '.0';
+    game.elapsed = Math.floor(game.time / 100) / 10;
+    if (Math.round(game.elapsed) === game.elapsed) {
+        game.elapsed += '.0';
     }
 
-    $('#time').text("Time: " + elapsed);
+    $('#time').text("Time: " + game.elapsed + 's');
 
-    var diff = (new Date().getTime() - start) - time;
-    window.setTimeout(instance, (100 - diff));
+    var diff = (new Date().getTime() - game.start) - game.time;
+    window.setTimeout(timer, (100 - diff));
 }
 
-window.setTimeout(instance, 100);
-
-
+window.setTimeout(timer, 100);
