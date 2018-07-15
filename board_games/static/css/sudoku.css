@@ -117,16 +117,16 @@ a.home:hover {
     color: #000000;
 }
 
-#pencil-toggle {
+#pencil-toggle, #undo, #erase {
     color: #afd9c8;
 }
 
-#pencil-toggle:hover {
+#pencil-toggle:hover, #undo:hover, #erase:hover {
     color: #8cc9b0
 }
 
 .space {
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 .space-2 {
@@ -148,4 +148,11 @@ p.not-pencil {
     font-weight: 200;
     margin-top: 0;
     margin-bottom: 0.5em
+}
+
+.jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #e9ecef;
+    border-radius: 0.3rem;
 }

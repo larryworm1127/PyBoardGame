@@ -3,32 +3,36 @@
 {% block title %}Tic Tac Toe{% endblock %}
 
 {% block head %}
+  <!-- Bootstrap core stylesheets -->
+  <link rel="stylesheet"
+        href="{{ url_for('static', filename='bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
+  <script src="{{ url_for('static', filename='bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+
   <link rel="stylesheet" href="{{ url_for('static', filename='css/ttt.css') }}">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/custom_bootstrap.css') }}">
   <script src="{{ url_for('static', filename='js/ttt.js') }}"></script>
 {% endblock %}
 
 {% block content %}
   <div class="container">
     <div class="row">
-      <div class="col-md-12 text-center">
+      <div class="col-md-2"></div>
+      <div class="col-md-6 text-center">
         <h1>Tic Tac Toe</h1>
-        <a class="home" id="home" href="{{ url_for('index') }}"><i class="fas fa-home fa-2x"></i></a>
+        <a class="home m-3" id="home" href="{{ url_for('index') }}"><i class="fas fa-home fa-2x"></i></a>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-md-2"></div>
 
       <!-- Icons -->
-      <div class="col-md-1 text-center">
-        <a class="computer" id="start-computer" onclick="setFig(this.id)"><i class="fas fa-laptop fa-5x"></i>
+      <div class="col-md-2 text-center">
+        <a class="computer" id="start-computer" onclick="setFig(this.id)"><i class="fas fa-laptop fa-5x m-2"></i>
           <p>You Start</p>
         </a><br>
-        <a class="human" id="start-human" onclick="setFig(this.id)"><i class="fas fa-user fa-5x"></i>
+        <a class="human" id="start-human" onclick="setFig(this.id)"><i class="fas fa-user fa-5x m-2"></i>
           <p>I'll Start</p>
         </a><br>
-        <a class="pvp" id="pvp" onclick="setFig(this.id)"><i class="fas fa-users fa-5x"></i>
+        <a class="pvp" id="pvp" onclick="setFig(this.id)"><i class="fas fa-users fa-5x m-1"></i>
           <p>PVP</p>
         </a>
       </div>
@@ -45,12 +49,12 @@
       </div>
 
       <!-- Messages -->
-      <div class="col-md-2" style="text-align: left">
+      <div class="col-md-4 text-left">
         <h2>Message Box</h2>
         <div class="jumbotron">
           <h3 class="subheader" id="prompt">Who starts?</h3>
         </div>
-        <div class="container text-center">
+        <div class="container">
           <a class="surrender" id="surrender" onclick="reset()"><i class="fas fa-handshake fa-5x"></i>
             <p>Surrender</p>
           </a>

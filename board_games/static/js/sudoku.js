@@ -5,8 +5,10 @@ var game = {
     start: new Date().getTime(),
     time: 0,
     elapsed: '0.0',
-    paused: false
+    paused: false,
+    undo: 0
 };
+
 
 const num_ref = {
     'one': ['<p class="not-pencil">1</p>', '<p class="pencil">1</p>', 1],
@@ -24,6 +26,7 @@ const num_ref = {
 function setNum(id) {
     console.log(id);
     $('#' + id).html(game.currentNumHtml);
+    saveMove(id)
 }
 
 function selectNum(id) {
@@ -49,6 +52,30 @@ function togglePencil() {
     }
 
     console.log(game.pencil)
+}
+
+function undo(id) {
+    console.log(id);
+
+    if (id !== null) {
+        game.undo++;
+        $('#numUndo').text("Undo: " + game.undo);
+        $('#' + id).html('')
+    }
+}
+
+function saveMove(id) {
+    $(function () {
+        $.getJSON("/games/sudoku/save_move", {id: id})
+    });
+}
+
+function getLastMove() {
+    $(function () {
+        $.getJSON("/games/sudoku/get_move", {}, function (data) {
+            undo(data.result)
+        });
+    });
 }
 
 function timer() {

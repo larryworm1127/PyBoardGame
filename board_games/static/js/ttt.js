@@ -154,10 +154,7 @@ function setup() {
         $.getJSON("/games/ttt/setup", {
             human: game.user[1],
             pvp: game.pvp
-        }, function (data) {
-            console.log(data.result)
-        });
-        return false;
+        })
     });
 }
 
