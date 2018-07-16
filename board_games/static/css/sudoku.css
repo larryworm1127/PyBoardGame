@@ -2,7 +2,7 @@
     background-color: transparent;
     width: 540px;
     height: 540px;
-    margin: 50px auto;
+    margin: 30px auto;
 }
 
 .game-field {
@@ -117,12 +117,28 @@ a.home:hover {
     color: #000000;
 }
 
-#pencil-toggle, #undo, #erase {
+#pencil-toggle {
     color: #afd9c8;
 }
 
-#pencil-toggle:hover, #undo:hover, #erase:hover {
+#pencil-toggle:hover {
     color: #8cc9b0
+}
+
+#undo {
+    color: indianred;
+}
+
+#undo:hover {
+    color: red;
+}
+
+#erase {
+    color: #624c47
+}
+
+#erase:hover {
+    color: #443532
 }
 
 .space {
@@ -130,7 +146,7 @@ a.home:hover {
 }
 
 .space-2 {
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 p.pencil {

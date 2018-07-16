@@ -60,7 +60,10 @@ function timer() {
 function start() {
     game.start = new Date().getTime();
     window.setTimeout(timer, 100);
-    $('#start').removeAttr('onclick')
+    $('#start').removeAttr('onclick');
+
+    $('.num').attr('onclick', 'selectNum(this.id)');
+    $('.game-field').attr('onclick', 'setNum(this.id)')
 }
 
 function togglePencil() {

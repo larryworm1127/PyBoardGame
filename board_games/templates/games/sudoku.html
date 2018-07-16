@@ -3,14 +3,8 @@
 {% block title %}Sudoko{% endblock %}
 
 {% block head %}
-  <!-- Bootstrap core stylesheets -->
-  <link rel="stylesheet"
-        href="{{ url_for('static', filename='bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
-  <script src="{{ url_for('static', filename='bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-
   <link rel="stylesheet" href="{{ url_for('static', filename='css/sudoku.css') }}">
   <script src="{{ url_for('static', filename='js/sudoku.js') }}"></script>
-
 {% endblock %}
 
 {% block content %}
@@ -30,15 +24,15 @@
         <div class="container" style="width: 10%">
           <div class="btn-toolbar" role="toolbar" aria-label="Sudoku numbers">
             <div class="btn-group-vertical mr-2" role="group" aria-label="First group">
-              <button type="button" id="one" onclick="selectNum(this.id)" class="btn btn-secondary">1</button>
-              <button type="button" id="two" onclick="selectNum(this.id)" class="btn btn-secondary">2</button>
-              <button type="button" id="three" onclick="selectNum(this.id)" class="btn btn-secondary">3</button>
-              <button type="button" id="four" onclick="selectNum(this.id)" class="btn btn-secondary">4</button>
-              <button type="button" id="five" onclick="selectNum(this.id)" class="btn btn-secondary">5</button>
-              <button type="button" id="six" onclick="selectNum(this.id)" class="btn btn-secondary">6</button>
-              <button type="button" id="seven" onclick="selectNum(this.id)" class="btn btn-secondary">7</button>
-              <button type="button" id="eight" onclick="selectNum(this.id)" class="btn btn-secondary">8</button>
-              <button type="button" id="nine" onclick="selectNum(this.id)" class="btn btn-secondary">9</button>
+              <button type="button" id="one" class="btn btn-secondary num">1</button>
+              <button type="button" id="two" class="btn btn-secondary num">2</button>
+              <button type="button" id="three" class="btn btn-secondary num">3</button>
+              <button type="button" id="four" class="btn btn-secondary num">4</button>
+              <button type="button" id="five" class="btn btn-secondary num">5</button>
+              <button type="button" id="six" class="btn btn-secondary num">6</button>
+              <button type="button" id="seven" class="btn btn-secondary num">7</button>
+              <button type="button" id="eight" class="btn btn-secondary num">8</button>
+              <button type="button" id="nine" class="btn btn-secondary num">9</button>
             </div>
           </div>
           <br>
@@ -61,7 +55,7 @@
         <div class="game" id="wrapper">
           {% for row in dim %}
             {% for column in dim %}
-              <div id="{{ row }}-{{ column }}" onclick="setNum(this.id)" class="game-field text-center"></div>
+              <div id="{{ row }}-{{ column }}" class="game-field text-center"></div>
             {% endfor %}
           {% endfor %}
         </div>
@@ -71,7 +65,7 @@
         <div class="space-2"></div>
         <h2>Game Info</h2>
         <div class="jumbotron" id="stats">
-          <h3 class="subheader" id="time">Time: 0:00</h3>
+          <h3 class="subheader" id="time">Time: 0.0s</h3>
           <h3 class="subheader" id="pencilOn">Pencil: Off</h3>
           <h3 class="subheader" id="currentNum">Current Number: None</h3>
           <h3 class="subheader" id="difficulty">Difficulty: None</h3>

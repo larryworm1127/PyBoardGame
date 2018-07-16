@@ -3,11 +3,6 @@
 {% block title %}Tic Tac Toe{% endblock %}
 
 {% block head %}
-  <!-- Bootstrap core stylesheets -->
-  <link rel="stylesheet"
-        href="{{ url_for('static', filename='bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
-  <script src="{{ url_for('static', filename='bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-
   <link rel="stylesheet" href="{{ url_for('static', filename='css/ttt.css') }}">
   <script src="{{ url_for('static', filename='js/ttt.js') }}"></script>
 {% endblock %}
@@ -25,7 +20,7 @@
     <div class="row">
 
       <!-- Icons -->
-      <div class="col-md-2 text-center">
+      <div class="col-md-2 text-center" style="margin-top: 50px">
         <a class="computer" id="start-computer" onclick="setFig(this.id)"><i class="fas fa-laptop fa-5x m-2"></i>
           <p>You Start</p>
         </a><br>
@@ -38,7 +33,7 @@
       </div>
 
       <!-- Tic Tac Toe grid -->
-      <div class="col-md-6 text-center ">
+      <div class="col-md-6 text-center">
         <div class="game" id="wrapper">
           {% for row in dim %}
             {% for column in dim %}
@@ -49,7 +44,7 @@
       </div>
 
       <!-- Messages -->
-      <div class="col-md-4 text-left">
+      <div class="col-md-4 text-left" style="margin-top: 50px">
         <h2>Message Box</h2>
         <div class="jumbotron">
           <h3 class="subheader" id="prompt">Who starts?</h3>
