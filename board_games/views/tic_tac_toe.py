@@ -33,7 +33,7 @@ def setup():
 
 @bp.route('/ttt/update', methods=['GET', 'POST'])
 def update():
-    cell = ID[request.args.get('id', 0, type=str)]
+    cell = id_ref[request.args.get('id', 0, type=str)]
     symbol = request.args.get('symbol', 0, type=str)
     game.board.move(cell[0], cell[1], PLAYERX if symbol == 'X' else PLAYERO)
     return jsonify(result=str(game.board))

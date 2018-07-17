@@ -1,6 +1,5 @@
 var game = {
-    currentNumHtml: '',
-    currentNum: 0,
+    currentNum: '',
     pencil: false,
     start: '',
     time: 0,
@@ -24,22 +23,23 @@ const num_ref = {
 
 // game core functions
 function setNum(id) {
-    if (game.currentNum !== 0) {
-        $('#' + id).html(game.currentNumHtml);
-        saveMove(id)
+    if (game.currentNum[2] !== 0) {
+        if (game.pencil) {
+            $('#' + id).html(game.currentNum[1]);
+        } else {
+            $('#' + id).html(game.currentNum[0]);
+        }
+
+        saveMove(id);
+        addMove(id, game.currentNum[2])
     }
 }
 
 function selectNum(id) {
-    console.log(id);
-    if (game.pencil) {
-        game.currentNumHtml = num_ref[id][1]
-    } else {
-        game.currentNumHtml = num_ref[id][0];
-    }
+    game.currentNum = num_ref[id];
+    game.currentNum = num_ref[id];
 
-    game.currentNum = num_ref[id][2];
-    $('#currentNum').text("Current Number: " + game.currentNum)
+    $('#currentNum').text("Current Number: " + game.currentNum[2])
 }
 
 function timer() {
@@ -66,13 +66,17 @@ function start() {
     $('.num').attr('onclick', 'selectNum(this.id)');
     $('.game-field').attr('onclick', 'setNum(this.id)');
 
+    $(function () {
+        $.getJSON("/games/sudoku/setup")
+    });
+
     initialize();
 }
 
 function initialize() {
     var currentPuzzle = generatePuzzle(1);
-    printBoard(currentPuzzle);
     renderBoard(currentPuzzle);
+    getCurrentBoard();
 }
 
 function printBoard(board) {
@@ -93,13 +97,9 @@ function togglePencil() {
         game.pencil = true;
         $('#pencilOn').text("Pencil: On")
     }
-
-    console.log(game.pencil)
 }
 
 function undo(id) {
-    console.log(id);
-
     if (id !== null) {
         game.undo++;
         $('#numUndo').text("Undo: " + game.undo);
@@ -107,9 +107,22 @@ function undo(id) {
     }
 }
 
+
+// back-end link functions
 function saveMove(id) {
     $(function () {
         $.getJSON("/games/sudoku/save_move", {id: id})
+    });
+}
+
+function addMove(id, num) {
+    $(function () {
+        $.getJSON("/games/sudoku/add_move", {
+            id: id,
+            num: num
+        }, function (data) {
+            console.log(data.result)
+        });
     });
 }
 
@@ -119,6 +132,15 @@ function getLastMove() {
             undo(data.result)
         });
     });
+}
+
+function getCurrentBoard() {
+    $(function () {
+        $.getJSON("/games/sudoku/get_board", {}, function (data) {
+            console.log(data);
+            printBoard(data.result)
+        });
+    })
 }
 
 
@@ -191,7 +213,6 @@ function solveSudoku(inputBoard, stats) {
                     }
 
                     if (remaining === 0) {
-                        //console.log("no remaining " + i + " " + j);
                         impossible = true;
                         break outerLoop;
                     }
@@ -240,7 +261,6 @@ function solveSudoku(inputBoard, stats) {
     }
 
     if (impossible) {
-        //window.console && console.log("board is impossible");
         return null;
     }
     else {
@@ -294,8 +314,8 @@ function checkFreedoms(board, i, j, possibilities, zoneRow, zoneCol) {
 
     var answer = 0;
     var currentPos = possibilities[i][j];
-    //see if only one square can realize a possibility
 
+    //see if only one square can realize a possibility
     var uniquePosRow = currentPos.slice(0);
     var uniquePosCol = currentPos.slice(0);
     var uniquePosCube = currentPos.slice(0);
@@ -362,7 +382,6 @@ function checkFreedoms(board, i, j, possibilities, zoneRow, zoneCol) {
     }
 
     return answer;
-
 }
 
 function solveByGuessing(board, possibilities, leastFree, stats) {
@@ -424,41 +443,6 @@ function shuffleArray(array) {
     }
 }
 
-// for benchmarking, use a random generator from a seed
-(function () {
-
-    // some dummy value to start with
-    var last = 31337;
-    var randomBackup = Math.random;
-
-    // Linear Congruential Generator
-    var fakeRandom = function () {
-        var a = 214013;
-        var c = 2531011;
-        //2^32
-        var m = 4294967296;
-
-        var next = (a * last + c) % m;
-
-        last = next;
-        return next / m;
-    };
-
-    Math.enableFakeRandom = function () {
-        Math.random = fakeRandom;
-    };
-
-    Math.disableFakeRandom = function () {
-        Math.random = randomBackup;
-    };
-
-    Math.fakeRandomSeed = function (seed) {
-        last = seed;
-    }
-
-})();
-
-
 function generatePuzzle(difficulty) {
 
     if (difficulty !== 1 && difficulty !== 2 &&
@@ -516,12 +500,9 @@ function generatePuzzle(difficulty) {
         else {
             knownCount--;
         }
-
-
     }
 
     return solvedPuzzle;
-
 }
 
 var emptyPuzzle = [
@@ -546,9 +527,11 @@ function renderBoard(board) {
             var val = board[i][j];
 
             if (val !== 0) {
-                let cell = $('#' + id);
+                var cell = $('#' + id);
                 cell.html(num_ref[ref[val]][0]);
-                cell.removeAttr('onclick')
+                cell.removeAttr('onclick');
+
+                addMove(id, val)
             }
         }
     }
