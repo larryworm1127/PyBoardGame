@@ -200,7 +200,6 @@ function solveSudoku(inputBoard, stats) {
                         mutated = true;
                     }
 
-
                     // check if the contraints above left us with only one valid option
                     var remaining = 0;
                     var lastDigit = 0;
@@ -240,7 +239,6 @@ function solveSudoku(inputBoard, stats) {
                             leastFree = [[i, j]];
                         }
                     }
-
                 }
             }
         }
@@ -262,8 +260,7 @@ function solveSudoku(inputBoard, stats) {
 
     if (impossible) {
         return null;
-    }
-    else {
+    } else {
         return board;
     }
 }
@@ -271,11 +268,11 @@ function solveSudoku(inputBoard, stats) {
 function getZone(i) {
     if (i < 3) {
         return 0;
-    }
-    else if (i < 6) {
+
+    } else if (i < 6) {
         return 1;
-    }
-    else {
+
+    } else {
         return 2;
     }
 }
@@ -325,6 +322,7 @@ function checkFreedoms(board, i, j, possibilities, zoneRow, zoneCol) {
             if (board[i][k] === 0 && possibilities[i][k][l] && k !== j) {
                 uniquePosRow[l] = false;
             }
+
             if (board[k][j] === 0 && possibilities[k][j][l] && k !== i) {
                 uniquePosCol[l] = false;
             }
@@ -341,6 +339,7 @@ function checkFreedoms(board, i, j, possibilities, zoneRow, zoneCol) {
             remainingRow++;
             lastDigitRow = k;
         }
+
         if (uniquePosCol[k]) {
             remainingCol++;
             lastDigitCol = k;
@@ -391,8 +390,7 @@ function solveByGuessing(board, possibilities, leastFree, stats) {
 
     if ('hard' in stats) {
         stats['vhard'] = true;
-    }
-    else {
+    } else {
         stats['hard'] = true;
     }
 
@@ -470,7 +468,7 @@ function generatePuzzle(difficulty) {
             break;
         }
 
-        //easy check
+        // easy check
         if (difficulty === 1 && knownCount <= 35) {
             break;
         }
@@ -496,8 +494,7 @@ function generatePuzzle(difficulty) {
 
         if (undo) {
             solvedPuzzle[row][col] = currentValue;
-        }
-        else {
+        } else {
             knownCount--;
         }
     }

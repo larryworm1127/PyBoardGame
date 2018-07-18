@@ -17,7 +17,7 @@ class TTTSetUp:
         self.size = size
         self.reverse = reverse
         self.pvp = pvp
-        self.board = TTTBoard(self.size, self.reverse)
+        self.board = TTTBoard(self.reverse)
 
         # player setup
         self.human = PLAYERX if human == 'X' else PLAYERO
