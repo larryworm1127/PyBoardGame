@@ -65,9 +65,9 @@ class TestTTTComputer:
 
     def test_minimax_win_diag(self):
         """
-        x x   | o x x
-        o o x | x o
-        o     | o
+        x x   | o x x | x
+        o o x | x o   |  x o
+        o     | o     |  o
 
         Test if computer knows how to win the game with win case on a diagonal of the board.
         """
@@ -82,6 +82,13 @@ class TestTTTComputer:
         move = get_move(board, PLAYERO)[1]
         assert move[0] == 2, "Bad Move X: " + str(move[0])
         assert move[1] == 2, "Bad Move Y: " + str(move[1])
+
+        game_board = [[PLAYERX, EMPTY, EMPTY], [EMPTY, PLAYERX, PLAYERO], [EMPTY, PLAYERO, EMPTY]]
+        # TODO: you don't need dim parameter in TTTBoard constructor
+        # Why you didn't use unittest ? See example at https://docs.python.org/3/library/unittest.html#basic-example
+        board = TTTBoard(len(game_board), board=game_board)
+        move = get_move(board, PLAYERX)[1]
+        assert move == (2, 2), "Bad Move " + str(move)
 
     def test_minimax_def_row(self):
         """
