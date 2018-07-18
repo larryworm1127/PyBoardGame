@@ -22,22 +22,22 @@ id_ref = {row_num[row] + '-' + row_num[col]: (row, col) for row in row_num.keys(
 
 
 class TTTBoard:
-    def __init__(self, dim, reverse=False, board=None):
+    def __init__(self, reverse=False, board=None):
         """
         Initialize the TTTBoard object with the given dimension and
         whether or not the game should be reversed.
         """
-        self._dim = dim
+        self._dim = 3
         self._reverse = reverse
 
         if board is None:
             # Create empty board
-            self._board = [[EMPTY for _ in range(dim)]
-                           for _ in range(dim)]
+            self._board = [[EMPTY for _ in range(3)]
+                           for _ in range(3)]
         else:
             # Copy board grid
-            self._board = [[board[row][col] for col in range(dim)]
-                           for row in range(dim)]
+            self._board = [[board[row][col] for col in range(3)]
+                           for row in range(3)]
 
     def __str__(self):
         """
