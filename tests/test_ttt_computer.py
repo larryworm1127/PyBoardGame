@@ -13,7 +13,7 @@ from board_games.tic_tac_toe import *
 class TestTTTComputer:
     def test_minimax_win_row(self):
         """
-        x x o | x o x | o o
+        x x o | o x x | o o
           x x |   o o | x x o
         o   o | x   x | x
 
@@ -25,7 +25,7 @@ class TestTTTComputer:
         assert move[0] == 2, "Bad Move X: " + str(move[0])
         assert move[1] == 1, "Bad Move Y: " + str(move[1])
 
-        game_board = [[PLAYERX, PLAYERO, PLAYERX], [EMPTY, PLAYERO, PLAYERO], [PLAYERX, EMPTY, PLAYERX]]
+        game_board = [[PLAYERO, PLAYERX, PLAYERX], [EMPTY, PLAYERO, PLAYERO], [PLAYERX, EMPTY, PLAYERX]]
         board = TTTBoard(board=game_board)
         move = get_move(board, PLAYERO)[1]
         assert move[0] == 1, "Bad Move X: " + str(move[0])
@@ -39,9 +39,9 @@ class TestTTTComputer:
 
     def test_minimax_win_col(self):
         """
-        x     | x o o | o o x
-        o o x |     o |   o x
-        x o x | x o x | x
+        x     | x   o | o o x
+        o o x |     x |   o x
+        x o x | x o o | x
 
         Test if computer knows how to win the game with win case on a column of the board.
         """
@@ -51,7 +51,7 @@ class TestTTTComputer:
         assert move[0] == 0, "Bad Move X: " + str(move[0])
         assert move[1] == 2, "Bad Move Y: " + str(move[1])
 
-        game_board = [[PLAYERX, PLAYERO, PLAYERO], [EMPTY, EMPTY, PLAYERO], [PLAYERX, PLAYERO, PLAYERX]]
+        game_board = [[PLAYERX, EMPTY, PLAYERO], [EMPTY, EMPTY, PLAYERX], [PLAYERX, PLAYERO, PLAYERO]]
         board = TTTBoard(board=game_board)
         move = get_move(board, PLAYERX)[1]
         assert move[0] == 1, "Bad Move X: " + str(move[0])

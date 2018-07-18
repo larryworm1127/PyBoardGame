@@ -146,7 +146,7 @@ class TTTBoard:
         """
         Return a copy of the board
         """
-        return TTTBoard(self._dim, self._reverse, self._board)
+        return TTTBoard(self._reverse, self._board)
 
 
 def switch_player(player):
