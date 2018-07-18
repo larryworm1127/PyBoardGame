@@ -80,6 +80,11 @@ class TestTTTComputer:
         move = get_move(board, PLAYERX)[1]
         assert move == (2, 2), "Bad Move: " + str(move)
 
+        # game_board = [[EMPTY, EMPTY, EMPTY], [EMPTY, PLAYERX, PLAYERO], [EMPTY, PLAYERO, PLAYERX]]
+        # board = TTTBoard(board=game_board)
+        # move = get_move(board, PLAYERX)[1]
+        # assert move == (0, 0), "Bad Move: " + str(move)
+
     def test_minimax_def_row(self):
         """
         x x   | o x   | x o
@@ -91,20 +96,17 @@ class TestTTTComputer:
         game_board = [[PLAYERX, PLAYERX, EMPTY], [PLAYERX, PLAYERO, EMPTY], [PLAYERO, PLAYERO, PLAYERX]]
         board = TTTBoard(board=game_board)
         move = get_move(board, PLAYERO)[1]
-        assert move == 0, "Bad Move : " + str(move)
-        assert move[1] == 2, "Bad Move Y: " + str(move[1])
+        assert move == (0, 2), "Bad Move: " + str(move)
 
         game_board = [[PLAYERO, PLAYERX, EMPTY], [PLAYERX, PLAYERX, EMPTY], [PLAYERO, PLAYERO, PLAYERX]]
         board = TTTBoard(board=game_board)
         move = get_move(board, PLAYERO)[1]
-        assert move == 1, "Bad Move : " + str(move)
-        assert move[1] == 2, "Bad Move Y: " + str(move[1])
+        assert move == (1, 2), "Bad Move: " + str(move)
 
         game_board = [[PLAYERX, PLAYERO, EMPTY], [PLAYERO, EMPTY, EMPTY], [PLAYERX, PLAYERX, EMPTY]]
         board = TTTBoard(board=game_board)
         move = get_move(board, PLAYERO)[1]
-        assert move == 2, "Bad Move : " + str(move)
-        assert move[1] == 2, "Bad Move Y: " + str(move[1])
+        assert move == (2, 2), "Bad Move: " + str(move)
 
     def test_minimax_def_col(self):
         """
@@ -117,20 +119,17 @@ class TestTTTComputer:
         game_board = [[PLAYERX, PLAYERO, PLAYERX], [PLAYERX, PLAYERX, PLAYERO], [EMPTY, EMPTY, PLAYERO]]
         board = TTTBoard(board=game_board)
         move = get_move(board, PLAYERO)[1]
-        assert move == 2, "Bad Move : " + str(move)
-        assert move[1] == 0, "Bad Move Y: " + str(move[1])
+        assert move == (2, 0), "Bad Move: " + str(move)
 
         game_board = [[PLAYERO, PLAYERX, PLAYERO], [PLAYERX, PLAYERX, PLAYERO], [EMPTY, EMPTY, PLAYERX]]
         board = TTTBoard(board=game_board)
         move = get_move(board, PLAYERO)[1]
-        assert move == 2, "Bad Move : " + str(move)
-        assert move[1] == 1, "Bad Move Y: " + str(move[1])
+        assert move == (2, 1), "Bad Move: " + str(move)
 
         game_board = [[PLAYERO, PLAYERO, PLAYERX], [PLAYERX, PLAYERO, PLAYERX], [EMPTY, PLAYERX, EMPTY]]
         board = TTTBoard(board=game_board)
         move = get_move(board, PLAYERO)[1]
-        assert move == 2, "Bad Move : " + str(move)
-        assert move[1] == 2, "Bad Move Y: " + str(move[1])
+        assert move == (2, 2), "Bad Move: " + str(move)
 
     def test_minimax_def_diag(self):
         """
@@ -143,11 +142,9 @@ class TestTTTComputer:
         game_board = [[PLAYERX, PLAYERO, PLAYERX], [PLAYERX, PLAYERX, PLAYERO], [PLAYERO, EMPTY, EMPTY]]
         board = TTTBoard(board=game_board)
         move = get_move(board, PLAYERO)[1]
-        assert move == 2, "Bad Move : " + str(move)
-        assert move[1] == 2, "Bad Move Y: " + str(move[1])
+        assert move == (2, 2), "Bad Move: " + str(move)
 
         game_board = [[PLAYERO, PLAYERO, PLAYERX], [PLAYERX, PLAYERX, PLAYERO], [EMPTY, EMPTY, PLAYERX]]
         board = TTTBoard(board=game_board)
         move = get_move(board, PLAYERO)[1]
-        assert move == 2, "Bad Move : " + str(move)
-        assert move[1] == 0, "Bad Move Y: " + str(move[1])
+        assert move == (2, 0), "Bad Move: " + str(move)
