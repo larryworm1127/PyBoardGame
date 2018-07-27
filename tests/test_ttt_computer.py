@@ -6,6 +6,8 @@ Test module for ttt_computer.py
 """
 
 # general imports
+import pytest
+
 from board_games.tic_tac_toe import *
 
 
@@ -78,12 +80,12 @@ class TestTTTComputer:
         game_board = [[PLAYERX, EMPTY, EMPTY], [EMPTY, PLAYERX, PLAYERO], [EMPTY, PLAYERO, EMPTY]]
         board = TTTBoard(board=game_board)
         move = get_move(board, PLAYERX)[1]
-        assert move == (2, 2), "Bad Move: " + str(move)
+        assert move == (2, 2) or move == (0, 1), "Bad Move: " + str(move)
 
-        # game_board = [[EMPTY, EMPTY, EMPTY], [EMPTY, PLAYERX, PLAYERO], [EMPTY, PLAYERO, PLAYERX]]
-        # board = TTTBoard(board=game_board)
-        # move = get_move(board, PLAYERX)[1]
-        # assert move == (0, 0), "Bad Move: " + str(move)
+        game_board = [[EMPTY, EMPTY, EMPTY], [EMPTY, PLAYERX, PLAYERO], [EMPTY, PLAYERO, PLAYERX]]
+        board = TTTBoard(board=game_board)
+        move = get_move(board, PLAYERX)[1]
+        assert move == (0, 0), "Bad Move: " + str(move)
 
     def test_minimax_def_row(self):
         """

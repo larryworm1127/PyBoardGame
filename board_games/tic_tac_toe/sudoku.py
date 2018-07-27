@@ -8,6 +8,8 @@ Sudoku class that keep tracks of various game variables
 # general imports
 from .ttt_board import id_ref
 
+CELL_IDX = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
+
 
 class Sudoku:
 
@@ -80,7 +82,6 @@ class Sudoku:
     def set_square(self, row, col, num):
         """
         Place number on the board at position (row, col).
-        .
 
         :param row: the row of the board
         :param col: the column of the board
@@ -95,3 +96,54 @@ class Sudoku:
         :param cell_id: the ID of the square
         """
         self._moves.append(cell_id)
+
+    def get_row_col_cell(self):
+        """
+        Helper function for verify_board method to get all
+        the rows, columns, and cells from board variable
+
+        :return: rows, columns and cells of the board
+        """
+        # row
+        rows = self._board.copy()
+
+        # column
+        cols = []
+        for col in range(self._dim):
+            column = []
+            for row in range(self._dim):
+                column.append(self._board[row][col])
+            cols.append(column)
+
+        # cell
+        cells = []
+        for idx1 in CELL_IDX:
+            for idx2 in CELL_IDX:
+                cell = []
+                for row in idx1:
+                    for col in idx2:
+                        cell.append(self._board[row][col])
+
+                cells.append(cell)
+
+        return [rows, cols, cells]
+
+    def verify_board(self):
+
+        row_col_cells = self.get_row_col_cell()
+        lst = [config for item in row_col_cells for config in item]
+
+        for row in self._board:
+            if 0 in row:
+                return False
+
+        duplicate_num = []
+        for config in lst:
+            for num in set(config):
+                if config.count(num) > 1:
+                    duplicate_num.append(num)
+
+        if not duplicate_num:
+            return True
+        else:
+            return duplicate_num
