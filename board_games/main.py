@@ -1,7 +1,7 @@
 """
-Flask app factory
+Main module that runs Flask app
 
-@date: 6/12/2018
+@date: 7/27/2018
 @author: Larry Shi
 """
 
