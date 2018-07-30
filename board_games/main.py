@@ -12,7 +12,7 @@ from flask import Flask, render_template
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_mapping(
     SECRET_KEY=b'c47da79190345efef83858ae4596dbaa4e04f7fc888a6f34',
-    DATABASE=os.path.join(app.instance_path, 'board_games.sqlite')
+    DATABASE=os.path.join(app.instance_path, 'board_games.sqlite'),
 )
 
 # ensure the instance folder exists
