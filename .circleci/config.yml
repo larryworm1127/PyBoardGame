@@ -47,6 +47,7 @@ jobs:
           path: test-reports
           destination: test-reports
 
+  # deploy
   deploy:
     name: Deploy Master to Heroku
     requires:
