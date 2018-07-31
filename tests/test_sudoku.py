@@ -48,6 +48,10 @@ INCOMPLETE_BOARD = [
 # test classes
 class TestSudoku:
     def test_get_row_col_cell(self):
+        """
+        Test if get_row_col_cell method get the correct
+        rows, columns and cells given a board
+        """
         cols = [
             [5, 6, 1, 8, 4, 7, 9, 2, 3],
             [3, 7, 9, 5, 2, 1, 6, 8, 4],
@@ -85,6 +89,10 @@ class TestSudoku:
             assert cell in cells, "cell not in board"
 
     def test_verify_board(self):
+        """
+        Test if verify_board function recognizes a complete,
+        incomplete, and incorrect board
+        """
         game_board = Sudoku(9, SOLVED_BOARD)
         result = game_board.verify_board()
         assert result is True, "board solved but not recognized"
@@ -95,4 +103,4 @@ class TestSudoku:
 
         game_board = Sudoku(9, INCOMPLETE_BOARD)
         result = game_board.verify_board()
-        assert not result
+        assert not result, "board incomplete but not recognized"

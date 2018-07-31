@@ -99,8 +99,7 @@ class Sudoku:
 
     def get_row_col_cell(self):
         """
-        Helper function for verify_board method to get all
-        the rows, columns, and cells from board variable
+        Get all the rows, columns, and cells from board variable
 
         :return: rows, columns and cells of the board
         """
@@ -126,17 +125,25 @@ class Sudoku:
 
                 cells.append(cell)
 
+        # return row, column and cell in one 2D-list
         return [rows, cols, cells]
 
     def verify_board(self):
+        """
+        Verify whether the board is complete
 
+        :return:
+        """
+        # store all rows, columns, and cells in one list
         row_col_cells = self.get_row_col_cell()
         lst = [config for item in row_col_cells for config in item]
 
+        # check whether the board is incomplete or not
         for row in self._board:
             if 0 in row:
                 return False
 
+        # check for duplicate number
         duplicate_num = []
         for config in lst:
             for num in set(config):

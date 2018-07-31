@@ -12,7 +12,8 @@ from board_games.tic_tac_toe import *
 class TestTTTBoard:
     def test_clone(self):
         """
-        Test if the clone method works and if the cloned does not get affect by its original board.
+        Test if the clone method works and if the cloned does
+        not get affect by its original board.
         """
         game_board = [[EMPTY, EMPTY, EMPTY], [EMPTY, EMPTY, EMPTY], [EMPTY, EMPTY, EMPTY]]
         board = TTTBoard(board=game_board)
