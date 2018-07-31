@@ -5,6 +5,7 @@ Flask app factory
 @author: Larry Shi
 """
 
+# general imports
 import os
 
 from flask import Flask, render_template
@@ -13,14 +14,16 @@ from flask import Flask, render_template
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
-    app.config.from_mapping(
-        SECRET_KEY=b'c47da79190345efef83858ae4596dbaa4e04f7fc888a6f34',
-        DATABASE=os.path.join(app.instance_path, 'board_games.sqlite')
-    )
+    app.config.from_object('config')
 
     if test_config is None:
         # load the instance config, if it exists, when not testing
         app.config.from_pyfile('config.py', silent=True)
+        app.config.from_mapping(
+            SECRET_KEY=b'c47da79190345efef83858ae4596dbaa4e04f7fc888a6f34',
+            DATABASE=os.path.join(app.instance_path, 'board_games.sqlite'),
+            DEBUG=True
+        )
     else:
         # load the test config if passed in
         app.config.from_mapping(test_config)
