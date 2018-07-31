@@ -16,7 +16,7 @@ bp = Blueprint('ttt', __name__, url_prefix='/games')
 
 
 @bp.route('/ttt')
-#@login_required
+# @login_required
 def tic_tac_toe():
     return render_template('games/tic_tac_toe.html', dim=['one', 'two', 'three'])
 
