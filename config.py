@@ -11,6 +11,6 @@ import os
 from board_games import app
 
 # config variables
-SECRET_KEY = os.environ('SECRET_KEY')
+SECRET_KEY = b'c47da79190345efef83858ae4596dbaa4e04f7fc888a6f34'
 DATABASE = os.path.join(app.instance_path, 'board_games.sqlite')
 DEBUG = False
