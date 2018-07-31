@@ -11,6 +11,7 @@ var game = {
 const computer = 0;
 const user = 1;
 const user_two = 2;
+const ref = {1: 'one', 2: 'two', 3: 'three'};
 
 // other variables
 symbol = {
@@ -27,7 +28,6 @@ function setFig(id) {
 
         $('#prompt').text(promptText(game.computer[1]));
         setup();
-        //comp_first_move()
         comp_move()
 
     } else if (id === 'start-human') {
@@ -86,15 +86,9 @@ function draw(id) {
 }
 
 // computer player control functions
-function comp_first_move() {
-    draw('two-two');
-}
-
 function comp_move() {
     $(function () {
         $.getJSON("/games/ttt/get_move", {}, function (data) {
-            console.log(data.result);
-            console.log(data.id);
             draw(data.id)
         });
     });
@@ -108,7 +102,6 @@ function switchPlayer(currentUser) {
             $('#prompt').text(promptText(game.user_two[1]));
         } else {
             game.currentPlayer = computer;
-            $('.game-field').removeAttr('onclick');
             $('#prompt').text(promptText(game.computer[1]));
 
             comp_move()

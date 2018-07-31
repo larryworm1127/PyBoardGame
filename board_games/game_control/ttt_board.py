@@ -25,6 +25,7 @@ class TTTBoard:
         """
         self._dim = 3
         self._reverse = reverse
+        self._moves = []
 
         if board is None:
             # Create empty board
@@ -81,6 +82,12 @@ class TTTBoard:
 
         return empty
 
+    def get_moves(self):
+        """
+        Returns a list of (row, col) moves made my computer and player
+        """
+        return self._moves
+
     def move(self, row, col, player):
         """
         Place player on the board at position (row, col).
@@ -93,6 +100,7 @@ class TTTBoard:
         """
         if self._board[row][col] == EMPTY:
             self._board[row][col] = player
+            self._moves.append((row, col))
 
     def check_win(self):
         """

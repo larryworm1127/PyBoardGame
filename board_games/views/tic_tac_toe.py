@@ -9,7 +9,7 @@ Flask "Tic Tac Toe" game blueprint
 from flask import Blueprint, render_template, jsonify, request
 
 from ..game_control.ttt_setup import *
-from ..game_control.util import ID_REF, ROW_NUM
+from ..game_control.util import ID_REF, get_id_from_pos
 from .auth import login_required
 
 # init blueprint
@@ -34,10 +34,13 @@ def setup():
 
 @bp.route('/ttt/update', methods=['GET', 'POST'])
 def update():
-    cell = ID_REF[request.args.get('id', 0, type=str)]
-    symbol = request.args.get('symbol', 0, type=str)
-    game.board.move(cell[0], cell[1], PLAYERX if symbol == 'X' else PLAYERO)
-    return jsonify(result=str(game.board))
+    try:
+        cell = ID_REF[request.args.get('id', 0, type=str)]
+        symbol = request.args.get('symbol', 0, type=str)
+        game.board.move(cell[0], cell[1], PLAYERX if symbol == 'X' else PLAYERO)
+        return jsonify(result=str(game.board))
+    except KeyError:
+        return jsonify(result=False)
 
 
 @bp.route('/ttt/check_win', methods=['GET', 'POST'])
@@ -57,6 +60,14 @@ def get_move():
     move = game.get_comp_move()
 
     try:
-        return jsonify(result=move, id=ROW_NUM[move[0]] + '-' + ROW_NUM[move[1]])
+        return jsonify(result=move, id=get_id_from_pos(move))
     except KeyError:
         return jsonify(result=move)
+
+
+@bp.route('/ttt/get_past_moves', methods=['GET', 'POST'])
+def get_past_moves():
+    moves = game.board.get_moves()
+    move_ids = [get_id_from_pos(pos) for pos in moves]
+
+    return jsonify(result=move_ids)
