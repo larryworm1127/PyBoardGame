@@ -6,9 +6,7 @@ Main module that runs Flask app
 """
 
 # general imports
-from board_games import create_app
-
-app = create_app()
+from board_games import app
 
 if __name__ == '__main__':
     app.run()
