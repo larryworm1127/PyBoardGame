@@ -113,9 +113,7 @@ function switchPlayer(currentUser) {
             $('.game-field').removeAttr('onclick');
             $('#prompt').text(promptText(game.computer[1]));
 
-            setTimeout(function () {
-                comp_move()
-            }, 500)
+            comp_move()
         }
 
     } else if (currentUser === computer || currentUser === user_two) {
