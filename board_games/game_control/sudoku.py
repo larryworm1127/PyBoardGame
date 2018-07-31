@@ -9,6 +9,7 @@ Sudoku class that keep tracks of various game variables
 CELL_IDX = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
 
 
+# main class
 class Sudoku:
 
     def __init__(self, dim, board=None):

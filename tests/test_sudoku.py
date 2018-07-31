@@ -4,6 +4,7 @@ Test module for sudoku.py
 @date: 7/27/2018
 @author: Larry Shi
 """
+
 # general imports
 from board_games.game_control.sudoku import *
 
