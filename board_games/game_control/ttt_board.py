@@ -16,10 +16,6 @@ STRMAP = {PLAYERX: 'X',
           PLAYERO: 'O',
           EMPTY: ' '}
 
-# Map front-end grid IDs with corresponding (row, col)
-row_num = {0: 'one', 1: 'two', 2: 'three', 3: 'four', 4: 'five', 5: 'six', 6: 'seven', 7: 'eight', 8: 'nine'}
-id_ref = {row_num[row] + '-' + row_num[col]: (row, col) for row in row_num.keys() for col in row_num.keys()}
-
 
 class TTTBoard:
     def __init__(self, reverse=False, board=None):

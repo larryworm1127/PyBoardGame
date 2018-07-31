@@ -8,7 +8,8 @@ Flask "Tic Tac Toe" game blueprint
 # general imports
 from flask import Blueprint, render_template, jsonify, request
 
-from ..tic_tac_toe.ttt_setup import *
+from ..game_control.ttt_setup import *
+from ..game_control.util import ID_REF, ROW_NUM
 from .auth import login_required
 
 # init blueprint
@@ -33,7 +34,7 @@ def setup():
 
 @bp.route('/ttt/update', methods=['GET', 'POST'])
 def update():
-    cell = id_ref[request.args.get('id', 0, type=str)]
+    cell = ID_REF[request.args.get('id', 0, type=str)]
     symbol = request.args.get('symbol', 0, type=str)
     game.board.move(cell[0], cell[1], PLAYERX if symbol == 'X' else PLAYERO)
     return jsonify(result=str(game.board))
@@ -56,6 +57,6 @@ def get_move():
     move = game.get_comp_move()
 
     try:
-        return jsonify(result=move, id=row_num[move[0]] + '-' + row_num[move[1]])
+        return jsonify(result=move, id=ROW_NUM[move[0]] + '-' + ROW_NUM[move[1]])
     except KeyError:
         return jsonify(result=move)

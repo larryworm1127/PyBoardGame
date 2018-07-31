@@ -21,6 +21,8 @@ const num_ref = {
     'nine': ['<p class="not-pencil">9</p>', '<p class="pencil">9</p>', 9]
 };
 
+const ref = {1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six', 7: 'seven', 8: 'eight', 9: 'nine'};
+
 // game core functions
 function setNum(id) {
     if (game.currentNum[2] !== 0) {
@@ -30,8 +32,9 @@ function setNum(id) {
             $('#' + id).html(game.currentNum[0]);
         }
 
+        addMove(id, game.currentNum[2]);
         saveMove(id);
-        addMove(id, game.currentNum[2])
+        verifyBoard()
     }
 }
 
@@ -56,6 +59,34 @@ function timer() {
     window.setTimeout(timer, (100 - diff));
 }
 
+function endGame() {
+
+}
+
+function verifyBoard() {
+    clearError();
+
+    $(function () {
+        $.getJSON("/games/sudoku/verify", {}, function (data) {
+            var result = data.result;
+            var id_list = data.id_list;
+
+            if (result === true) {
+                endGame()
+            } else if (result === false) {
+
+            } else {
+                console.log(data);
+                for (var i = 0; i < id_list.length; i++) {
+                    var cell = $('#' + id_list[i] + ' p');
+                    cell.removeClass('not-pencil');
+                    cell.addClass('error');
+                }
+            }
+        });
+    })
+}
+
 
 // util functions
 function start() {
@@ -67,7 +98,7 @@ function start() {
     $('.game-field').attr('onclick', 'setNum(this.id)');
 
     $(function () {
-        $.getJSON("/games/sudoku/setup")
+        $.get("/games/sudoku/setup")
     });
 
     initialize();
@@ -76,17 +107,6 @@ function start() {
 function initialize() {
     var currentPuzzle = generatePuzzle(1);
     renderBoard(currentPuzzle);
-    getCurrentBoard();
-}
-
-function printBoard(board) {
-    for (var i = 0; i < 9; i++) {
-        var line = "";
-        for (var j = 0; j < 9; j++) {
-            line += " " + board[i][j];
-        }
-        window.console && console.log(line);
-    }
 }
 
 function togglePencil() {
@@ -100,10 +120,23 @@ function togglePencil() {
 }
 
 function undo(id) {
-    if (id !== null) {
+    if (id !== false) {
         game.undo++;
         $('#numUndo').text("Undo: " + game.undo);
-        $('#' + id).html('')
+        $('#' + id).html('');
+
+        verifyBoard()
+    }
+}
+
+function clearError() {
+    for (var i = 1; i <= 9; i++) {
+        for (var j = 1; j <= 9; j++) {
+            id = ref[i] + '-' + ref[j];
+            var cell = $('#' + id + ' p');
+            cell.removeClass('error');
+            cell.addClass('not-pencil')
+        }
     }
 }
 
@@ -111,17 +144,15 @@ function undo(id) {
 // back-end link functions
 function saveMove(id) {
     $(function () {
-        $.getJSON("/games/sudoku/save_move", {id: id})
+        $.get("/games/sudoku/save_move", {id: id})
     });
 }
 
 function addMove(id, num) {
     $(function () {
-        $.getJSON("/games/sudoku/add_move", {
+        $.get("/games/sudoku/add_move", {
             id: id,
             num: num
-        }, function (data) {
-            console.log(data.result)
         });
     });
 }
@@ -132,15 +163,6 @@ function getLastMove() {
             undo(data.result)
         });
     });
-}
-
-function getCurrentBoard() {
-    $(function () {
-        $.getJSON("/games/sudoku/get_board", {}, function (data) {
-            console.log(data);
-            printBoard(data.result)
-        });
-    })
 }
 
 
@@ -469,7 +491,7 @@ function generatePuzzle(difficulty) {
         }
 
         // easy check
-        if (difficulty === 1 && knownCount <= 35) {
+        if (difficulty === 1 && knownCount <= 40) {
             break;
         }
 
@@ -513,9 +535,6 @@ var emptyPuzzle = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0]
 ];
-
-
-const ref = {1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six', 7: 'seven', 8: 'eight', 9: 'nine'};
 
 function renderBoard(board) {
     for (var i = 0; i < 9; i++) {

@@ -5,7 +5,7 @@ Test module for ttt_board.py
 @author: Larry Shi
 """
 # general imports
-from board_games.tic_tac_toe import *
+from board_games.game_control import *
 
 
 # test classes

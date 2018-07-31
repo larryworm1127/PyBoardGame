@@ -5,9 +5,7 @@ Sudoku class that keep tracks of various game variables
 @author: Larry Shi
 """
 
-# general imports
-from .ttt_board import id_ref
-
+# constants
 CELL_IDX = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
 
 
@@ -89,13 +87,31 @@ class Sudoku:
         """
         self._board[row][col] = num
 
-    def add_move(self, cell_id):
+    def add_move(self, pos):
         """
         Add the ID of the square to moves list
 
-        :param cell_id: the ID of the square
+        :param pos: the position of the square
         """
-        self._moves.append(cell_id)
+        self._moves.append(pos)
+
+    def get_pos_from_num(self, num):
+        """
+        Get all number: num, positions (row, col) on the board
+
+        :param num: the number that will be searched
+        :return: a list of (row, col) positions
+        """
+        # initialize variable
+        result = []
+
+        # search for num
+        for row in range(self._dim):
+            for col in range(self._dim):
+                if self._board[row][col] == num:
+                    result.append((row, col))
+
+        return result
 
     def get_row_col_cell(self):
         """
@@ -137,20 +153,21 @@ class Sudoku:
         # store all rows, columns, and cells in one list
         row_col_cells = self.get_row_col_cell()
         lst = [config for item in row_col_cells for config in item]
+        state = True
 
         # check whether the board is incomplete or not
         for row in self._board:
             if 0 in row:
-                return False
+                state = False
 
         # check for duplicate number
-        duplicate_num = []
+        duplicate_num = set([])
         for config in lst:
             for num in set(config):
-                if config.count(num) > 1:
-                    duplicate_num.append(num)
+                if config.count(num) > 1 and num != 0:
+                    duplicate_num.add(num)
 
         if not duplicate_num:
-            return True
+            return state
         else:
             return duplicate_num

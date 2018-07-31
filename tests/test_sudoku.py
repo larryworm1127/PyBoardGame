@@ -5,7 +5,7 @@ Test module for sudoku.py
 @author: Larry Shi
 """
 # general imports
-from board_games.tic_tac_toe.sudoku import *
+from board_games.game_control.sudoku import *
 
 # constants
 SOLVED_BOARD = [
@@ -99,7 +99,7 @@ class TestSudoku:
 
         game_board = Sudoku(9, INVALID_BOARD)
         result = game_board.verify_board()
-        assert result == [8, 2], "board incorrect but not recognized"
+        assert result == {8, 2}, "board incorrect but not recognized"
 
         game_board = Sudoku(9, INCOMPLETE_BOARD)
         result = game_board.verify_board()

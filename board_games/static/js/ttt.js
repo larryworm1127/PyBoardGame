@@ -27,7 +27,8 @@ function setFig(id) {
 
         $('#prompt').text(promptText(game.computer[1]));
         setup();
-        comp_first_move()
+        //comp_first_move()
+        comp_move()
 
     } else if (id === 'start-human') {
         game.user = symbol.cross;
@@ -57,7 +58,7 @@ function setFig(id) {
 
 // draw the correct symbol onto the grid
 function draw(id) {
-    let cell = $('#' + id);
+    var cell = $('#' + id);
 
     if (game.currentPlayer === user) {
         cell.html(game.user[0]);
@@ -86,7 +87,7 @@ function draw(id) {
 
 // computer player control functions
 function comp_first_move() {
-    draw('two-two')
+    draw('two-two');
 }
 
 function comp_move() {
@@ -96,10 +97,7 @@ function comp_move() {
             console.log(data.id);
             draw(data.id)
         });
-        return false;
     });
-
-    $('.game-field').attr('onclick', 'draw(this.id)')
 }
 
 /* util functions */
@@ -143,13 +141,12 @@ function update(id, symbol) {
         }, function (data) {
             console.log(data.result)
         });
-        return false;
     });
 }
 
 function setup() {
     $(function () {
-        $.getJSON("/games/ttt/setup", {
+        $.get("/games/ttt/setup", {
             human: game.user[1],
             pvp: game.pvp
         })
@@ -166,14 +163,13 @@ function checkWin() {
                 endGame()
             }
         });
-        return false;
     });
 }
 
 /* reset function */
 function reset() {
     reset_game_var();
-    let gameField = $('.game-field');
+    var gameField = $('.game-field');
     gameField.html('');
     $('#prompt').text('Who will start over?');
 

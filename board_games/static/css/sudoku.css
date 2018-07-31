@@ -158,6 +158,10 @@ p.not-pencil {
     color: #000000;
 }
 
+.error {
+    color: orangered;
+}
+
 .subheader {
     line-height: 1.4;
     color: #6f6f6f;
