@@ -1,0 +1,17 @@
+body {
+    background: beige;;
+}
+
+.card-body {
+    font-family: 'Times New Roman', serif;
+    font-size: 120%
+}
+
+.card-header {
+    font-family: 'Lato', sans-serif
+}
+
+#ttt-logo {
+    width: 100px;
+    height: 100px
+}

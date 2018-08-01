@@ -5,28 +5,31 @@
 {% block header %}Blackjack{% endblock %}
 
 {% block image %}
-  <img src="{{ url_for('static', filename='images/tic-tac-toe.png') }}" alt="ttt" width="100px" height="89px">
+  <img src="{{ url_for('static', filename='images/tic-tac-toe.png') }}" id="ttt-logo" alt="ttt">
 {% endblock %}
 
-
+<!-- About section -->
 {% block about %}
   <p>
 
   </p>
 {% endblock %}
 
+<!-- History section -->
 {% block history %}
   <p>
 
   </p>
 {% endblock %}
 
+<!-- Strategy section -->
 {% block strategy %}
   <p>
 
   </p>
 {% endblock %}
 
+<!-- Other info section -->
 {% block other_info %}
   <p>
 
