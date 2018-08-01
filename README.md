@@ -3,6 +3,7 @@
 
 ## About
 The website is a collection of board games
+https://board-games-21127.herokuapp.com/
 
 ## Features
 Here is a list of features that will be implemented:
