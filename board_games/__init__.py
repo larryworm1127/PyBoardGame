@@ -55,6 +55,11 @@ from .views import sudoku
 app.register_blueprint(sudoku.bp)
 app.add_url_rule('/', endpoint='index')
 
+from .views import about
+
+app.register_blueprint(about.bp)
+app.add_url_rule('/', endpoint='index')
+
 # register database
 from . import db
 
