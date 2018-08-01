@@ -2,7 +2,8 @@
 [![CircleCI](https://circleci.com/gh/larryworm1127/BoardGames.svg?style=svg)](https://circleci.com/gh/larryworm1127/BoardGames)
 
 ## About
-The website is a collection of board games
+The website is a collection of board games.
+
 https://board-games-21127.herokuapp.com/
 
 ## Features
