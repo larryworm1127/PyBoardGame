@@ -36,74 +36,80 @@
   </div>
 
   <!-- Navigation bar -->
-  <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-    <strong><a class="navbar-brand" href="#">Board Games</a></strong>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-bar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="nav-bar">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="{{ url_for('index') }}"><i class="fas fa-home"></i> Home</a>
-        </li>
+  <div class="container">
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+      <!-- Brand -->
+      <strong><a class="navbar-brand" href="#">Board Games</a></strong>
 
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false"><i class="fas fa-info-circle"></i> About</a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="{{ url_for('about.about') }}">About</a>
-            <a class="dropdown-item" href="{{ url_for('about.ttt_about') }}">Tic Tac Toe</a>
-            <a class="dropdown-item" href="{{ url_for('about.sudoku_about') }}">Sudoku</a>
-            <a class="dropdown-item" href="{{ url_for('about.blackjack_about') }}">Blackjack</a>
-            <a class="dropdown-item" href="{{ url_for('about.twenty_forty_eight_about') }}">2048</a>
-          </div>
-        </li>
+      <!-- Toggler/collapsibe Button -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-bar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-        {% if g.user %}
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-               aria-haspopup="true" aria-expanded="false"><i class="fas fa-gamepad"></i> Games</a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{ url_for('ttt.tic_tac_toe') }}">Tic Tac Toe</a>
-              <a class="dropdown-item" href="{{ url_for('2048.twenty_forty_eight') }}">2048</a>
-              <a class="dropdown-item" href="{{ url_for('blackjack.blackjack') }}">Blackjack</a>
-              <a class="dropdown-item" href="{{ url_for('sudoku.sudoku') }}">Sudoko</a>
-            </div>
+      <div class="collapse navbar-collapse" id="nav-bar">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{{ url_for('index') }}"><i class="fas fa-home"></i> Home</a>
           </li>
 
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-               aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i> User</a>
+               aria-haspopup="true" aria-expanded="false"><i class="fas fa-info-circle"></i> About</a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{ url_for('auth.logout') }}"><i class="fas fa-sign-out-alt"></i> Log
-                out</a>
-              <a class="dropdown-item" data-toggle="modal" data-target="#warning_modal" style="color: red"><i
-                  class="fas fa-trash-alt"></i> Delete Account</a>
+              <a class="dropdown-item" href="{{ url_for('about.about') }}">About</a>
+              <a class="dropdown-item" href="{{ url_for('about.ttt_about') }}">Tic Tac Toe</a>
+              <a class="dropdown-item" href="{{ url_for('about.sudoku_about') }}">Sudoku</a>
+              <a class="dropdown-item" href="{{ url_for('about.blackjack_about') }}">Blackjack</a>
+              <a class="dropdown-item" href="{{ url_for('about.twenty_forty_eight_about') }}">2048</a>
             </div>
           </li>
 
-        {% else %}
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-               aria-haspopup="true" aria-expanded="false"><i class="fas fa-gamepad"></i> Games</a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{ url_for('ttt.tic_tac_toe') }}">Tic Tac Toe</a>
-              <a class="dropdown-item" href="{{ url_for('2048.twenty_forty_eight') }}">2048</a>
-              <a class="dropdown-item" href="{{ url_for('blackjack.blackjack') }}">Blackjack</a>
-              <a class="dropdown-item" href="{{ url_for('sudoku.sudoku') }}">Sudoko</a>
-            </div>
-          </li>
-          <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.register') }}"><i
-              class="fas fa-registered"></i> Register</a></li>
-          <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.login') }}"><i
-              class="fas fa-sign-in-alt"></i> Login</a></li>
-        {% endif %}
-      </ul>
-    </div>
-  </nav>
-  <br>
+          {% if g.user %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                 aria-haspopup="true" aria-expanded="false"><i class="fas fa-gamepad"></i> Games</a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ url_for('ttt.tic_tac_toe') }}">Tic Tac Toe</a>
+                <a class="dropdown-item" href="{{ url_for('2048.twenty_forty_eight') }}">2048</a>
+                <a class="dropdown-item" href="{{ url_for('blackjack.blackjack') }}">Blackjack</a>
+                <a class="dropdown-item" href="{{ url_for('sudoku.sudoku') }}">Sudoko</a>
+              </div>
+            </li>
 
-  {% block body %}
-  {% endblock %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                 aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i> User</a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ url_for('auth.logout') }}"><i class="fas fa-sign-out-alt"></i> Log
+                  out</a>
+                <a class="dropdown-item" data-toggle="modal" data-target="#warning_modal" style="color: red"><i
+                    class="fas fa-trash-alt"></i> Delete Account</a>
+              </div>
+            </li>
+
+          {% else %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                 aria-haspopup="true" aria-expanded="false"><i class="fas fa-gamepad"></i> Games</a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ url_for('ttt.tic_tac_toe') }}">Tic Tac Toe</a>
+                <a class="dropdown-item" href="{{ url_for('2048.twenty_forty_eight') }}">2048</a>
+                <a class="dropdown-item" href="{{ url_for('blackjack.blackjack') }}">Blackjack</a>
+                <a class="dropdown-item" href="{{ url_for('sudoku.sudoku') }}">Sudoko</a>
+              </div>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.register') }}"><i
+                class="fas fa-registered"></i> Register</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.login') }}"><i
+                class="fas fa-sign-in-alt"></i> Login</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+    <br>
+
+    {% block body %}
+    {% endblock %}
+  </div>
 
 {% endblock %}
