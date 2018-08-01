@@ -2,7 +2,7 @@
 
 {% block title %}About Tic Tac Toe{% endblock %}
 
-{% block header %}Tic Tac Toe{% endblock %}
+{% block header %}Tic-Tac-Toe{% endblock %}
 
 {% block image %}
   <img src="{{ url_for('static', filename='images/tic-tac-toe.png') }}" id="ttt-logo" alt="ttt">
@@ -66,14 +66,121 @@
 <!-- Strategy section -->
 {% block strategy %}
   <p>
-
+    A player can play a perfect game of tic-tac-toe (to win or at least, draw) if each time it is his turn to play, he
+    chooses the first available move from the following list, as used in Newell and Simon's 1972 tic-tac-toe
+    program.
   </p>
+  <ol>
+    <li>
+      <strong>Win:</strong> If the player has two in a row, they can place a third to get three in a row.
+    </li>
+    <li>
+      <strong>Block:</strong> If the opponent has two in a row, the player must play the third themselves to block the
+      opponent.
+    </li>
+    <li>
+      <strong>Fork:</strong> Create an opportunity where the player has two threats to win (two non-blocked lines of 2).
+    </li>
+    <li>
+      <strong>Blocking an opponent's fork:</strong> If there is only one possible fork for the opponent, the player
+      should block it. Otherwise, the player should block any forks in any way that simultaneously allows them to create
+      two in a row. Otherwise, the player should create a two in a row to force the opponent into defending, as long as
+      it doesn't result in them creating a fork. For example, if "X" has two opposite corners and "O" has the center,
+      "O" must not play a corner in order to win. (Playing a corner in this scenario creates a fork for "X" to win.)
+    </li>
+    <li>
+      <strong>Center:</strong> A player marks the center. (If it is the first move of the game, playing on a corner
+      gives the second player more opportunities to make a mistake and may therefore be the better choice; however, it
+      makes no difference between perfect players.)
+    </li>
+    <li>
+      <strong>Opposite corner:</strong> If the opponent is in the corner, the player plays the opposite corner.
+    </li>
+    <li>
+      <strong>Empty corner:</strong> The player plays in a corner square.
+    </li>
+    <li>
+      <strong>Empty side:</strong> The player plays in a middle square on any of the 4 sides.
+    </li>
+  </ol>
+  <p>
+    Though it seems that playing any square on the board for the first move has can always allow the player to force a
+    win or draw, playing the corner gives the opponent the smallest choice of squares which must be played to avoid
+    losing. This might suggest that the corner is the best opening move for X.
+  </p>
+  <p>
+    The second player, who shall be designated "O", must respond to X's opening mark in such a way as to avoid the
+    forced win. Player O must always respond to a corner opening with a center mark, and to a center opening with a
+    corner mark.
+  </p>
+  <p>
+    More detailedly, to guarantee a draw, O should adopt the following strategies:
+  </p>
+  <ul>
+    <li>
+      If X plays corner opening move, O should take center, and then an edge, forcing X to block in the next move. This
+      will stop any forks from happening. When both X and O are perfect players and X chooses to start by marking a
+      corner, O takes the center, and X takes the corner opposite the original. In that case, O is free to choose any
+      edge as its second move. However, if X is not a perfect player and has played a corner and then an edge, O should
+      not play the opposite edge as its second move, because then X is not forced to block in the next move and can
+      fork.
+    </li>
+    <li>
+      If X plays edge opening move, O should take center or one of the corners adjacent to X, and then follow the above
+      list of priorities, mainly paying attention to block forks.
+      If X plays center opening move, O should take corner, and then follow the above list of priorities, mainly paying
+      attention to block forks. When X plays corner first, and O is not a perfect player, the following may happen:
+    </li>
+    <li>
+      If O responds with a center mark (best move for them), a perfect X player will take the corner opposite the
+      original. Then O should play an edge. However, if O plays a corner as its second move, a perfect X player will
+      mark the remaining corner, blocking O's 3-in-a-row and making their own fork.
+    </li>
+    <li>
+      If O responds with a corner mark, X is guaranteed to win, by simply taking any of the other two corners and then
+      the last, a fork. (since when X takes the third corner, O can only take the position between the two X's. Then X
+      can take the only remaining corner to win)
+    </li>
+    <li>
+      If O responds with an edge mark, X is guaranteed to win, by taking center, then O can only take the corner
+      opposite the corner which X plays first. Finally, X can take a corner to create a fork and then X will win on the
+      next move.
+    </li>
+  </ul>
 {% endblock %}
 
 
 <!-- Other info section -->
 {% block other_info %}
   <p>
-
+    Many board games share the element of trying to be the first to get n-in-a-row, including Three Men's Morris, Nine
+    Men's Morris, pente, gomoku, Qubic, Connect Four, Quarto, Gobblet, Order and Chaos, Toss Across, and Mojo.
+    Tic-tac-toe is an instance of an m,n,k-game, where two players alternate taking turns on an m×n board until one of
+    them gets k in a row. Harary's generalized tic-tac-toe is an even broader generalization.
   </p>
+  <p>
+    Here is a list of some variants of Tic-Tac-Toe game:
+  </p>
+  <ul>
+    <li>
+      <strong>3-dimensional tic-tac-toe</strong> on a 3×3×3 board. In this game, the first player has an easy win by
+      playing in the centre if 2 people are playing.
+    </li>
+    <li>
+      In <strong>misère tic-tac-toe</strong>, the player wins if the opponent gets n in a row. A 3×3 game is a draw.
+      More generally, the first player can draw or win on any board (of any dimension) whose side length is odd, by
+      playing first in the central cell and then mirroring the opponent's moves.
+    </li>
+    <li>
+      In <strong>"wild" tic-tac-toe</strong>, players can choose to place either X or O on each move.
+    </li>
+    <li>
+      <strong>Number Scrabble</strong> or <strong>Pick15</strong> is isomorphic to tic-tac-toe but on the surface
+      appears completely different. Two players in turn say a number between one and nine. A particular number may not
+      be repeated. The game is won by the player who has said three numbers whose sum is 15. If all the numbers are used
+      and no one gets three numbers that add up to 15 then the game is a draw. Plotting these numbers on a 3×3 magic
+      square shows that the game exactly corresponds with tic-tac-toe, since three numbers will be arranged in a
+      straight line if and only if they total 15.
+    </li>
+  </ul>
 {% endblock %}
