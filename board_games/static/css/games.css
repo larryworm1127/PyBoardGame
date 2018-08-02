@@ -1,0 +1,54 @@
+body {
+    background: beige;
+    color: #222222;
+    padding: 20px;
+    margin: 0;
+    font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    position: relative;
+    cursor: default
+}
+
+*, *:before, *:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+h1 {
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 1.375em
+}
+
+.home {
+    color: #443532
+}
+
+a.home:hover {
+    color: #000000;
+}
+
+.jumbotron {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+    background-color: #e9ecef;
+    border-radius: 0.3rem;
+}
+
+a:hover {
+    cursor: pointer
+}
+
+.subheader {
+    line-height: 1.4;
+    color: #6f6f6f;
+    font-weight: 200;
+    margin-top: 0.2em;
+    margin-bottom: 0.5em
+}

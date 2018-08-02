@@ -1,59 +1,51 @@
-{% extends 'bases/base.html' %}
+{% extends 'bases/game_base.html' %}
 
 {% block title %}Tic Tac Toe{% endblock %}
 
-{% block head %}
+{% block head_sec %}
   <link rel="stylesheet" href="{{ url_for('static', filename='css/ttt.css') }}">
   <script src="{{ url_for('static', filename='js/ttt.js') }}"></script>
 {% endblock %}
 
-{% block content %}
-  <div class="container">
-    <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-6 text-center">
-        <h1>Tic Tac Toe</h1>
-        <a class="home m-3" id="home" href="{{ url_for('index') }}"><i class="fas fa-home fa-2x"></i></a>
+{% block header %}Tic Tac Toe{% endblock %}
+
+{% block game_content %}
+  <div class="row">
+
+    <!-- Icons -->
+    <div class="col-2 text-center side-col">
+      <a class="computer" id="start-computer" onclick="setFig(this.id)"><i class="fas fa-laptop fa-5x m-2"></i>
+        <p>You Start</p>
+      </a><br>
+      <a class="human" id="start-human" onclick="setFig(this.id)"><i class="fas fa-user fa-5x m-2"></i>
+        <p>I'll Start</p>
+      </a><br>
+      <a class="pvp" id="pvp" onclick="setFig(this.id)"><i class="fas fa-users fa-5x m-1"></i>
+        <p>PVP</p>
+      </a>
+    </div>
+
+    <!-- Tic Tac Toe grid -->
+    <div class="col-6 text-center">
+      <div class="game" id="wrapper">
+        {% for row in dim %}
+          {% for column in dim %}
+            <div id="{{ row }}-{{ column }}" class="game-field"></div>
+          {% endfor %}
+        {% endfor %}
       </div>
     </div>
 
-    <div class="row">
-
-      <!-- Icons -->
-      <div class="col-md-2 text-center" style="margin-top: 50px">
-        <a class="computer" id="start-computer" onclick="setFig(this.id)"><i class="fas fa-laptop fa-5x m-2"></i>
-          <p>You Start</p>
-        </a><br>
-        <a class="human" id="start-human" onclick="setFig(this.id)"><i class="fas fa-user fa-5x m-2"></i>
-          <p>I'll Start</p>
-        </a><br>
-        <a class="pvp" id="pvp" onclick="setFig(this.id)"><i class="fas fa-users fa-5x m-1"></i>
-          <p>PVP</p>
+    <!-- Messages -->
+    <div class="col-4 text-left side-col">
+      <h2>Message Box</h2>
+      <div class="jumbotron">
+        <h3 class="subheader" id="prompt">Who starts?</h3>
+      </div>
+      <div class="container">
+        <a class="surrender" id="surrender" onclick="reset()"><i class="fas fa-handshake fa-5x"></i>
+          <p>Surrender</p>
         </a>
-      </div>
-
-      <!-- Tic Tac Toe grid -->
-      <div class="col-md-6 text-center">
-        <div class="game" id="wrapper">
-          {% for row in dim %}
-            {% for column in dim %}
-              <div id="{{ row }}-{{ column }}" class="game-field"></div>
-            {% endfor %}
-          {% endfor %}
-        </div>
-      </div>
-
-      <!-- Messages -->
-      <div class="col-md-4 text-left" style="margin-top: 50px">
-        <h2>Message Box</h2>
-        <div class="jumbotron">
-          <h3 class="subheader" id="prompt">Who starts?</h3>
-        </div>
-        <div class="container">
-          <a class="surrender" id="surrender" onclick="reset()"><i class="fas fa-handshake fa-5x"></i>
-            <p>Surrender</p>
-          </a>
-        </div>
       </div>
     </div>
   </div>

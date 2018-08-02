@@ -1,0 +1,24 @@
+{% extends 'bases/base.html' %}
+
+{% block head %}
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/games.css') }}">
+
+  {% block head_sec %}
+  {% endblock %}
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-6 text-center" id="game-head-content">
+        <h1>{% block header %}{% endblock %}</h1>
+        <a class="home m-3" id="home" href="{{ url_for('index') }}"><i class="fas fa-home fa-2x"></i></a>
+      </div>
+    </div>
+
+    {% block game_content %}
+    {% endblock %}
+  </div>
+{% endblock %}

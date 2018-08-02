@@ -77,25 +77,6 @@
     border-right: 1px solid #525B76;
 }
 
-*, *:before, *:after {
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box
-}
-
-body {
-    background: beige;
-    color: #222222;
-    padding: 20px;
-    margin: 0;
-    font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-    font-weight: normal;
-    font-style: normal;
-    line-height: 1;
-    position: relative;
-    cursor: default
-}
-
 h1 {
     font-size: 2.5em;
     font-weight: bold;
@@ -103,18 +84,6 @@ h1 {
 
 h3 {
     font-size: 1.375em
-}
-
-a:hover {
-    cursor: pointer
-}
-
-.home {
-    color: #443532
-}
-
-a.home:hover {
-    color: #000000;
 }
 
 #pencil-toggle {
@@ -162,17 +131,6 @@ p.not-pencil {
     color: orangered;
 }
 
-.subheader {
-    line-height: 1.4;
-    color: #6f6f6f;
-    font-weight: 200;
-    margin-top: 0;
-    margin-bottom: 0.5em
-}
-
-.jumbotron {
-    padding: 2rem 1rem;
-    margin-bottom: 2rem;
-    background-color: #e9ecef;
-    border-radius: 0.3rem;
+#num-pad {
+    width: 10%
 }

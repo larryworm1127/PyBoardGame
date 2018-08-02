@@ -1,78 +1,69 @@
-{% extends 'bases/base.html' %}
+{% extends 'bases/game_base.html' %}
 
 {% block title %}Sudoko{% endblock %}
 
-{% block head %}
+{% block head_sec %}
   <link rel="stylesheet" href="{{ url_for('static', filename='css/sudoku.css') }}">
   <script src="{{ url_for('static', filename='js/sudoku.js') }}"></script>
 {% endblock %}
 
-{% block content %}
-  <div class="container">
-    <div class="row">
-      <div class="col-md-1"></div>
-      <div class="col-md-7 text-center">
-        <h1>Sudoku</h1>
+{% block header %}Sudoku{% endblock %}
+
+{% block game_content %}
+  <div class="row">
+    <div class="col-1 text-right">
+      <div class="space-2"></div>
+      <div class="container" id="num-pad">
+        <div class="btn-toolbar" role="toolbar" aria-label="Sudoku numbers">
+          <div class="btn-group-vertical mr-2" role="group" aria-label="First group">
+            <button type="button" id="one" class="btn btn-secondary num">1</button>
+            <button type="button" id="two" class="btn btn-secondary num">2</button>
+            <button type="button" id="three" class="btn btn-secondary num">3</button>
+            <button type="button" id="four" class="btn btn-secondary num">4</button>
+            <button type="button" id="five" class="btn btn-secondary num">5</button>
+            <button type="button" id="six" class="btn btn-secondary num">6</button>
+            <button type="button" id="seven" class="btn btn-secondary num">7</button>
+            <button type="button" id="eight" class="btn btn-secondary num">8</button>
+            <button type="button" id="nine" class="btn btn-secondary num">9</button>
+          </div>
+        </div>
+        <br>
+
+        <a class="pencil-toggle" role="button" id="pencil-toggle" onclick="togglePencil()">
+          <i class="fas fa-pencil-alt fa-2x m-1"></i>Pencil
+        </a>
         <div class="space"></div>
-        <a class="home m-3" id="home" href="{{ url_for('index') }}"><i class="fas fa-home fa-2x"></i></a>
+        <a class="erase" role="button" id="erase" onclick="">
+          <i class="fas fa-eraser fa-2x m-1"></i>Erase
+        </a>
+        <div class="space"></div>
+        <a class="undo" role="button" id="undo" onclick="getLastMove()">
+          <i class="fas fa-undo fa-2x m-1"></i>Undo
+        </a>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-1 text-right">
-        <div class="space-2"></div>
-        <div class="container" style="width: 10%">
-          <div class="btn-toolbar" role="toolbar" aria-label="Sudoku numbers">
-            <div class="btn-group-vertical mr-2" role="group" aria-label="First group">
-              <button type="button" id="one" class="btn btn-secondary num">1</button>
-              <button type="button" id="two" class="btn btn-secondary num">2</button>
-              <button type="button" id="three" class="btn btn-secondary num">3</button>
-              <button type="button" id="four" class="btn btn-secondary num">4</button>
-              <button type="button" id="five" class="btn btn-secondary num">5</button>
-              <button type="button" id="six" class="btn btn-secondary num">6</button>
-              <button type="button" id="seven" class="btn btn-secondary num">7</button>
-              <button type="button" id="eight" class="btn btn-secondary num">8</button>
-              <button type="button" id="nine" class="btn btn-secondary num">9</button>
-            </div>
-          </div>
-          <br>
-
-          <a class="pencil-toggle" role="button" id="pencil-toggle" onclick="togglePencil()">
-            <i class="fas fa-pencil-alt fa-2x m-1"></i>Pencil
-          </a>
-          <div class="space"></div>
-          <a class="erase" role="button" id="erase" onclick="">
-            <i class="fas fa-eraser fa-2x m-1"></i>Erase
-          </a>
-          <div class="space"></div>
-          <a class="undo" role="button" id="undo" onclick="getLastMove()">
-            <i class="fas fa-undo fa-2x m-1"></i>Undo
-          </a>
-        </div>
-      </div>
-
-      <div class="col-md-7 text-center">
-        <div class="game" id="wrapper">
-          {% for row in dim %}
-            {% for column in dim %}
-              <div id="{{ row }}-{{ column }}" class="game-field text-center"></div>
-            {% endfor %}
+    <div class="col-7 text-center">
+      <div class="game" id="wrapper">
+        {% for row in dim %}
+          {% for column in dim %}
+            <div id="{{ row }}-{{ column }}" class="game-field text-center"></div>
           {% endfor %}
-        </div>
+        {% endfor %}
       </div>
+    </div>
 
-      <div class="col-md-4 text-left">
-        <div class="space-2"></div>
-        <h2>Game Info</h2>
-        <div class="jumbotron" id="stats">
-          <h3 class="subheader" id="time">Time: 0.0s</h3>
-          <h3 class="subheader" id="pencilOn">Pencil: Off</h3>
-          <h3 class="subheader" id="currentNum">Current Number: None</h3>
-          <h3 class="subheader" id="difficulty">Difficulty: None</h3>
-          <h3 class="subheader" id="numUndo">Undo: 0</h3>
-        </div>
-        <button type="button" id="start" class="btn btn-primary" onclick="start()">Start</button>
+    <div class="col-4 text-left">
+      <div class="space-2"></div>
+      <h2>Game Info</h2>
+      <div class="jumbotron" id="stats">
+        <h3 class="subheader" id="time">Time: 0.0s</h3>
+        <h3 class="subheader" id="pencilOn">Pencil: Off</h3>
+        <h3 class="subheader" id="currentNum">Current Number: None</h3>
+        <h3 class="subheader" id="difficulty">Difficulty: None</h3>
+        <h3 class="subheader" id="numUndo">Undo: 0</h3>
       </div>
+      <button type="button" id="start" class="btn btn-primary" onclick="start()">Start</button>
     </div>
   </div>
 
