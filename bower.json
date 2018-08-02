@@ -1,6 +1,6 @@
 {
-  "name": "board_games",
-  "homepage": "https://github.com/larryworm1127/BoardGames",
+  "name": "pyboardgame",
+  "homepage": "https://github.com/larryworm1127/PyBoardGame",
   "authors": [
     "larryworm1127 <shilerong@gmail.com>"
   ],

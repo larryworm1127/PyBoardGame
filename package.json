@@ -1,5 +1,5 @@
 {
-  "name": "boardgames",
+  "name": "pyboardgame",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,14 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/larryworm1127/BoardGames.git"
+    "url": "git+https://github.com/larryworm1127/PyBoardGame.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/larryworm1127/BoardGames/issues"
+    "url": "https://github.com/larryworm1127/PyBoardGame/issues"
   },
-  "homepage": "https://github.com/larryworm1127/BoardGames#readme",
+  "homepage": "https://github.com/larryworm1127/PyBoardGame#readme",
   "devDependencies": {
     "bower": "^1.8.4"
   },

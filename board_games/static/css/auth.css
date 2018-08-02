@@ -2,7 +2,7 @@ body {
     background: #f4fff0;
 }
 
-.card-body {
+.card-body, .text-content {
     font-family: 'Times New Roman', serif;
     font-size: 120%
 }

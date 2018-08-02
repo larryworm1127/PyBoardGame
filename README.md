@@ -1,4 +1,4 @@
-# Board Games
+# PyBoardGame
 [![CircleCI](https://circleci.com/gh/larryworm1127/BoardGames.svg?style=svg)](https://circleci.com/gh/larryworm1127/BoardGames)
 
 ## About
@@ -13,7 +13,7 @@ Here is a list of features that will be implemented:
 - A number of simple board games for users to play:
     - [x] Tic Tac Toe
     - [ ] 2048
-    - [ ] Sudoko
+    - [x] Sudoko
     - [ ] Blackjack
     - [ ] Etc.
 
