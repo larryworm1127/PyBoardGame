@@ -15,9 +15,29 @@ body {
     font-family: 'Lato', sans-serif
 }
 
-#ttt-logo, #ttt-pic {
+#ttt-logo, #sudoku-logo, #two048-logo {
     width: 100px;
-    height: 100px
+    height: 100px;
+}
+
+#sudoku, #ttt, #two048 {
+    width: 200px;
+    height: 200px;
+}
+
+#two048-win {
+    width: 200px;
+    height: 256px;
+}
+
+#blackjack-logo {
+    width: 160px;
+    height: 100px;
+}
+
+#blackjack {
+    width: 210px;
+    height: 160px;
 }
 
 #ttt-strategy-x, #ttt-strategy-o {

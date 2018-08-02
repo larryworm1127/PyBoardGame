@@ -5,14 +5,33 @@
 {% block header %}2048{% endblock %}
 
 {% block image %}
-  <img src="{{ url_for('static', filename='images/tic-tac-toe.png') }}" id="ttt-logo" alt="ttt">
+  <img src="{{ url_for('static', filename='images/2048/2048_logo.png') }}" class="rounded" id="two048-logo"
+       alt="2048-logo">
 {% endblock %}
 
 <!-- About section -->
 {% block about %}
-  <p>
+  <div class="row">
+    <div class="col-9">
+      <p>
+        <strong>2048</strong> is a single-player sliding block puzzle game designed by Italian web developer Gabriele
+        Cirulli. The game's objective is to slide numbered tiles on a grid to combine them to create a tile with the
+        number 2048. After reaching the 2048 tile, players can continue to play (beyond the 2048 tile). When the player
+        has no legal moves (there are no empty spaces and no adjacent tiles with the same value), the game ends.
+      </p>
+      <p>
+        2048 is played on a gray 4 × 4 grid, with numbered tiles that slide when a player moves them using the arrow
+        keys. Every turn, a new tile will randomly appear in an empty spot on the board with a value of either 2 or 4.
+        Tiles slide as far as possible in the chosen direction until they are stopped by either another tile or the edge
+        of the grid. If two tiles of the same number collide while moving, they will merge into a tile with the total
+        value of the two tiles that collided. The resulting tile cannot merge with another tile again in the same move.
+      </p>
+    </div>
+    <div class="col-3 text-center">
+      <img src="{{ url_for('static', filename='images/2048/2048_win.png') }}" id="two048-win" alt="2048">
+    </div>
+  </div>
 
-  </p>
 {% endblock %}
 
 

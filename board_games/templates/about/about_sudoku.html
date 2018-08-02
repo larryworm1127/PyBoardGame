@@ -5,14 +5,30 @@
 {% block header %}Sudoku{% endblock %}
 
 {% block image %}
-  <img src="{{ url_for('static', filename='images/tic-tac-toe.png') }}" id="ttt-logo" alt="ttt">
+  <img src="{{ url_for('static', filename='images/sudoku/sudoku_logo.png') }}" class="rounded" id="sudoku-logo"
+       alt="sudoku">
 {% endblock %}
 
 <!-- About section -->
 {% block about %}
-  <p>
-
-  </p>
+  <div class="row">
+    <div class="col-9">
+      <p>
+        <strong>Sudoku</strong>, originally called Number Place, is a logic-based, combinatorial number-placement
+        puzzle. The objective is to fill a 9 × 9 grid with digits so that each column, each row, and each of the nine
+        3 × 3 sub-grids that compose the grid contains all of the digits from 1 to 9. The puzzle setter provides a
+        partially completed grid, which for a well-posed puzzle has a single solution.
+      </p>
+      <p>
+        Completed games are always a type of Latin square with an additional constraint on the contents of individual
+        regions. For example, the same single integer may not appear twice in the same row, column, or any of the nine 3
+        × 3 sub-regions of the 9 x 9 playing board.
+      </p>
+    </div>
+    <div class="col-3 text-center">
+      <img src="{{ url_for('static', filename='images/sudoku/sudoku.png') }}" id="sudoku" alt="sudoku">
+    </div>
+  </div>
 {% endblock %}
 
 

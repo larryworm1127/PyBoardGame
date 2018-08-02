@@ -1,4 +1,4 @@
-{% extends 'auth/auth_base.html' %}
+{% extends 'auth/../bases/auth_base.html' %}
 
 {% block title %}Register{% endblock %}
 
@@ -7,7 +7,7 @@
     <div class="jumbotron">
       <div class="container" style="width: 80%">
         <form class="form-signin text-center" method="post">
-          <img class="mb-4" src="{{ url_for('static', filename='images/tic-tac-toe.png') }}" alt="" width="72"
+          <img class="mb-4" src="{{ url_for('static', filename='images/ttt/ttt.png') }}" alt="" width="72"
                height="72">
           <h1 class="h3 mb-3 font-weight-normal">Register</h1>
 
@@ -25,8 +25,8 @@
           {% endfor %}
 
           <button id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
-          <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
         </form>
+        <br>
       </div>
     </div>
   </div>
