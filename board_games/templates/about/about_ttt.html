@@ -10,11 +10,18 @@
 
 <!-- About section -->
 {% block about %}
-  <p>
-    <strong>Tic-tac-toe</strong> (also known as noughts and crosses or Xs and Os) is a paper-and-pencil game for two
-    players, X and O, who take turns marking the spaces in a 3 × 3 grid. The player who succeeds in placing three of
-    their marks in a horizontal, vertical, or diagonal row wins the game.
-  </p>
+  <div class="row">
+    <div class="col-10">
+      <p>
+        <strong>Tic-tac-toe</strong> (also known as noughts and crosses or Xs and Os) is a paper-and-pencil game for two
+        players, X and O, who take turns marking the spaces in a 3 × 3 grid. The player who succeeds in placing three of
+        their marks in a horizontal, vertical, or diagonal row wins the game.
+      </p>
+    </div>
+    <div class="col-2 text-center">
+      <img src="{{ url_for('static', filename='images/better_ttt.png') }}" id="ttt-pic" alt="ttt">
+    </div>
+  </div>
 
 {% endblock %}
 
@@ -41,13 +48,12 @@
       <strong>Blocking an opponent's fork:</strong> If there is only one possible fork for the opponent, the player
       should block it. Otherwise, the player should block any forks in any way that simultaneously allows them to create
       two in a row. Otherwise, the player should create a two in a row to force the opponent into defending, as long as
-      it doesn't result in them creating a fork. For example, if "X" has two opposite corners and "O" has the center,
-      "O" must not play a corner in order to win. (Playing a corner in this scenario creates a fork for "X" to win.)
+      it doesn't result in them creating a fork.
     </li>
     <li>
-      <strong>Center:</strong> A player marks the center. (If it is the first move of the game, playing on a corner
-      gives the second player more opportunities to make a mistake and may therefore be the better choice; however, it
-      makes no difference between perfect players.)
+      <strong>Center:</strong> A player marks the center. If it is the first move of the game, playing on a corner
+      is a better choice (read below to learn more about start moves); however, it makes no difference between perfect
+      players.
     </li>
     <li>
       <strong>Opposite corner:</strong> If the opponent is in the corner, the player plays the opposite corner.
@@ -59,10 +65,21 @@
       <strong>Empty side:</strong> The player plays in a middle square on any of the 4 sides.
     </li>
   </ol>
+  <div class="row text-center">
+    <div class="col">
+      <img src="{{ url_for('static', filename='images/ttt_strategy_x.png') }}" id="ttt-strategy-x" alt="strategy-x">
+      <small>Possible outcomes for X</small>
+    </div>
+    <div class="col">
+      <img src="{{ url_for('static', filename='images/ttt_strategy_o.png') }}" id="ttt-strategy-o" alt="strategy-o">
+      <small>Possible outcomes for O</small>
+    </div>
+  </div>
+  <br>
   <p>
     Though it seems that playing any square on the board for the first move has can always allow the player to force a
     win or draw, playing the corner gives the opponent the smallest choice of squares which must be played to avoid
-    losing. This might suggest that the corner is the best opening move for X.
+    losing.
   </p>
   <p>
     The second player, who shall be designated "O", must respond to X's opening mark in such a way as to avoid the
@@ -139,7 +156,7 @@
 
 <!-- Other info section -->
 {% block other_info %}
-  <h3 class="subheader">Variants</h3>
+  <h4 class="subheader"><strong>Variants</strong></h4>
   <p>
     Many board games share the element of trying to be the first to get n-in-a-row, including Three Men's Morris, Nine
     Men's Morris, pente, gomoku, Qubic, Connect Four, Quarto, Gobblet, Order and Chaos, Toss Across, and Mojo.
@@ -163,17 +180,24 @@
       In <strong>"wild" tic-tac-toe</strong>, players can choose to place either X or O on each move.
     </li>
     <li>
-      <strong>Number Scrabble</strong> or <strong>Pick15</strong> is isomorphic to tic-tac-toe but on the surface
-      appears completely different. Two players in turn say a number between one and nine. A particular number may not
-      be repeated. The game is won by the player who has said three numbers whose sum is 15. If all the numbers are used
-      and no one gets three numbers that add up to 15 then the game is a draw. Plotting these numbers on a 3×3 magic
-      square shows that the game exactly corresponds with tic-tac-toe, since three numbers will be arranged in a
-      straight line if and only if they total 15.
+      <div class="row">
+        <div class="col-9">
+          <strong>Number Scrabble</strong> or <strong>Pick15</strong> is isomorphic to tic-tac-toe but on the surface
+          appears completely different. Two players in turn say a number between one and nine. A particular number may
+          not be repeated. The game is won by the player who has said three numbers whose sum is 15. If all the numbers
+          are used and no one gets three numbers that add up to 15 then the game is a draw. Plotting these numbers on a
+          3 × 3 magic square shows that the game exactly corresponds with tic-tac-toe, since three numbers will be
+          arranged in a straight line if and only if they total 15.
+        </div>
+        <div class="col-3 text-center">
+          <img src="{{ url_for('static', filename='images/ttt_variant.png') }}" id="ttt-var" alt="ttt-var">
+        </div>
+      </div>
     </li>
   </ul>
   <hr>
 
-  <h3 class="subheader">Random Facts</h3>
+  <h4 class="subheader"><strong>Random Facts</strong></h4>
   <p>
     Because of the simplicity of tic-tac-toe, it is often used as a pedagogical tool for teaching the concepts of good
     sportsmanship and the branch of artificial intelligence that deals with the searching of game trees. It is

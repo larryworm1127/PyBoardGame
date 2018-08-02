@@ -9,7 +9,7 @@
         {% endblock %}
       </div>
       <div class="col-10 text-center">
-        <h1 class="m-3" style="font-family: 'Lato', sans-serif">{% block header %}{% endblock %}</h1>
+        <h1 class="m-3 subheader">{% block header %}{% endblock %}</h1>
       </div>
     </div>
   </div>
@@ -44,6 +44,9 @@
             {% block about %}
             {% endblock %}
           </div>
+          <div class="card-footer text-right">
+            <a role="button" href="#nav-bar">Return to Top</a>
+          </div>
         </div>
         <br>
 
@@ -55,6 +58,9 @@
           <div class="card-body">
             {% block strategy %}
             {% endblock %}
+          </div>
+          <div class="card-footer text-right">
+            <a role="button" href="#nav-bar">Return to Top</a>
           </div>
         </div>
         <br>
@@ -68,6 +74,9 @@
             {% block history %}
             {% endblock %}
           </div>
+          <div class="card-footer text-right">
+            <a role="button" href="#nav-bar">Return to Top</a>
+          </div>
         </div>
         <br>
 
@@ -79,6 +88,9 @@
           <div class="card-body ">
             {% block other_info %}
             {% endblock %}
+          </div>
+          <div class="card-footer text-right">
+            <a role="button" href="#nav-bar">Return to Top</a>
           </div>
         </div>
         <br>

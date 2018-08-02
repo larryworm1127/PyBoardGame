@@ -1,5 +1,5 @@
 body {
-    background: beige;;
+    background: #f4fff0;
 }
 
 .card-body {
@@ -15,7 +15,16 @@ body {
     font-family: 'Lato', sans-serif
 }
 
-#ttt-logo {
+#ttt-logo, #ttt-pic {
     width: 100px;
     height: 100px
+}
+
+#ttt-strategy-x, #ttt-strategy-o {
+    width: 400px;
+    height: 400px
+}
+
+#outer-container {
+    width: 86%
 }
