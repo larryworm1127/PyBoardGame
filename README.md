@@ -1,6 +1,5 @@
 # PyBoardGame
-[![CircleCI](https://circleci.com/gh/larryworm1127/BoardGames.svg?style=svg)](https://circleci.com/gh/larryworm1127/BoardGames)
-
+[![CircleCI](https://circleci.com/gh/larryworm1127/PyBoardGame.svg?style=svg)](https://circleci.com/gh/larryworm1127/PyBoardGame)
 ## About
 The website is a collection of board games.
 
