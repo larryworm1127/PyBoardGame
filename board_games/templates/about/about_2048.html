@@ -38,19 +38,45 @@
 <!-- Strategy section -->
 {% block strategy %}
   <p>
-
+    When it comes to strategy, there isn't much for 2048. The best way to win a 2048 game is to always keep the biggest
+    number in the corner of the grid, followed by the second largest number right next to it, and so on. This strategy
+    works most of the time.
   </p>
 {% endblock %}
 
 
 <!-- Variant section -->
 {% block variant %}
+  <p>
+    There are several variants to the game 2048, but none of the variant changes the game rules or the game play style.
+    Several variants replaces numbers with symbols of all varieties, or instead using even numbers, some variants uses
+    odd numbers. There are also a number of variants that increase the size of the grid (which in reality makes it
+    easier to win). Other variants have a different shape of grid but the goal of all variants don't differ too much.
+  </p>
+
+  <div class="row text-center">
+    <div class="col">
+      <img src="{{ url_for('static', filename='images/2048/2048_variant_1.png') }}" class="two048-variant" alt="2048">
+    </div>
+    <div class="col">
+      <img src="{{ url_for('static', filename='images/2048/2048_variant_2.png') }}" class="two048-variant" alt="2048">
+    </div>
+  </div>
 {% endblock %}
 
 
 <!-- Other info section -->
 {% block other_info %}
   <p>
-
+    2048 was originally written in JavaScript and CSS during a weekend, and released on March 9, 2014, as free and
+    open-source software subject to the MIT license. Clones written in C++ and Vala are available. There is also a
+    version for the Linux terminal.
+  </p>
+  <p>
+    19-year-old Cirulli created the game in a single weekend as a test to see if he could program a game from
+    scratch; he was surprised when his game received over 4 million visitors in less than a week, especially since
+    it was just a weekend project. "It was a way to pass the time", he said. The game is free to play, Cirulli
+    having said that he was unwilling to make money from "something that [he] didn’t invent". He released a free app
+    version of the game for iOS and Android in May 2014.
   </p>
 {% endblock %}
