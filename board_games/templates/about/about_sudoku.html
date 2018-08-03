@@ -67,7 +67,12 @@
   <div class="row">
     <div class="col-9">
       <p class="m-3">
-
+        When there are more than one unallocated square but only one possibility exists for one of the squares, and the
+        number must go there. This is the <strong>Single Possibilities Rule</strong>. In the puzzle shown on the right,
+        looking at the purple square <strong>D-a</strong>, the only possibilities are 6, 7 and 9 in column
+        <strong>a</strong>. But in row D there is already a 6 and 9 so that leaves 7 as the single possibility for
+        square <strong>D-a</strong>. The single possibility rule can be used to solve all the puzzle squares highlighted
+        in green.
       </p>
     </div>
     <div class="col-3 text-center">
@@ -80,7 +85,11 @@
   <div class="row">
     <div class="col-9">
       <p class="m-3">
-
+        The <strong>Two out of Three Rule</strong> can be used in situations where 2 out of 3 empty cells of either a
+        row, column or a 3 x 3 cell are already controlled by numbers from other cells, which means that there is only
+        one cell for the missing number to go. As shown in the puzzle on the right, the cell <strong>B-i</strong>,
+        highlighted in blue is the only cell out of the 3 on column <strong>i</strong> where number <strong>1</strong>
+        can go as all the other empty cells are already controlled by <strong>1</strong> on other cells.
       </p>
     </div>
     <div class="col-3 text-center">
@@ -93,7 +102,10 @@
   <div class="row">
     <div class="col-9">
       <p class="m-3">
-
+        The <strong>Sub-Group Exclusion Rule</strong> is the most complicated out of all the rules listed here. A
+        sub-group is formed with any 2 or 3 adjacent cells within a 3 x 3 cell. Each color shown on the puzzle on the
+        right represents a sub-group. Using sub-group, you can limit the number of location where a number can occur in
+        a 3 x 3 cell which can help you determine where a number can go.
       </p>
     </div>
     <div class="col-3 text-center">
@@ -101,6 +113,11 @@
            alt="sudoku">
     </div>
   </div>
+  <hr>
+  <p>
+    <strong>Important Tip:</strong> using the pencil feature to mark down where numbers can occur on a complicated
+    puzzle can help clarify thoughts and see where certain number should go.
+  </p>
 {% endblock %}
 
 
