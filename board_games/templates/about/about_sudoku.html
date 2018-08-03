@@ -14,15 +14,14 @@
   <div class="row">
     <div class="col-9">
       <p>
-        <strong>Sudoku</strong>, originally called Number Place, is a logic-based, combinatorial number-placement
-        puzzle. The objective is to fill a 9 × 9 grid with digits so that each column, each row, and each of the nine
-        3 × 3 sub-grids that compose the grid contains all of the digits from 1 to 9. The puzzle setter provides a
-        partially completed grid, which for a well-posed puzzle has a single solution.
+        <strong>Sudoku</strong>, is a logic-based, combinatorial number-placement puzzle. The objective is to fill a 9 ×
+        9 grid with digits so that <strong>each column, each row, and each of the nine 3 × 3 sub-grids that compose the
+        grid contains all of the digits from 1 to 9.</strong> The puzzle setter provides a partially completed grid,
+        which for a well-posed puzzle has a single solution.
       </p>
       <p>
-        Completed games are always a type of Latin square with an additional constraint on the contents of individual
-        regions. For example, the same single integer may not appear twice in the same row, column, or any of the nine 3
-        × 3 sub-regions of the 9 x 9 playing board.
+        The only rule that the game has is that the same single integer may not appear twice in the same row, column, or
+        any of the nine 3 × 3 sub-regions of the 9 x 9 playing board.
       </p>
     </div>
     <div class="col-3 text-center">
@@ -34,20 +33,142 @@
 
 <!-- Strategy section -->
 {% block strategy %}
-  <p>
+  <div class="row">
+    <div class="col-9">
+      <p class="m-3">
+        The simplest strategy for Sudoku is the <strong>Only Choice Rule</strong>. This strategy takes advantage of the
+        <a href="#about">game rule</a> to its most. As shown in the puzzle on the right, the <strong>B-a</strong> cell
+        is the only cell out of the <strong>B</strong> row that isn't completed. Assuming that no mistake were made
+        completing this row, the only number that can go in that cell is <strong>4</strong>.
+      </p>
+    </div>
+    <div class="col-3 text-center">
+      <img src="{{ url_for('static', filename='images/sudoku/only_choice.png') }}" class="sudoku-strategy" alt="sudoku">
+    </div>
+  </div>
+  <hr>
 
-  </p>
+  <div class="row">
+    <div class="col-9">
+      <p class="m-3">
+        The <strong>Only Square Rule</strong> is used in a situation where a row, column or 3 x 3 cell has 7 out its 9
+        square filled. In this case, first determine what number is missing, and then see if any other of the same
+        number controls any of the empty cells. In the puzzle shown on the right, the two green cells are missing number
+        <strong>1</strong> and <strong>3</strong>. However, there's already a <strong>3</strong> on row
+        <strong>I</strong>, meaning that <strong>3</strong> has to go in the cell on row <strong>A</strong>
+      </p>
+    </div>
+    <div class="col-3 text-center">
+      <img src="{{ url_for('static', filename='images/sudoku/only_square.png') }}" class="sudoku-strategy" alt="sudoku">
+    </div>
+  </div>
+  <hr>
+
+  <div class="row">
+    <div class="col-9">
+      <p class="m-3">
+
+      </p>
+    </div>
+    <div class="col-3 text-center">
+      <img src="{{ url_for('static', filename='images/sudoku/single_possibility.png') }}" class="sudoku-strategy"
+           alt="sudoku">
+    </div>
+  </div>
+  <hr>
+
+  <div class="row">
+    <div class="col-9">
+      <p class="m-3">
+
+      </p>
+    </div>
+    <div class="col-3 text-center">
+      <img src="{{ url_for('static', filename='images/sudoku/two_out_of_three.png') }}" class="sudoku-strategy"
+           alt="sudoku">
+    </div>
+  </div>
+  <hr>
+
+  <div class="row">
+    <div class="col-9">
+      <p class="m-3">
+
+      </p>
+    </div>
+    <div class="col-3 text-center">
+      <img src="{{ url_for('static', filename='images/sudoku/sub_group_exclusion.png') }}" class="sudoku-strategy"
+           alt="sudoku">
+    </div>
+  </div>
 {% endblock %}
 
 
 <!-- Variant section -->
 {% block variant %}
+  <p>
+    Although the 9 × 9 grid with 3 × 3 regions is by far the most common, many other variations exist. The World Puzzle
+    Championship has featured a 6 × 6 grid with 2 × 3 regions and a 7 × 7 grid with six heptomino regions and a disjoint
+    region. Larger grids are also possible. The Times offers a 12 × 12-grid "Dodeka Sudoku" with 12 regions of 4 × 3
+    squares. Dell Magazines regularly publishes 16 × 16 "Number Place Challenger" puzzles (using the numbers 1-16 or the
+    letters A-P). Nikoli offers 25 × 25 "Sudoku the Giant" behemoths. A 100 × 100-grid puzzle dubbed Sudoku-zilla was
+    published in 2010
+  </p>
+  <p>
+    Here are some other examples of variants of Sudoku game:
+  </p>
+  <div class="row text-center">
+    <div class="col">
+      <small>A variant called "Nonomino Sudoku"</small>
+      <img src="{{ url_for('static', filename='images/sudoku/nonomino_sudoku.png') }}" class="sudoku-variant"
+           alt="sudoku">
+    </div>
+    <div class="col">
+      <small>The solution for "Nonomino Sudoku"</small>
+      <img src="{{ url_for('static', filename='images/sudoku/nonomino_sudoku_solution.png') }}" class="sudoku-variant"
+           alt="sudoku">
+    </div>
+  </div>
+  <hr>
+
+  <div class="row text-center">
+    <div class="col">
+      <small>Another variant called "Wordoku"</small>
+      <img src="{{ url_for('static', filename='images/sudoku/wordoku.png') }}" class="sudoku-variant" alt="sudoku">
+    </div>
+    <div class="col">
+      <small>The solution for "Wordoku"</small>
+      <img src="{{ url_for('static', filename='images/sudoku/wordoku_solution.png') }}" class="sudoku-variant"
+           alt="sudoku">
+    </div>
+  </div>
+  <hr>
+
+  <div class="row text-center">
+    <div class="col">
+      <small>Another variant called "Kaodoku"</small>
+      <img src="{{ url_for('static', filename='images/sudoku/kaodoku.png') }}" class="sudoku-variant" alt="sudoku">
+    </div>
+    <div class="col">
+      <small>The solution for "Kaodoku"</small>
+      <img src="{{ url_for('static', filename='images/sudoku/kaodoku_solution.png') }}" class="sudoku-variant"
+           alt="sudoku">
+    </div>
+  </div>
+
 {% endblock %}
 
 
 <!-- Other info section -->
 {% block other_info %}
   <p>
-
+    The general problem of solving Sudoku puzzles on n<sup>2</sup> × n<sup>2</sup> grids of n×n blocks is known to be
+    NP-complete. Many computer algorithms, such as backtracking (which is the algorithm used in this program to create
+    and solve sudoku puzzles!) and dancing links can solve most 9 × 9 puzzles efficiently, but combinatorial explosion
+    occurs as n increases, creating limits to the properties of Sudokus that can be constructed, analyzed, and solved as
+    n increases.
+  </p>
+  <p>
+    <strong>Do you know:</strong> The number of classic 9 × 9 Sudoku solution grids is <strong>6,670,903,752,021,072,936,960</strong>
   </p>
 {% endblock %}

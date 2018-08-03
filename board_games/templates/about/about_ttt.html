@@ -18,8 +18,7 @@
         their marks in a horizontal, vertical, or diagonal row wins the game.
       </p>
       <p>
-        By convention, player X always starts in a typical tic-tac-toe game meaning that player X always gets an extra
-        move than player O. Therefore it is difficult for player X to lose in game. Due to the simplicity of tic-tac-toe
+        By convention, player X always starts in a typical tic-tac-toe game. Due to the simplicity of tic-tac-toe
         game, a perfect game is more considered to be a draw rather than a win as the possible win outcomes are limited
       </p>
     </div>
@@ -90,40 +89,6 @@
     forced win. Player O must always respond to a corner opening with a center mark, and to a center opening with a
     corner mark.
   </p>
-  <p>
-    More detailedly, to guarantee a draw, O should adopt the following strategies:
-  </p>
-  <ul>
-    <li>
-      If X plays corner opening move, O should take center, and then an edge, forcing X to block in the next move. This
-      will stop any forks from happening. When both X and O are perfect players and X chooses to start by marking a
-      corner, O takes the center, and X takes the corner opposite the original. In that case, O is free to choose any
-      edge as its second move. However, if X is not a perfect player and has played a corner and then an edge, O should
-      not play the opposite edge as its second move, because then X is not forced to block in the next move and can
-      fork.
-    </li>
-    <li>
-      If X plays edge opening move, O should take center or one of the corners adjacent to X, and then follow the above
-      list of priorities, mainly paying attention to block forks.
-      If X plays center opening move, O should take corner, and then follow the above list of priorities, mainly paying
-      attention to block forks. When X plays corner first, and O is not a perfect player, the following may happen:
-    </li>
-    <li>
-      If O responds with a center mark (best move for them), a perfect X player will take the corner opposite the
-      original. Then O should play an edge. However, if O plays a corner as its second move, a perfect X player will
-      mark the remaining corner, blocking O's 3-in-a-row and making their own fork.
-    </li>
-    <li>
-      If O responds with a corner mark, X is guaranteed to win, by simply taking any of the other two corners and then
-      the last, a fork. (since when X takes the third corner, O can only take the position between the two X's. Then X
-      can take the only remaining corner to win)
-    </li>
-    <li>
-      If O responds with an edge mark, X is guaranteed to win, by taking center, then O can only take the corner
-      opposite the corner which X plays first. Finally, X can take a corner to create a fork and then X will win on the
-      next move.
-    </li>
-  </ul>
 {% endblock %}
 
 

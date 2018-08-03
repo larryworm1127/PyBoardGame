@@ -45,6 +45,16 @@ body {
     height: 400px
 }
 
+.sudoku-variant {
+    width: 350px;
+    height: 350px;
+}
+
+.sudoku-strategy {
+    width: 160px;
+    height: 160px;
+}
+
 #outer-container {
     width: 86%
 }
