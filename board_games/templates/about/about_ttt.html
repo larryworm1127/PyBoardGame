@@ -127,9 +127,8 @@
 {% endblock %}
 
 
-<!-- Other info section -->
-{% block other_info %}
-  <h4 class="subheader"><strong>Variants</strong></h4>
+<!-- Variant section -->
+{% block variant %}
   <p>
     Many board games share the element of trying to be the first to get n-in-a-row, including Three Men's Morris, Nine
     Men's Morris, pente, gomoku, Qubic, Connect Four, Quarto, Gobblet, Order and Chaos, Toss Across, and Mojo.
@@ -168,9 +167,11 @@
       </div>
     </li>
   </ul>
-  <hr>
+{% endblock %}
 
-  <h4 class="subheader"><strong>Random Facts</strong></h4>
+
+<!-- Other info section -->
+{% block other_info %}
   <p>
     Because of the simplicity of tic-tac-toe, it is often used as a pedagogical tool for teaching the concepts of good
     sportsmanship and the branch of artificial intelligence that deals with the searching of game trees. It is
