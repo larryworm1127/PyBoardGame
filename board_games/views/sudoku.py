@@ -37,7 +37,10 @@ def save_move():
     pencil = request.args.get('pencil', 0, type=bool)
 
     pos = ID_REF[cell_id]
-    num = game.get_square(pos[0], pos[1])
+    if pencil:
+        num = request.args.get('num', 0, type=int)
+    else:
+        num = game.get_square(pos[0], pos[1])
     print("save move: ", num)
     game.add_move(ID_REF[cell_id], num, pencil)
 
@@ -59,10 +62,11 @@ def add_move():
 @bp.route('/sudoku/get_move')
 def get_move():
     last_move = game.get_last_move()
-    print("last move: ", last_move)
 
     if last_move:
-        game.set_square(last_move[0][0], last_move[0][1], last_move[1])
+        if not last_move[2]:
+            game.set_square(last_move[0][0], last_move[0][1], last_move[1])
+
         return jsonify(result=get_id_from_pos(last_move[0]),
                        num=last_move[1],
                        pencil=last_move[2])

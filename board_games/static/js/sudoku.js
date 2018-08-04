@@ -22,11 +22,13 @@ const ref = {1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six', 7: 
 // game core functions
 function setNum(id) {
     if (game.currentNum[2] !== 0) {
-        saveMove(id, game.pencil);
+        var cell = $('#' + id);
         if (game.pencil) {
-            $('#' + id).html(game.currentNum[1]);
+            cell.html(game.currentNum[1]);
+            saveMove(id, $('p', '#' + id).html(), game.pencil);
         } else {
-            $('#' + id).html(game.currentNum[0]);
+            saveMove(id, false, game.pencil);
+            cell.html(game.currentNum[0]);
             addMove(id, game.currentNum[2]);
             verifyBoard()
         }
