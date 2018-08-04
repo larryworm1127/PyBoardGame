@@ -12,11 +12,6 @@ from flask import Blueprint, render_template
 bp = Blueprint('about', __name__, url_prefix='/about')
 
 
-@bp.route('/')
-def about():
-    return render_template('about/about.html')
-
-
 @bp.route('/ttt')
 def ttt_about():
     return render_template('about/about_ttt.html')
