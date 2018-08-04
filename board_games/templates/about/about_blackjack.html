@@ -31,9 +31,11 @@
   </div>
   <p>
     Players are each dealt two cards, face up or down depending on the casino and the table at which you sit.
-    The value of cards two through ten is their pip value (2 through 10). Facecards (Jack, Queen, and King) are all
-    worth ten. Aces can be worth one or eleven. A hand's value is the sum of thecard values. Players are allowed to draw
-    additional cards to improve their hands.
+    The value of cards two through ten is their pip value (2 through 10). Face cards (Jack, Queen, and King) are all
+    worth ten. Aces can be worth one or eleven. A hand's value is the sum of the card values. Players are allowed to
+    draw additional cards to improve their hands. A hand with an ace valued as 11 is called "soft", meaning that the
+    hand will not bust by taking an additional card; the value of the ace will become one to prevent the hand from
+    exceeding 21. Otherwise, the hand is "hard".
   </p>
   <p>
     Once all the players have completed their hands, it is the dealer’s turn. The dealer's hand don't have to be
@@ -48,19 +50,322 @@
 <!-- Strategy section -->
 {% block strategy %}
   <p>
-
+    Here is a Blackjack cheat sheet:
   </p>
+
+  <table border="1" class="table table-bordered text-center">
+    <tbody>
+    <tr>
+      <th rowspan="2">Player hand
+      </th>
+      <th colspan="10">Dealer's face-up card
+      </th>
+    </tr>
+    <tr>
+      {% for item in deal_cards %}
+        <td>{{ item }}</td>
+      {% endfor %}
+    </tr>
+    <tr>
+      <th colspan="11">Hard totals (excluding pairs)
+      </th>
+    </tr>
+    <tr>
+      <th>17–20</th>
+      {% for _ in deal_cards %}
+        <td class="S">S</td>
+      {% endfor %}
+    </tr>
+    <tr>
+      <th>16</th>
+      {% for _ in deal_cards %}
+        {% if loop.index < 6 %}
+          <td class="S">S</td>
+        {% elif loop.index >= 6 and loop.index < 8 %}
+          <td class="H">H</td>
+        {% else %}
+          <td class="SU">SU</td>
+        {% endif %}
+      {% endfor %}
+    </tr>
+    <tr>
+      <th>15</th>
+      {% for _ in deal_cards %}
+        {% if loop.index < 6 %}
+          <td class="S">S</td>
+        {% elif loop.index == 9 %}
+          <td class="SU">SU</td>
+        {% else %}
+          <td class="H">H</td>
+        {% endif %}
+      {% endfor %}
+    </tr>
+    <tr>
+      <th>13–14</th>
+      {% for _ in deal_cards %}
+        {% if loop.index < 6 %}
+          <td class="S">S</td>
+        {% else %}
+          <td class="H">H</td>
+        {% endif %}
+      {% endfor %}
+    </tr>
+
+    <tr>
+      <th>12</th>
+      {% for _ in deal_cards %}
+        {% if loop.index >= 3 and loop.index < 6 %}
+          <td class="S">S</td>
+        {% else %}
+          <td class="H">H</td>
+        {% endif %}
+      {% endfor %}
+    </tr>
+    <tr>
+      <th>11</th>
+      {% for _ in deal_cards %}
+        <td class="Dh">Dh</td>
+      {% endfor %}
+    </tr>
+    <tr>
+      <th>10</th>
+      {% for _ in deal_cards %}
+        {% if loop.index < 9 %}
+          <td class="Dh">Dh</td>
+        {% else %}
+          <td class="H">H</td>
+        {% endif %}
+      {% endfor %}
+    </tr>
+    <tr>
+      <th>9</th>
+      {% for _ in deal_cards %}
+        {% if loop.index >= 2 and loop.index < 6 %}
+          <td class="Dh">Dh</td>
+        {% else %}
+          <td class="H">H</td>
+        {% endif %}
+      {% endfor %}
+    </tr>
+    <tr>
+      <th>5–8</th>
+      {% for _ in deal_cards %}
+        <td class="H">H</td>
+      {% endfor %}
+    </tr>
+    <tr>
+      <th colspan="11">Soft totals
+      </th>
+    </tr>
+    <tr>
+      <td></td>
+      {% for item in deal_cards %}
+        <td>{{ item }}</td>
+      {% endfor %}
+    </tr>
+    <tr>
+      <th>A,9</th>
+      {% for _ in deal_cards %}
+        <td class="S">S</td>
+      {% endfor %}
+    </tr>
+    <tr>
+      <th>A,8</th>
+      {% for _ in deal_cards %}
+        {% if loop.index == 5 %}
+          <td class="Ds">Ds</td>
+        {% else %}
+          <td class="S">S</td>
+        {% endif %}
+      {% endfor %}
+    </tr>
+    <tr>
+      <th>A,7</th>
+      {% for _ in deal_cards %}
+        {% if loop.index == 6 or loop.index == 7 %}
+          <td class="S">S</td>
+        {% elif loop.index < 6 %}
+          <td class="Ds">Ds</td>
+        {% else %}
+          <td class="H">H</td>
+        {% endif %}
+      {% endfor %}
+    </tr>
+    <tr>
+      <th>A,6</th>
+      {% for _ in deal_cards %}
+        {% if loop.index >= 2 and loop.index < 6 %}
+          <td class="Dh">Dh</td>
+        {% else %}
+          <td class="H">H</td>
+        {% endif %}
+      {% endfor %}
+    </tr>
+    <tr>
+      <th>A,4–A,5</th>
+      {% for _ in deal_cards %}
+        {% if loop.index >= 3 and loop.index < 6 %}
+          <td class="Dh">Dh</td>
+        {% else %}
+          <td class="H">H</td>
+        {% endif %}
+      {% endfor %}
+    </tr>
+    <tr>
+      <th>A,2–A,3</th>
+      {% for _ in deal_cards %}
+        {% if loop.index == 4 or loop.index == 5 %}
+          <td class="Dh">Dh</td>
+        {% else %}
+          <td class="H">H</td>
+        {% endif %}
+      {% endfor %}
+    </tr>
+    <tr>
+      <th colspan="11">Pairs</th>
+    </tr>
+    <tr>
+      <td></td>
+      {% for item in deal_cards %}
+        <td>{{ item }}</td>
+      {% endfor %}
+    </tr>
+    <tr>
+      <th>A,A</th>
+      {% for _ in deal_cards %}
+        <td class="SP">SP</td>
+      {% endfor %}
+    </tr>
+    <tr>
+      <th>10,10</th>
+      {% for _ in deal_cards %}
+        <td class="S">S</td>
+      {% endfor %}
+    </tr>
+    <tr>
+      <th>9,9</th>
+      {% for _ in deal_cards %}
+        {% if loop.index == 6 or loop.index == 9 or loop.index == 10 %}
+          <td class="S">S</td>
+        {% else %}
+          <td class="SP">SP</td>
+        {% endif %}
+      {% endfor %}
+    </tr>
+    <tr>
+      <th>8,8</th>
+      {% for _ in deal_cards %}
+        <td class="SP">SP</td>
+      {% endfor %}
+    </tr>
+    <tr>
+      <th>7,7</th>
+      {% for _ in deal_cards %}
+        {% if loop.index < 7 %}
+          <td class="SP">SP</td>
+        {% else %}
+          <td class="H">H</td>
+        {% endif %}
+      {% endfor %}
+    </tr>
+    <tr>
+      <th>6,6</th>
+      {% for _ in deal_cards %}
+        {% if loop.index < 6 %}
+          <td class="SP">SP</td>
+        {% else %}
+          <td class="H">H</td>
+        {% endif %}
+      {% endfor %}
+    </tr>
+    <tr>
+      <th>5,5
+      </th>
+      {% for _ in deal_cards %}
+        {% if loop.index < 9 %}
+          <td class="Dh">Dh</td>
+        {% else %}
+          <td class="H">H</td>
+        {% endif %}
+      {% endfor %}
+    </tr>
+    <tr>
+      <th>4,4</th>
+      {% for _ in deal_cards %}
+        {% if loop.index == 4 or loop.index == 5 %}
+          <td class="SP">SP</td>
+        {% else %}
+          <td class="H">H</td>
+        {% endif %}
+      {% endfor %}
+    </tr>
+    <tr>
+      <th>2,2–3,3</th>
+      {% for _ in deal_cards %}
+        {% if loop.index < 7 %}
+          <td class="SP">SP</td>
+        {% else %}
+          <td class="H">H</td>
+        {% endif %}
+      {% endfor %}
+    </tr>
+    </tbody>
+  </table>
+
+  <p>Key:</p>
+  <dl>
+    <dd><span class="S"><b>S</b></span> = Stand</dd>
+    <dd><span class="H"><b>H</b></span> = Hit</dd>
+    <dd><span class="Dh"><b>Dh</b></span> = Double (if not allowed, then hit)</dd>
+    <dd><span class="Ds"><b>Ds</b></span> = Double (if not allowed, then stand)</dd>
+    <dd><span class="SP"><b>SP</b></span> = Split</dd>
+    <dd><span class="SU"><b>SU</b></span> = Surrender (if not allowed, then hit)</dd>
+  </dl>
 {% endblock %}
 
 
 <!-- Variant section -->
 {% block variant %}
+  <p>
+    Here is a list of variants of the game of Blackjack:
+  </p>
+  <ul>
+    <li>
+      <strong>Spanish 21</strong> provides players with many liberal blackjack rules, such as doubling down any number
+      of cards (with the option to rescue, or surrender only one wager to the house), payout bonuses for five or more
+      card 21s, 6–7–8 21s, 7–7–7 21s, late surrender, and player blackjacks always winning and player 21s always
+      winning, at the cost of having no 10 cards in the deck (though there are jacks, queens, and kings). An unlicensed
+      version of Spanish 21 played without a hole card is found in Australian casinos under the name "Pontoon"
+      (presumably borrowed from the British recreational blackjack-like game "Pontoon" which has substantially different
+      rules).
+    </li>
+    <li>
+      <strong>21st-Century Blackjack</strong> (also known as "Vegas Style" Blackjack) is found in California card rooms.
+      In this form of the game, a player bust does not always result in an automatic loss; depending on the casino, the
+      player can still push if the dealer busts as well, although the dealer typically has to bust with a higher total.
+      Double Exposure Blackjack deals the first two cards of the dealer's hand face up. Blackjacks pay even money, and
+      players lose on ties; also, they can neither buy insurance nor can they surrender their hand (as both dealer's
+      cards are exposed at the outset).
+    </li>
+    <li>
+      <strong>Double Attack Blackjack</strong> has very liberal blackjack rules and the option of increasing one's wager
+      after seeing the dealer's up card. This game is dealt from a Spanish shoe, and blackjacks only pay even money.
+    </li>
+    <li>
+      <strong>Blackjack Switch</strong> is played over two hands whose second cards the player is allowed to
+      interchange. For example, if the player is dealt 10–6 and 5–10, then the player can switch two cards to make hands
+      of 10–10 and 6–5. Natural blackjacks are paid 1:1 instead of the standard 3:2, and a dealer 22 is a push.
+    </li>
+  </ul>
 {% endblock %}
 
 
 <!-- Other info section -->
 {% block other_info %}
   <p>
-
+    Novels have been written around blackjack and the possibility of winning games via some kind of method. Among these
+    were The Blackjack Hijack (Charles Einstein, 1976), later produced as the TV movie Nowhere to Run, and Bringing Down
+    the House (Ben Mezrich), also filmed as 21. An almost identical theme was shown in the 2004 Canadian film The Last
+    Casino.
   </p>
 {% endblock %}

@@ -29,7 +29,8 @@ def sudoku_about():
 
 @bp.route('/blackjack')
 def blackjack_about():
-    return render_template('about/about_blackjack.html')
+    deal_cards = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'A']
+    return render_template('about/about_blackjack.html', deal_cards=deal_cards)
 
 
 @bp.route('/2048')

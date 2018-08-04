@@ -63,3 +63,28 @@ body {
 #outer-container {
     width: 86%
 }
+
+.S {
+    background: red;
+    color: black
+}
+
+.H {
+    background: lime;
+    color: black
+}
+
+.SP {
+    background: yellow;
+    color: black
+}
+
+.SU {
+    background: white;
+    color: black
+}
+
+.Dh, .Ds {
+    background: cyan;
+    color: black
+}
