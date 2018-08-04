@@ -34,7 +34,12 @@ def setup():
 @bp.route('/sudoku/save_move')
 def save_move():
     cell_id = request.args.get('id', 0, type=str)
-    game.add_move(ID_REF[cell_id])
+    pencil = request.args.get('pencil', 0, type=bool)
+
+    pos = ID_REF[cell_id]
+    num = game.get_square(pos[0], pos[1])
+    print("save move: ", num)
+    game.add_move(ID_REF[cell_id], num, pencil)
 
     return jsonify(result=True)
 
@@ -54,19 +59,15 @@ def add_move():
 @bp.route('/sudoku/get_move')
 def get_move():
     last_move = game.get_last_move()
+    print("last move: ", last_move)
 
     if last_move:
-        game.set_square(last_move[0], last_move[1], 0)
-        return jsonify(result=get_id_from_pos(last_move))
+        game.set_square(last_move[0][0], last_move[0][1], last_move[1])
+        return jsonify(result=get_id_from_pos(last_move[0]),
+                       num=last_move[1],
+                       pencil=last_move[2])
 
     return jsonify(result=False)
-
-
-@bp.route('/sudoku/get_board')
-def get_board():
-    board = game.get_board()
-
-    return jsonify(result=board)
 
 
 @bp.route('/sudoku/verify')

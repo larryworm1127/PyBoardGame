@@ -5,6 +5,9 @@ Sudoku class that keep tracks of various game variables
 @author: Larry Shi
 """
 
+# general imports
+from .util import ROW_NUM
+
 # constants
 CELL_IDX = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
 
@@ -88,13 +91,15 @@ class Sudoku:
         """
         self._board[row][col] = num
 
-    def add_move(self, pos):
+    def add_move(self, pos, num, pencil):
         """
         Add the ID of the square to moves list
 
         :param pos: the position of the square
+        :param num: the number placed on the move
+        :param pencil: bool that indicate whether pencil is toggled
         """
-        self._moves.append(pos)
+        self._moves.append((pos, num, pencil))
 
     def get_pos_from_num(self, num):
         """

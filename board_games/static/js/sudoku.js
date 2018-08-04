@@ -1,10 +1,6 @@
 var game = {
-    currentNum: '',
+    currentNum: 'None',
     pencil: false,
-    start: '',
-    time: 0,
-    elapsed: '0.0',
-    paused: false,
     undo: 0
 };
 
@@ -26,41 +22,38 @@ const ref = {1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six', 7: 
 // game core functions
 function setNum(id) {
     if (game.currentNum[2] !== 0) {
+        saveMove(id, game.pencil);
         if (game.pencil) {
             $('#' + id).html(game.currentNum[1]);
         } else {
             $('#' + id).html(game.currentNum[0]);
+            addMove(id, game.currentNum[2]);
+            verifyBoard()
         }
-
-        addMove(id, game.currentNum[2]);
-        saveMove(id);
-        verifyBoard()
     }
 }
 
-function selectNum(id) {
-    game.currentNum = num_ref[id];
-    game.currentNum = num_ref[id];
+function start() {
+    $('#start').removeAttr('onclick');
 
-    $('#currentNum').text("Current Number: " + game.currentNum[2])
-}
+    $('.num').attr('onclick', 'selectNum(this.id)');
+    $('.game-field').attr('onclick', 'setNum(this.id)');
 
-function timer() {
-    game.time += 100;
+    $(function () {
+        $.get("/games/sudoku/setup")
+    });
 
-    game.elapsed = Math.floor(game.time / 100) / 10;
-    if (Math.round(game.elapsed) === game.elapsed) {
-        game.elapsed += '.0';
-    }
-
-    $('#time').text("Time: " + game.elapsed + 's');
-
-    var diff = (new Date().getTime() - game.start) - game.time;
-    window.setTimeout(timer, (100 - diff));
+    initialize();
 }
 
 function endGame() {
 
+}
+
+function selectNum(id) {
+    game.currentNum = num_ref[id];
+
+    updateInfo()
 }
 
 function verifyBoard() {
@@ -76,7 +69,6 @@ function verifyBoard() {
             } else if (result === false) {
 
             } else {
-                console.log(data);
                 for (var i = 0; i < id_list.length; i++) {
                     var cell = $('#' + id_list[i] + ' p');
                     cell.removeClass('not-pencil');
@@ -89,41 +81,31 @@ function verifyBoard() {
 
 
 // util functions
-function start() {
-    game.start = new Date().getTime();
-    window.setTimeout(timer, 100);
-    $('#start').removeAttr('onclick');
-
-    $('.num').attr('onclick', 'selectNum(this.id)');
-    $('.game-field').attr('onclick', 'setNum(this.id)');
-
-    $(function () {
-        $.get("/games/sudoku/setup")
-    });
-
-    initialize();
-}
-
 function initialize() {
     var currentPuzzle = generatePuzzle(1);
     renderBoard(currentPuzzle);
 }
 
 function togglePencil() {
-    if (game.pencil) {
-        game.pencil = false;
-        $('#pencilOn').text("Pencil: Off")
-    } else {
-        game.pencil = true;
-        $('#pencilOn').text("Pencil: On")
-    }
+    game.pencil = !game.pencil;
+    updateInfo()
 }
 
-function undo(id) {
+function undo(id, num, pencil) {
     if (id !== false) {
         game.undo++;
-        $('#numUndo').text("Undo: " + game.undo);
-        $('#' + id).html('');
+        updateInfo();
+
+        console.log(num);
+        if (num !== 0) {
+            if (pencil) {
+                $('#' + id).html(num_ref[ref[num]][1]);
+            } else {
+                $('#' + id).html(num_ref[ref[num]][0]);
+            }
+        } else {
+            $('#' + id).html('');
+        }
 
         verifyBoard()
     }
@@ -140,11 +122,52 @@ function clearError() {
     }
 }
 
+function updateInfo() {
+    $('#numUndo').text("Undo: " + game.undo);
+    if (game.currentNum !== 'None') {
+        $('#currentNum').text("Current Number: " + game.currentNum[2]);
+    } else {
+        $('#currentNum').text("Current Number: None")
+    }
+
+    if (game.pencil) {
+        $('#pencilOn').text("Pencil: On")
+    } else {
+        $('#pencilOn').text("Pencil: Off")
+    }
+}
+
+function newGame() {
+    reset();
+    start()
+}
+
+function reset() {
+    game.currentNum = 'None';
+    game.pencil = false;
+    game.undo = 0;
+
+    updateInfo();
+
+    for (var i = 1; i <= 9; i++) {
+        for (var j = 1; j <= 9; j++) {
+            id = ref[i] + '-' + ref[j];
+            var cell = $('#' + id + ' p');
+            cell.html('');
+            cell.removeClass()
+        }
+    }
+}
+
 
 // back-end link functions
-function saveMove(id) {
+function saveMove(id, num, pencil) {
     $(function () {
-        $.get("/games/sudoku/save_move", {id: id})
+        $.get("/games/sudoku/save_move", {
+            id: id,
+            num: num,
+            pencil: pencil
+        })
     });
 }
 
@@ -160,7 +183,8 @@ function addMove(id, num) {
 function getLastMove() {
     $(function () {
         $.getJSON("/games/sudoku/get_move", {}, function (data) {
-            undo(data.result)
+            console.log("get last move: " + data.num);
+            undo(data.result, data.num, data.pencil)
         });
     });
 }
