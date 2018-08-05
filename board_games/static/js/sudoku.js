@@ -21,7 +21,7 @@ const ref = {1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six', 7: 
 
 // game core functions
 function setNum(id) {
-    if (game.currentNum[2] !== 0) {
+    if (game.currentNum !== 'None') {
         var cell = $('#' + id);
         if (game.pencil) {
             cell.html(game.currentNum[1]);
@@ -49,7 +49,8 @@ function start() {
 }
 
 function endGame() {
-
+    reset();
+    $('#win-modal').modal('show')
 }
 
 function selectNum(id) {
@@ -86,6 +87,7 @@ function verifyBoard() {
 function initialize() {
     var currentPuzzle = generatePuzzle(1);
     renderBoard(currentPuzzle);
+    //renderBoard(testBoard)
 }
 
 function togglePencil() {
@@ -98,7 +100,6 @@ function undo(id, num, pencil) {
         game.undo++;
         updateInfo();
 
-        console.log(num);
         if (num !== 0) {
             if (pencil) {
                 $('#' + id).html(num_ref[ref[num]][1]);
@@ -117,7 +118,7 @@ function clearError() {
     for (var i = 1; i <= 9; i++) {
         for (var j = 1; j <= 9; j++) {
             id = ref[i] + '-' + ref[j];
-            var cell = $('#' + id + ' p');
+            var cell = $('p', '#' + id);
             cell.removeClass('error');
             cell.addClass('not-pencil')
         }
@@ -164,6 +165,7 @@ function reset() {
 
 // back-end link functions
 function saveMove(id, num, pencil) {
+    console.log(pencil);
     $(function () {
         $.get("/games/sudoku/save_move", {
             id: id,
@@ -560,6 +562,18 @@ var emptyPuzzle = [
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0]
+];
+
+var testBoard = [
+    [5, 3, 4, 6, 7, 8, 9, 1, 0],
+    [6, 7, 2, 1, 9, 5, 3, 4, 8],
+    [1, 9, 8, 3, 4, 2, 5, 6, 7],
+    [8, 5, 9, 7, 6, 1, 4, 2, 3],
+    [4, 2, 6, 8, 5, 3, 7, 9, 1],
+    [7, 1, 3, 9, 2, 4, 8, 5, 6],
+    [9, 6, 1, 5, 3, 7, 2, 8, 4],
+    [2, 8, 7, 4, 1, 9, 6, 3, 5],
+    [3, 4, 5, 2, 8, 6, 1, 7, 9]
 ];
 
 function renderBoard(board) {
