@@ -1,5 +1,4 @@
 var game = {
-    currentNum: 'None',
     currentCell: 'None',
     pencil: false,
     undo: 0
@@ -22,31 +21,36 @@ const ref = {1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six', 7: 
 
 // game core functions
 function selectCell(id) {
+    if (game.currentCell !== 'None') {
+        $('#' + game.currentCell).removeClass('selected')
+    }
+
+    $('#' + id).addClass('selected');
     game.currentCell = id
 }
 
-function setNum(id) {
-    if (game.currentNum !== 'None') {
-        var cell = $('#' + id);
-        if (game.pencil) {
-            cell.html(game.currentNum[1]);
-            saveMove(id, $('p', '#' + id).html(), game.pencil);
-        } else {
-            saveMove(id, false, game.pencil);
-            cell.html(game.currentNum[0]);
-            $('p', '#' + id).addClass('player');
-            $('p', '#' + id).addClass('player-con');
-            addMove(id, game.currentNum[2]);
-            verifyBoard()
-        }
+function setNum(num) {
+    var cell = $('#' + game.currentCell);
+    if (game.pencil) {
+        cell.html(num_ref[num][1]);
+        var innerEle = $('p', '#' + game.currentCell);
+        saveMove(game.currentCell, innerEle.html(), game.pencil);
+    } else {
+        saveMove(game.currentCell, false, game.pencil);
+        cell.html(num_ref[num][0]);
+        var innerEle = $('p', '#' + game.currentCell);
+        innerEle.addClass('player');
+        innerEle.addClass('player-con');
+        addMove(game.currentCell, num_ref[num][2]);
+        verifyBoard()
     }
 }
 
 function start() {
     $('#start').removeAttr('onclick');
 
-    $('.num').attr('onclick', 'selectNum(this.id)');
-    $('.game-field').attr('onclick', 'setNum(this.id)');
+    $('.num').attr('onclick', 'setNum(this.id)');
+    $('.game-field').attr('onclick', 'selectCell(this.id)');
 
     $(function () {
         $.get("/games/sudoku/setup")
@@ -58,12 +62,6 @@ function start() {
 function endGame() {
     reset();
     $('#win-modal').modal('show')
-}
-
-function selectNum(id) {
-    game.currentNum = num_ref[id];
-
-    updateInfo()
 }
 
 function verifyBoard() {
@@ -119,6 +117,7 @@ function undo(id, num, pencil) {
                 $('#' + id).html(num_ref[ref[num]][1]);
             } else {
                 $('#' + id).html(num_ref[ref[num]][0]);
+                $('p', '#' + id).addClass('player')
             }
         } else {
             $('#' + id).html('');
@@ -148,11 +147,6 @@ function clearError() {
 
 function updateInfo() {
     $('#numUndo').text("Undo: " + game.undo);
-    if (game.currentNum !== 'None') {
-        $('#currentNum').text("Current Number: " + game.currentNum[2]);
-    } else {
-        $('#currentNum').text("Current Number: None")
-    }
 
     if (game.pencil) {
         $('#pencilOn').text("Pencil: On")
@@ -167,7 +161,7 @@ function newGame() {
 }
 
 function reset() {
-    game.currentNum = 'None';
+    game.currentCell = 'None';
     game.pencil = false;
     game.undo = 0;
 
@@ -181,6 +175,20 @@ function reset() {
             cell.removeClass()
         }
     }
+}
+
+function erase() {
+    if (game.pencil) {
+        var innerEle = $('p', '#' + game.currentCell);
+        saveMove(game.currentCell, innerEle.html(), game.pencil);
+    } else {
+        saveMove(game.currentCell, false, game.pencil);
+        addMove(game.currentCell, 0);
+    }
+
+    $('#' + game.currentCell).html('');
+
+    verifyBoard()
 }
 
 

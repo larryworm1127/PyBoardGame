@@ -138,3 +138,7 @@ p.player {
 #num-pad {
     width: 10%
 }
+
+.selected {
+    background: #faff64;
+}

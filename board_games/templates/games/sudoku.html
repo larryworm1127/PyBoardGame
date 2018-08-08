@@ -45,7 +45,7 @@
         <i class="fas fa-pencil-alt fa-2x m-1"></i>Pencil
       </a>
       <div class="space"></div>
-      <a class="erase" role="button" id="erase" onclick="">
+      <a class="erase" role="button" id="erase" onclick="erase()">
         <i class="fas fa-eraser fa-2x m-1"></i>Erase
       </a>
       <div class="space"></div>
@@ -70,11 +70,9 @@
     <h2>Game Info</h2>
     <div class="jumbotron" id="stats">
       <h3 class="subheader" id="pencilOn">Pencil: Off</h3>
-      <h3 class="subheader" id="currentNum">Current Number: None</h3>
       <h3 class="subheader" id="difficulty">Difficulty: Easy</h3>
       <h3 class="subheader" id="numUndo">Undo: 0</h3>
     </div>
-    <button type="button" id="start" class="btn btn-primary" onclick="start()">Start</button>
     <button type="button" id="new-game" class="btn btn-primary" onclick="newGame()">New Game</button>
   </div>
 
