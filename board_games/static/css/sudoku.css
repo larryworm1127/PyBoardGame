@@ -127,6 +127,10 @@ p.not-pencil {
     color: #000000;
 }
 
+p.player {
+    color: grey;
+}
+
 .error {
     color: orangered;
 }

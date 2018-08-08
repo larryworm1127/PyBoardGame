@@ -1,5 +1,6 @@
 var game = {
     currentNum: 'None',
+    currentCell: 'None',
     pencil: false,
     undo: 0
 };
@@ -20,6 +21,10 @@ const num_ref = {
 const ref = {1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six', 7: 'seven', 8: 'eight', 9: 'nine'};
 
 // game core functions
+function selectCell(id) {
+    game.currentCell = id
+}
+
 function setNum(id) {
     if (game.currentNum !== 'None') {
         var cell = $('#' + id);
@@ -29,6 +34,8 @@ function setNum(id) {
         } else {
             saveMove(id, false, game.pencil);
             cell.html(game.currentNum[0]);
+            $('p', '#' + id).addClass('player');
+            $('p', '#' + id).addClass('player-con');
             addMove(id, game.currentNum[2]);
             verifyBoard()
         }
@@ -73,8 +80,15 @@ function verifyBoard() {
 
             } else {
                 for (var i = 0; i < id_list.length; i++) {
-                    var cell = $('#' + id_list[i] + ' p');
+                    var cell = $('p', '#' + id_list[i]);
                     cell.removeClass('not-pencil');
+                    try {
+                        if (cell.attr('class').includes('player')) {
+                            cell.removeClass('player');
+                        }
+                    } catch (TypeError) {
+                    }
+
                     cell.addClass('error');
                 }
             }
@@ -120,7 +134,14 @@ function clearError() {
             id = ref[i] + '-' + ref[j];
             var cell = $('p', '#' + id);
             cell.removeClass('error');
-            cell.addClass('not-pencil')
+            cell.addClass('not-pencil');
+
+            try {
+                if (cell.attr('class').includes('player-con')) {
+                    cell.addClass('player')
+                }
+            } catch (TypeError) {
+            }
         }
     }
 }
@@ -165,7 +186,6 @@ function reset() {
 
 // back-end link functions
 function saveMove(id, num, pencil) {
-    console.log(pencil);
     $(function () {
         $.get("/games/sudoku/save_move", {
             id: id,
@@ -187,7 +207,6 @@ function addMove(id, num) {
 function getLastMove() {
     $(function () {
         $.getJSON("/games/sudoku/get_move", {}, function (data) {
-            console.log("get last move: " + data.num);
             undo(data.result, data.num, data.pencil)
         });
     });
