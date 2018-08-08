@@ -4,7 +4,7 @@
 
 {% block head_sec %}
   <link rel="stylesheet" href="{{ url_for('static', filename='css/sudoku.css') }}">
-  <script src="{{ url_for('static', filename='js/sudoku.js') }}"></script>
+
 {% endblock %}
 
 {% block header %}Sudoku{% endblock %}
@@ -78,4 +78,5 @@
     <button type="button" id="new-game" class="btn btn-primary" onclick="newGame()">New Game</button>
   </div>
 
+  <script src="{{ url_for('static', filename='js/sudoku.js') }}"></script>
 {% endblock %}

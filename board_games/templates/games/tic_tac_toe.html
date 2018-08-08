@@ -4,7 +4,7 @@
 
 {% block head_sec %}
   <link rel="stylesheet" href="{{ url_for('static', filename='css/ttt.css') }}">
-  <script src="{{ url_for('static', filename='js/ttt.js') }}"></script>
+
 {% endblock %}
 
 {% block header %}Tic Tac Toe{% endblock %}
@@ -46,5 +46,7 @@
       </a>
     </div>
   </div>
+
+  <script src="{{ url_for('static', filename='js/ttt.js') }}"></script>
 
 {% endblock %}
