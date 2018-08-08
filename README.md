@@ -23,5 +23,14 @@ Here is a list of features that might be implemented:
 ## Screenshots
 Here are some screenshot of the website:
 
+**_Home Page:_**
+![Image of home page](screenshots/screenshot_home.png)
+
+**_About Page (All About page looks the same):_**
+![Image of about page](screenshots/screenshot_about.png)
+
 **_Tic Tac Toe:_**
 ![Image of Tic Tac Toe](screenshots/screenshot_ttt.png)
+
+**_Sudoku:_**
+![Image of Sudoku](screenshots/screenshot_sudoku.png)
