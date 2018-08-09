@@ -37,13 +37,14 @@ def save_move():
     pencil = True if request.args.get('pencil') == 'true' else False
     print("save move:", pencil)
 
-    pos = ID_REF[cell_id]
-    if pencil:
-        num = request.args.get('num', 0, type=int)
-    else:
-        num = game.get_square(pos[0], pos[1])
-    print("save move: ", num)
-    game.add_move(ID_REF[cell_id], num, pencil)
+    if cell_id != 'None':
+        pos = ID_REF[cell_id]
+        if pencil:
+            num = request.args.get('num', 0, type=int)
+        else:
+            num = game.get_square(pos[0], pos[1])
+        print("save move: ", num)
+        game.add_move(pos, num, pencil)
 
     return jsonify(result=True)
 
@@ -53,9 +54,10 @@ def add_move():
     cell_id = request.args.get('id', 0, type=str)
     num = request.args.get('num', 0, type=int)
 
-    row = ID_REF[cell_id][0]
-    col = ID_REF[cell_id][1]
-    game.set_square(row, col, num)
+    if cell_id != 'None':
+        row = ID_REF[cell_id][0]
+        col = ID_REF[cell_id][1]
+        game.set_square(row, col, num)
 
     return jsonify(result=True)
 
