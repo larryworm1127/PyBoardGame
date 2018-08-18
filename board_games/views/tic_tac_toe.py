@@ -8,7 +8,7 @@ Flask "Tic Tac Toe" game blueprint
 # general imports
 from flask import Blueprint, render_template, jsonify, request
 
-from ..game_control.ttt_setup import *
+from ..game_control.ttt_board import *
 from ..game_control.util import ID_REF, get_id_from_pos
 from .auth import login_required
 
@@ -28,7 +28,9 @@ def setup():
 
     human = request.args.get('human', 0, type=str)
     pvp = request.args.get('pvp', 0, type=bool)
-    game = TTTSetUp(3, human, pvp=pvp)
+
+    human = PLAYERX if human == 'X' else PLAYERO
+    game = TTTSetUp(3, human, switch_player(human), pvp=pvp)
     return jsonify(result=str(game))
 
 

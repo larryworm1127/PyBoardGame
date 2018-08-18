@@ -77,6 +77,9 @@ function reset() {
     This function resets entire board and game variables in preparation for new game
      */
 
+    // remove color for current cell
+    $('#' + game.currentCell).removeClass('selected');
+
     // set game variables to original state
     game.currentCell = 'None';
     game.pencil = false;
@@ -91,11 +94,10 @@ function reset() {
 
             // get id and select the cell
             id = ref[i] + '-' + ref[j];
-            var cell = $('p', '#' + id);
+            var cell = $('#' + id);
 
             // clear board content and remove all associated classes
             cell.html('');
-            cell.removeClass()
         }
     }
 }
@@ -140,7 +142,7 @@ function clearError() {
                 if (cell.attr('class').includes('player-con')) {
                     cell.addClass('player')
                 }
-            } catch (TypeError) {
+            } catch (TypeError) {   // silence TypeError
             }
         }
     }
@@ -187,34 +189,49 @@ function setNum(num) {
         // select current cell with jquery
         var cell = $('#' + game.currentCell);
 
+
         // if pencil feature is toggled, draw penciled number into cell
         if (game.pencil) {
-            // draw
-            cell.html(num_ref[num][1]);
 
-            // calls function to save this move for undo feature
-            var innerEle = $('p', '#' + game.currentCell);
-            saveMove(game.currentCell, innerEle.html(), game.pencil);
+            // if the original element is null, then save move with a different way
+            if ($('p', cell).html() == null) {
+                saveMove(game.currentCell, false, false);
+                cell.html(num_ref[num][1]);
+            }
+
+            // if the original element is penciled, then save move with the pencil way
+            else {
+                // draw
+                cell.html(num_ref[num][1]);
+
+                // calls function to save this move for undo feature
+                var innerEle = $('p', cell);
+                saveMove(game.currentCell, innerEle.html(), game.pencil);
+            }
         }
 
         // if pencil feature isn't on, draw non-penciled number into cell with player move color
         else {
-            // calls function to save this move for undo feature
-            saveMove(game.currentCell, false, game.pencil);
+            // check whether the user is trying to enter in the same number
+            if ($('p', cell).html() != num_ref[num][2] && !$('p', cell).attr('class').includes()) {
 
-            // draw
-            cell.html(num_ref[num][0]);
+                // calls function to save this move for undo feature
+                saveMove(game.currentCell, false, game.pencil);
 
-            // add player color to number
-            var innerEle = $('p', '#' + game.currentCell);
-            innerEle.addClass('player');
-            innerEle.addClass('player-con');
+                // draw
+                cell.html(num_ref[num][0]);
 
-            // call function to update back-end board
-            addMove(game.currentCell, num_ref[num][2]);
+                // add player color to number
+                var innerEle = $('p', cell);
+                innerEle.addClass('player');
+                innerEle.addClass('player-con');
 
-            // call function to verify board
-            verifyBoard()
+                // call function to update back-end board
+                addMove(game.currentCell, num_ref[num][2]);
+
+                // call function to verify board
+                verifyBoard()
+            }
         }
     }
 }

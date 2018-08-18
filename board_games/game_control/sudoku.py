@@ -5,9 +5,6 @@ Sudoku class that keep tracks of various game variables
 @author: Larry Shi
 """
 
-# general imports
-from .util import ROW_NUM
-
 # constants
 CELL_IDX = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
 

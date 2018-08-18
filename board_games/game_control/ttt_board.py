@@ -5,6 +5,9 @@ Virtual Tic-Tac-Toe Board
 @author: Larry Shi
 """
 
+# general imports
+from dataclasses import dataclass, field
+
 # Constants
 EMPTY = 0
 PLAYERX = 1
@@ -153,6 +156,30 @@ class TTTBoard:
         return TTTBoard(self._reverse, self._board)
 
 
+# setup class
+@dataclass
+class TTTSetUp:
+    size: int
+    human: int
+    computer: int
+
+    reverse: bool = False
+    pvp: bool = False
+    board: TTTBoard = field(init=False)
+
+    def __post_init__(self):
+        """
+        Initialize any variables that requires other var to be initialized
+        """
+        self.board = TTTBoard(self.reverse)
+
+    def get_comp_move(self):
+        from .ttt_computer import get_move
+
+        return get_move(self.board, self.computer)[1]
+
+
+# util function
 def switch_player(player):
     """
     Convenience function to switch players.
