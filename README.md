@@ -8,7 +8,7 @@ https://pyboardgame.herokuapp.com/
 
 ## Features
 Here is a list of features that will be implemented:
-- [x] A secure database user authentication.
+- [ ] A secure database user authentication.
 - [x] A complete description of the games as well as links for further information
 - A number of simple board games for users to play:
     - [x] Tic Tac Toe
