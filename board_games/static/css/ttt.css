@@ -79,7 +79,7 @@
 }
 
 /* Mobile Styles */
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 425px) {
     /* Game Grid */
     .game {
         background-color: transparent;
@@ -114,7 +114,7 @@
 }
 
 /* Tablet Styles */
-@media only screen and (min-width: 401px) and (max-width: 960px) {
+@media only screen and (min-width: 426px) and (max-width: 1023px) {
     /* Game Grid */
     .game {
         background-color: transparent;
@@ -149,7 +149,7 @@
 }
 
 /* Desktop Styles */
-@media only screen and (min-width: 961px) {
+@media only screen and (min-width: 1024px) {
     /* Game Grid */
     .game {
         background-color: transparent;

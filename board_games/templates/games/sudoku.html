@@ -11,6 +11,17 @@
 
 {% block game_content %}
 
+  <!-- Numpad -->
+  <div class="col-sm-12 text-center" id="num-pad-top">
+    <div class="btn-toolbar" role="toolbar" aria-label="Sudoku numbers" id="num-pad-top-sec">
+      <div class="btn-group mr-2" role="group" aria-label="First group">
+        {% for id in dim %}
+          <button type="button" id="{{ id }}" class="btn btn-secondary num">{{ dim.index(id) + 1 }}</button>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
   <!-- Modal for winning sudoku -->
   <div class="modal fade" id="win-modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -29,10 +40,11 @@
     </div>
   </div>
 
-  <div class="col-1 text-right">
+  <!-- Numpad and Buttons -->
+  <div class="col-md-1 col-sm-12 text-center">
     <div class="space-2"></div>
-    <div class="container" id="num-pad">
-      <div class="btn-toolbar" role="toolbar" aria-label="Sudoku numbers">
+    <div class="container">
+      <div class="btn-toolbar" role="toolbar" aria-label="Sudoku numbers" id="num-pad-vert">
         <div class="btn-group-vertical mr-2" role="group" aria-label="First group">
           {% for id in dim %}
             <button type="button" id="{{ id }}" class="btn btn-secondary num">{{ dim.index(id) + 1 }}</button>
@@ -55,7 +67,8 @@
     </div>
   </div>
 
-  <div class="col-7 text-center">
+  <!-- Game Grid -->
+  <div class="col-md-7 col-sm-12 text-center">
     <div class="game" id="wrapper">
       {% for row in dim %}
         {% for column in dim %}
@@ -65,7 +78,8 @@
     </div>
   </div>
 
-  <div class="col-4 text-left">
+  <!-- Message Box -->
+  <div class="col-md-4 col-sm-12" id="messages">
     <div class="space-2"></div>
     <h2>Game Info</h2>
     <div class="jumbotron" id="stats">
@@ -74,6 +88,18 @@
       <h3 class="subheader" id="numUndo">Undo: 0</h3>
     </div>
     <button type="button" id="new-game" class="btn btn-primary" onclick="newGame()">New Game</button>
+  </div>
+
+  <!-- Numpad -->
+  <div class="col-md-1"></div>
+  <div class="col-md-7 col-sm-12 text-center">
+    <div class="btn-toolbar" role="toolbar" aria-label="Sudoku numbers" id="num-pad-bot">
+      <div class="btn-group mr-2" role="group" aria-label="First group">
+        {% for id in dim %}
+          <button type="button" id="{{ id }}" class="btn btn-secondary num">{{ dim.index(id) + 1 }}</button>
+        {% endfor %}
+      </div>
+    </div>
   </div>
 
   <!-- Game Script -->
