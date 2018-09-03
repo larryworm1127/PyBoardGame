@@ -72,8 +72,8 @@ body {
     }
 
     #ttt-strategy-x, #ttt-strategy-o {
-        width: 200px;
-        height: 200px
+        width: 230px;
+        height: 230px
     }
 
     .sudoku-variant {
@@ -109,13 +109,13 @@ body {
     }
 
     #sudoku, #ttt, #two048 {
-        width: 120px;
-        height: 120px;
+        width: 200px;
+        height: 200px;
     }
 
     #two048-win {
-        width: 125px;
-        height: 153px;
+        width: 160px;
+        height: 256px;
     }
 
     #blackjack-logo {

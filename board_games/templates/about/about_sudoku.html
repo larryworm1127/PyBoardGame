@@ -12,22 +12,20 @@
 <!-- About section -->
 {% block about %}
   <div class="row">
-    <div class="col-md-9 col-sm-12">
+    <div class="col-lg-9 col-md-12">
       <p>
         <strong>Sudoku</strong>, is a logic-based, combinatorial number-placement puzzle. The objective is to fill a 9 ×
         9 grid with digits so that <strong>each column, each row, and each of the nine 3 × 3 sub-grids that compose the
         grid contains all of the digits from 1 to 9.</strong> The puzzle setter provides a partially completed grid,
         which for a well-posed puzzle has a single solution.
       </p>
-    </div>
-    <div class="col-md-3 col-sm-12 text-center">
-      <img src="{{ url_for('static', filename='images/sudoku/sudoku.png') }}" id="sudoku" alt="sudoku">
-    </div>
-    <div class="col-lg-9 col-md-12">
       <p>
         The only rule that the game has is that the same single integer may not appear twice in the same row, column, or
         any of the nine 3 × 3 sub-regions of the 9 x 9 playing board.
       </p>
+    </div>
+    <div class="col-lg-3 col-md-12 text-center">
+      <img src="{{ url_for('static', filename='images/sudoku/sudoku.png') }}" id="sudoku" alt="sudoku">
     </div>
   </div>
 {% endblock %}
