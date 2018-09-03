@@ -21,7 +21,7 @@ symbol = {
 
 // set figures corresponding to user selection
 function setFig(id) {
-    if (id === 'start-computer') {
+    if (id === 'start-comp') {
         game.computer = symbol.cross;
         game.user = symbol.circle;
         game.currentPlayer = computer;
@@ -52,7 +52,7 @@ function setFig(id) {
 
     // disable other options
     $('#start-human').removeAttr('onclick');
-    $('#start-computer').removeAttr('onclick');
+    $('#start-comp').removeAttr('onclick');
     $('#pvp').removeAttr('onclick')
 }
 
@@ -121,7 +121,7 @@ function endGame() {
     $('.game-field').removeAttr('onclick');
 
     $('#start-human').attr('onclick', 'reset()');
-    $('#start-computer').attr('onclick', 'reset()');
+    $('#start-comp').attr('onclick', 'reset()');
     $('#pvp').attr('onclick', 'reset()')
 }
 
@@ -167,7 +167,7 @@ function reset() {
     $('#prompt').text('Who will start over?');
 
     $('#start-human').attr('onclick', 'setFig(this.id)');
-    $('#start-computer').attr('onclick', 'setFig(this.id)');
+    $('#start-comp').attr('onclick', 'setFig(this.id)');
     $('#pvp').attr('onclick', 'setFig(this.id)');
 }
 

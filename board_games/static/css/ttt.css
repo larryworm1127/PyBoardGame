@@ -1,20 +1,4 @@
-.game {
-    background-color: transparent;
-    width: 402px;
-    height: 402px;
-    margin: 50px auto;
-}
-
-.game-field {
-    width: 134px;
-    height: 134px;
-    display: block;
-    float: left;
-    color: #EAEAEA;
-    font-size: 6.3em;
-    padding: 1px 27px;
-}
-
+/* Game Grid */
 #one-one, #one-two, #one-three {
     border-bottom: 3px solid #525B76;
 }
@@ -38,6 +22,7 @@
     border-right: 3px solid #525B76;
 }
 
+/* Button Color and Hovered Color */
 #start-human {
     color: #afd9c8
 }
@@ -46,11 +31,11 @@
     color: #8cc9b0
 }
 
-#start-computer {
+#start-comp {
     color: #624c47
 }
 
-#start-computer:hover {
+#start-comp:hover {
     color: #443532
 }
 
@@ -70,6 +55,7 @@
     color: #1e7e34;
 }
 
+/* Game Character */
 #circle {
     color: slategrey;
     position: relative;
@@ -83,10 +69,112 @@
     line-height: 1.25em;
 }
 
+/* Spaces and Margins */
 .space {
     color: #DCEBDF
 }
 
 .side-col {
     margin-top: 50px
+}
+
+/* Mobile Styles */
+@media only screen and (max-width: 400px) {
+    /* Game Grid */
+    .game {
+        background-color: transparent;
+        width: 268px;
+        height: 268px;
+        margin: 50px auto;
+    }
+
+    .game-field {
+        width: 89px;
+        height: 89px;
+        display: block;
+        float: left;
+        color: #EAEAEA;
+        font-size: 4em;
+        padding: 1px 19px;
+    }
+
+    /* Section Align */
+    #messages {
+        text-align: center;
+    }
+
+    #icons {
+        display: block;
+    }
+
+    /* Icon Sizes */
+    #human-icon, #comp-icon, #pvp-icon, #surr-icon {
+        font-size: 3em;
+    }
+}
+
+/* Tablet Styles */
+@media only screen and (min-width: 401px) and (max-width: 960px) {
+    /* Game Grid */
+    .game {
+        background-color: transparent;
+        width: 335px;
+        height: 335px;
+        margin: 50px auto;
+    }
+
+    .game-field {
+        width: 111px;
+        height: 111px;
+        display: block;
+        float: left;
+        color: #EAEAEA;
+        font-size: 5em;
+        padding: 1px 23px;
+    }
+
+    /* Section Align */
+    #messages {
+        text-align: center;
+    }
+
+    #icons {
+        display: inline-block;
+    }
+
+    /* Icon Sizes */
+    #human-icon, #comp-icon, #pvp-icon, #surr-icon {
+        font-size: 3em;
+    }
+}
+
+/* Desktop Styles */
+@media only screen and (min-width: 961px) {
+    /* Game Grid */
+    .game {
+        background-color: transparent;
+        width: 402px;
+        height: 402px;
+        margin: 50px auto;
+    }
+
+    .game-field {
+        width: 134px;
+        height: 134px;
+        display: block;
+        float: left;
+        color: #EAEAEA;
+        font-size: 6.3em;
+        padding: 1px 27px;
+    }
+
+    /* Section Align */
+    #messages {
+        text-align: left;
+    }
+
+    /* Icon Sizes */
+    #human-icon, #comp-icon, #pvp-icon, #surr-icon {
+        font-size: 5em;
+    }
 }
