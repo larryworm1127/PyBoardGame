@@ -8,23 +8,24 @@
     <!-- Custom icon -->
     <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
 
-    <!-- Jquery and popper scripts -->
-    <script src="{{ url_for('static', filename='vendor/js/jquery.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='vendor/js/popper.min.js') }}"></script>
-
     <!-- Bootstrap core stylesheets -->
     <link rel="stylesheet" href="{{ url_for('static', filename='vendor/css/bootstrap.min.css') }}">
-    <script src="{{ url_for('static', filename='vendor/js/bootstrap.min.js') }}"></script>
 
     <!-- FontAwesome stylesheets -->
     <link rel="stylesheet" href="{{ url_for('static', filename='vendor/css/fontawesome-all.min.css') }}">
 
     {% block head %}
     {% endblock %}
-
   </head>
   <body>
     {% block content %}
     {% endblock %}
+
+    <!-- Jquery and popper scripts -->
+    <script src="{{ url_for('static', filename='vendor/js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='vendor/js/popper.min.js') }}"></script>
+
+    <!-- Bootstrap Script -->
+    <script src="{{ url_for('static', filename='vendor/js/bootstrap.min.js') }}"></script>
   </body>
 </html>
