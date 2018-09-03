@@ -41,7 +41,7 @@ body {
 }
 
 /* Mobile Styles */
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 425px) {
     #outer-container {
         width: 130%
     }
@@ -98,7 +98,7 @@ body {
 }
 
 /* Tablet Styles */
-@media only screen and (min-width: 401px) and (max-width: 960px) {
+@media only screen and (min-width: 426px) and (max-width: 960px) {
     #outer-container {
         width: 130%
     }
