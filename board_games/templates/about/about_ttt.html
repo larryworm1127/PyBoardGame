@@ -11,7 +11,7 @@
 <!-- About section -->
 {% block about %}
   <div class="row">
-    <div class="col-9">
+    <div class="col-md-9 col-sm-12">
       <p>
         <strong>Tic-tac-toe</strong> (also known as noughts and crosses or Xs and Os) is a paper-and-pencil game for two
         players, X and O, who take turns marking the spaces in a 3 × 3 grid. The player who succeeds in placing three of
@@ -22,13 +22,12 @@
         game, a perfect game is more considered to be a draw rather than a win as the possible win outcomes are limited
       </p>
     </div>
-    <div class="col-3 text-center">
+    <div class="col-md-3 col-sm-12 text-center">
       <img src="{{ url_for('static', filename='images/ttt/ttt.png') }}" id="ttt" alt="ttt">
     </div>
   </div>
 
 {% endblock %}
-
 
 <!-- Strategy section -->
 {% block strategy %}
@@ -118,7 +117,7 @@
     </li>
     <li>
       <div class="row">
-        <div class="col-9">
+        <div class="col-md-9 col-sm-12">
           <strong>Number Scrabble</strong> or <strong>Pick15</strong> is isomorphic to tic-tac-toe but on the surface
           appears completely different. Two players in turn say a number between one and nine. A particular number may
           not be repeated. The game is won by the player who has said three numbers whose sum is 15. If all the numbers
@@ -126,7 +125,7 @@
           3 × 3 magic square shows that the game exactly corresponds with tic-tac-toe, since three numbers will be
           arranged in a straight line if and only if they total 15.
         </div>
-        <div class="col-3 text-center">
+        <div class="col-md-3 col-sm-12 text-center">
           <img src="{{ url_for('static', filename='images/ttt/ttt_variant.png') }}" id="ttt-var" alt="ttt-var">
         </div>
       </div>
