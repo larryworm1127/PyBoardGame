@@ -99,7 +99,59 @@ body {
 
 /* Tablet Styles */
 @media only screen and (min-width: 401px) and (max-width: 960px) {
+    #outer-container {
+        width: 130%
+    }
 
+    .table {
+        font-size: 30%;
+    }
+
+    /* Images Sizes */
+    #ttt-logo, #sudoku-logo, #two048-logo {
+        width: 100px;
+        height: 100px;
+    }
+
+    #sudoku, #ttt, #two048 {
+        width: 150px;
+        height: 150px;
+    }
+
+    #two048-win {
+        width: 200px;
+        height: 256px;
+    }
+
+    #blackjack-logo {
+        width: 160px;
+        height: 100px;
+    }
+
+    #blackjack {
+        width: 210px;
+        height: 160px;
+    }
+
+    #ttt-strategy-x, #ttt-strategy-o {
+        width: 200px;
+        height: 200px
+    }
+
+    .sudoku-variant {
+        width: 175px;
+        height: 175px;
+    }
+
+    .two048-variant {
+        width: 300px;
+        height: 300px;
+    }
+
+    .sudoku-strategy {
+        width: 160px;
+        height: 160px;
+    }
 }
 
 /* Desktop Styles */
