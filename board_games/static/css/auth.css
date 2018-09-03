@@ -43,7 +43,11 @@ body {
 /* Mobile Styles */
 @media only screen and (max-width: 400px) {
     #outer-container {
-        width: 120%
+        width: 130%
+    }
+
+    .table {
+        font-size: 30%;
     }
 
     /* Images Sizes */
@@ -73,13 +77,13 @@ body {
     }
 
     #ttt-strategy-x, #ttt-strategy-o {
-        width: 300px;
-        height: 300px
+        width: 200px;
+        height: 200px
     }
 
     .sudoku-variant {
-        width: 350px;
-        height: 350px;
+        width: 175px;
+        height: 175px;
     }
 
     .two048-variant {

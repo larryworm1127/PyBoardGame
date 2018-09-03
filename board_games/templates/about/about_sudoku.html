@@ -12,7 +12,7 @@
 <!-- About section -->
 {% block about %}
   <div class="row">
-    <div class="col-9">
+    <div class="col-md-9 col-sm-12">
       <p>
         <strong>Sudoku</strong>, is a logic-based, combinatorial number-placement puzzle. The objective is to fill a 9 ×
         9 grid with digits so that <strong>each column, each row, and each of the nine 3 × 3 sub-grids that compose the
@@ -24,7 +24,7 @@
         any of the nine 3 × 3 sub-regions of the 9 x 9 playing board.
       </p>
     </div>
-    <div class="col-3 text-center">
+    <div class="col-md-3 col-sm-12 text-center">
       <img src="{{ url_for('static', filename='images/sudoku/sudoku.png') }}" id="sudoku" alt="sudoku">
     </div>
   </div>
@@ -34,7 +34,7 @@
 <!-- Strategy section -->
 {% block strategy %}
   <div class="row">
-    <div class="col-9">
+    <div class="col-md-9 col-sm-12">
       <p class="m-3">
         The simplest strategy for Sudoku is the <strong>Only Choice Rule</strong>. This strategy takes advantage of the
         <a href="#about">game rule</a> to its most. As shown in the puzzle on the right, the <strong>B-a</strong> cell
@@ -42,14 +42,14 @@
         completing this row, the only number that can go in that cell is <strong>4</strong>.
       </p>
     </div>
-    <div class="col-3 text-center">
+    <div class="col-md-3 col-sm-12 text-center">
       <img src="{{ url_for('static', filename='images/sudoku/only_choice.png') }}" class="sudoku-strategy" alt="sudoku">
     </div>
   </div>
   <hr>
 
   <div class="row">
-    <div class="col-9">
+    <div class="col-md-9 col-sm-12">
       <p class="m-3">
         The <strong>Only Square Rule</strong> is used in a situation where a row, column or 3 x 3 cell has 7 out its 9
         square filled. In this case, first determine what number is missing, and then see if any other of the same
@@ -58,14 +58,14 @@
         <strong>I</strong>, meaning that <strong>3</strong> has to go in the cell on row <strong>A</strong>
       </p>
     </div>
-    <div class="col-3 text-center">
+    <div class="col-md-3 col-sm-12 text-center">
       <img src="{{ url_for('static', filename='images/sudoku/only_square.png') }}" class="sudoku-strategy" alt="sudoku">
     </div>
   </div>
   <hr>
 
   <div class="row">
-    <div class="col-9">
+    <div class="col-md-9 col-sm-12">
       <p class="m-3">
         When there are more than one unallocated square but only one possibility exists for one of the squares, and the
         number must go there. This is the <strong>Single Possibilities Rule</strong>. In the puzzle shown on the right,
@@ -75,7 +75,7 @@
         in green.
       </p>
     </div>
-    <div class="col-3 text-center">
+    <div class="col-md-3 col-sm-12 text-center">
       <img src="{{ url_for('static', filename='images/sudoku/single_possibility.png') }}" class="sudoku-strategy"
            alt="sudoku">
     </div>
@@ -83,7 +83,7 @@
   <hr>
 
   <div class="row">
-    <div class="col-9">
+    <div class="col-md-9 col-sm-12">
       <p class="m-3">
         The <strong>Two out of Three Rule</strong> can be used in situations where 2 out of 3 empty cells of either a
         row, column or a 3 x 3 cell are already controlled by numbers from other cells, which means that there is only
@@ -92,7 +92,7 @@
         can go as all the other empty cells are already controlled by <strong>1</strong> on other cells.
       </p>
     </div>
-    <div class="col-3 text-center">
+    <div class="col-md-3 col-sm-12 text-center">
       <img src="{{ url_for('static', filename='images/sudoku/two_out_of_three.png') }}" class="sudoku-strategy"
            alt="sudoku">
     </div>
@@ -100,7 +100,7 @@
   <hr>
 
   <div class="row">
-    <div class="col-9">
+    <div class="col-md-9 col-sm-12">
       <p class="m-3">
         The <strong>Sub-Group Exclusion Rule</strong> is the most complicated out of all the rules listed here. A
         sub-group is formed with any 2 or 3 adjacent cells within a 3 x 3 cell. Each color shown on the puzzle on the
@@ -108,7 +108,7 @@
         a 3 x 3 cell which can help you determine where a number can go.
       </p>
     </div>
-    <div class="col-3 text-center">
+    <div class="col-md-3 col-sm-12 text-center">
       <img src="{{ url_for('static', filename='images/sudoku/sub_group_exclusion.png') }}" class="sudoku-strategy"
            alt="sudoku">
     </div>

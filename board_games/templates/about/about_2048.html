@@ -12,7 +12,7 @@
 <!-- About section -->
 {% block about %}
   <div class="row">
-    <div class="col-9">
+    <div class="col-md-9 col-sm-12">
       <p>
         <strong>2048</strong> is a single-player sliding block puzzle game designed by Italian web developer Gabriele
         Cirulli. The game's objective is to slide numbered tiles on a grid to combine them to create a tile with the
@@ -27,7 +27,7 @@
         value of the two tiles that collided. The resulting tile cannot merge with another tile again in the same move.
       </p>
     </div>
-    <div class="col-3 text-center">
+    <div class="col-md-3 col-sm-12 text-center">
       <img src="{{ url_for('static', filename='images/2048/2048_win.png') }}" id="two048-win" alt="2048">
     </div>
   </div>
@@ -55,10 +55,10 @@
   </p>
 
   <div class="row text-center">
-    <div class="col">
+    <div class="col-md-6 col-sm-12">
       <img src="{{ url_for('static', filename='images/2048/2048_variant_1.png') }}" class="two048-variant" alt="2048">
     </div>
-    <div class="col">
+    <div class="col-md-6 col-sm-12">
       <img src="{{ url_for('static', filename='images/2048/2048_variant_2.png') }}" class="two048-variant" alt="2048">
     </div>
   </div>
