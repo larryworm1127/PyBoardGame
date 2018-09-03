@@ -17,13 +17,15 @@
         players, X and O, who take turns marking the spaces in a 3 × 3 grid. The player who succeeds in placing three of
         their marks in a horizontal, vertical, or diagonal row wins the game.
       </p>
+    </div>
+    <div class="col-md-3 col-sm-12 text-center">
+      <img src="{{ url_for('static', filename='images/ttt/ttt.png') }}" id="ttt" alt="ttt">
+    </div>
+    <div class="col-lg-9 col-md-12">
       <p>
         By convention, player X always starts in a typical tic-tac-toe game. Due to the simplicity of tic-tac-toe
         game, a perfect game is more considered to be a draw rather than a win as the possible win outcomes are limited
       </p>
-    </div>
-    <div class="col-md-3 col-sm-12 text-center">
-      <img src="{{ url_for('static', filename='images/ttt/ttt.png') }}" id="ttt" alt="ttt">
     </div>
   </div>
 
@@ -67,12 +69,12 @@
       <strong>Empty side:</strong> The player plays in a middle square on any of the 4 sides.
     </li>
   </ol>
-  <div class="row text-center">
-    <div class="col">
+    <div class="row text-center">
+    <div class="col-md-6 col-sm-12">
       <img src="{{ url_for('static', filename='images/ttt/ttt_strategy_x.png') }}" id="ttt-strategy-x" alt="strategy-x">
       <small>Possible outcomes for X</small>
     </div>
-    <div class="col">
+    <div class="col-md-6 col-sm-12">
       <img src="{{ url_for('static', filename='images/ttt/ttt_strategy_o.png') }}" id="ttt-strategy-o" alt="strategy-o">
       <small>Possible outcomes for O</small>
     </div>
@@ -117,7 +119,7 @@
     </li>
     <li>
       <div class="row">
-        <div class="col-md-9 col-sm-12">
+        <div class="col-lg-9 col-md-12">
           <strong>Number Scrabble</strong> or <strong>Pick15</strong> is isomorphic to tic-tac-toe but on the surface
           appears completely different. Two players in turn say a number between one and nine. A particular number may
           not be repeated. The game is won by the player who has said three numbers whose sum is 15. If all the numbers
@@ -125,8 +127,8 @@
           3 × 3 magic square shows that the game exactly corresponds with tic-tac-toe, since three numbers will be
           arranged in a straight line if and only if they total 15.
         </div>
-        <div class="col-md-3 col-sm-12 text-center">
-          <img src="{{ url_for('static', filename='images/ttt/ttt_variant.png') }}" id="ttt-var" alt="ttt-var">
+        <div class="col-lg-3 col-md-12 text-center">
+          <img src="{{ url_for('static', filename='images/ttt/ttt_variant.png') }}" id="ttt-variant" alt="ttt-var">
         </div>
       </div>
     </li>

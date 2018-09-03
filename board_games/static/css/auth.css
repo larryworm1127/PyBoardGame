@@ -43,11 +43,11 @@ body {
 /* Mobile Styles */
 @media only screen and (max-width: 425px) {
     #outer-container {
-        width: 130%
+        width: 100%
     }
 
     .table {
-        font-size: 30%;
+        font-size: 60%;
     }
 
     /* Images Sizes */
@@ -71,40 +71,88 @@ body {
         height: 100px;
     }
 
-    #blackjack {
-        width: 210px;
-        height: 160px;
-    }
-
     #ttt-strategy-x, #ttt-strategy-o {
         width: 200px;
         height: 200px
     }
 
     .sudoku-variant {
-        width: 175px;
-        height: 175px;
+        width: 220px;
+        height: 220px;
     }
 
     .two048-variant {
-        width: 300px;
-        height: 300px;
+        width: 220px;
+        height: 220px;
     }
 
     .sudoku-strategy {
-        width: 160px;
-        height: 160px;
+        width: 220px;
+        height: 220px;
     }
 }
 
 /* Tablet Styles */
-@media only screen and (min-width: 426px) and (max-width: 960px) {
+@media only screen and (min-width: 426px) and (max-width: 896px) {
     #outer-container {
-        width: 130%
+        width: 100%
     }
 
     .table {
-        font-size: 30%;
+        font-size: 80%;
+    }
+
+    /* Images Sizes */
+    #ttt-logo, #sudoku-logo, #two048-logo {
+        width: 80px;
+        height: 80px;
+    }
+
+    #sudoku, #ttt, #two048 {
+        width: 120px;
+        height: 120px;
+    }
+
+    #two048-win {
+        width: 125px;
+        height: 153px;
+    }
+
+    #blackjack-logo {
+        width: 160px;
+        height: 100px;
+    }
+
+    #ttt-strategy-x, #ttt-strategy-o {
+        width: 250px;
+        height: 250px
+    }
+
+    .sudoku-variant {
+        width: 200px;
+        height: 200px;
+    }
+
+    .two048-variant {
+        width: 230px;
+        height: 230px;
+    }
+
+    .sudoku-strategy {
+        margin-top: 40px;
+        width: 125px;
+        height: 125px;
+    }
+}
+
+/* Laptop Styles */
+@media only screen and (min-width: 897px) and (max-width: 1124px) {
+    #outer-container {
+        width: 100%
+    }
+
+    .table {
+        font-size: 100%;
     }
 
     /* Images Sizes */
@@ -114,13 +162,13 @@ body {
     }
 
     #sudoku, #ttt, #two048 {
-        width: 150px;
-        height: 150px;
+        width: 170px;
+        height: 170px;
     }
 
     #two048-win {
-        width: 200px;
-        height: 256px;
+        width: 170px;
+        height: 226px;
     }
 
     #blackjack-logo {
@@ -128,19 +176,14 @@ body {
         height: 100px;
     }
 
-    #blackjack {
-        width: 210px;
-        height: 160px;
-    }
-
     #ttt-strategy-x, #ttt-strategy-o {
-        width: 200px;
-        height: 200px
+        width: 330px;
+        height: 330px
     }
 
     .sudoku-variant {
-        width: 175px;
-        height: 175px;
+        width: 320px;
+        height: 320px;
     }
 
     .two048-variant {
@@ -155,7 +198,7 @@ body {
 }
 
 /* Desktop Styles */
-@media only screen and (min-width: 961px) {
+@media only screen and (min-width: 1125px) {
     #outer-container {
         width: 86%
     }
@@ -167,8 +210,8 @@ body {
     }
 
     #sudoku, #ttt, #two048 {
-        width: 200px;
-        height: 200px;
+        width: 150px;
+        height: 150px;
     }
 
     #two048-win {
@@ -179,11 +222,6 @@ body {
     #blackjack-logo {
         width: 160px;
         height: 100px;
-    }
-
-    #blackjack {
-        width: 210px;
-        height: 160px;
     }
 
     #ttt-strategy-x, #ttt-strategy-o {

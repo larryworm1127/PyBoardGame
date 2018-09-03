@@ -19,13 +19,15 @@
         grid contains all of the digits from 1 to 9.</strong> The puzzle setter provides a partially completed grid,
         which for a well-posed puzzle has a single solution.
       </p>
+    </div>
+    <div class="col-md-3 col-sm-12 text-center">
+      <img src="{{ url_for('static', filename='images/sudoku/sudoku.png') }}" id="sudoku" alt="sudoku">
+    </div>
+    <div class="col-lg-9 col-md-12">
       <p>
         The only rule that the game has is that the same single integer may not appear twice in the same row, column, or
         any of the nine 3 × 3 sub-regions of the 9 x 9 playing board.
       </p>
-    </div>
-    <div class="col-md-3 col-sm-12 text-center">
-      <img src="{{ url_for('static', filename='images/sudoku/sudoku.png') }}" id="sudoku" alt="sudoku">
     </div>
   </div>
 {% endblock %}
@@ -42,7 +44,7 @@
         completing this row, the only number that can go in that cell is <strong>4</strong>.
       </p>
     </div>
-    <div class="col-md-3 col-sm-12 text-center">
+    <div class="col-md-3 col-sm-12">
       <img src="{{ url_for('static', filename='images/sudoku/only_choice.png') }}" class="sudoku-strategy" alt="sudoku">
     </div>
   </div>
@@ -58,7 +60,7 @@
         <strong>I</strong>, meaning that <strong>3</strong> has to go in the cell on row <strong>A</strong>
       </p>
     </div>
-    <div class="col-md-3 col-sm-12 text-center">
+    <div class="col-md-3 col-sm-12">
       <img src="{{ url_for('static', filename='images/sudoku/only_square.png') }}" class="sudoku-strategy" alt="sudoku">
     </div>
   </div>
@@ -75,7 +77,7 @@
         in green.
       </p>
     </div>
-    <div class="col-md-3 col-sm-12 text-center">
+    <div class="col-md-3 col-sm-12">
       <img src="{{ url_for('static', filename='images/sudoku/single_possibility.png') }}" class="sudoku-strategy"
            alt="sudoku">
     </div>
@@ -92,7 +94,7 @@
         can go as all the other empty cells are already controlled by <strong>1</strong> on other cells.
       </p>
     </div>
-    <div class="col-md-3 col-sm-12 text-center">
+    <div class="col-md-3 col-sm-12">
       <img src="{{ url_for('static', filename='images/sudoku/two_out_of_three.png') }}" class="sudoku-strategy"
            alt="sudoku">
     </div>
@@ -108,7 +110,7 @@
         a 3 x 3 cell which can help you determine where a number can go.
       </p>
     </div>
-    <div class="col-md-3 col-sm-12 text-center">
+    <div class="col-md-3 col-sm-12">
       <img src="{{ url_for('static', filename='images/sudoku/sub_group_exclusion.png') }}" class="sudoku-strategy"
            alt="sudoku">
     </div>
@@ -135,12 +137,12 @@
     Here are some other examples of variants of Sudoku game:
   </p>
   <div class="row text-center">
-    <div class="col">
+    <div class="col-md-6 col-sm-12">
       <small>A variant called "Nonomino Sudoku"</small>
       <img src="{{ url_for('static', filename='images/sudoku/nonomino_sudoku.png') }}" class="sudoku-variant"
            alt="sudoku">
     </div>
-    <div class="col">
+    <div class="col-md-6 col-sm-12">
       <small>The solution for "Nonomino Sudoku"</small>
       <img src="{{ url_for('static', filename='images/sudoku/nonomino_sudoku_solution.png') }}" class="sudoku-variant"
            alt="sudoku">
@@ -149,11 +151,11 @@
   <hr>
 
   <div class="row text-center">
-    <div class="col">
+    <div class="col-md-6 col-sm-12">
       <small>Another variant called "Wordoku"</small>
       <img src="{{ url_for('static', filename='images/sudoku/wordoku.png') }}" class="sudoku-variant" alt="sudoku">
     </div>
-    <div class="col">
+    <div class="col-md-6 col-sm-12">
       <small>The solution for "Wordoku"</small>
       <img src="{{ url_for('static', filename='images/sudoku/wordoku_solution.png') }}" class="sudoku-variant"
            alt="sudoku">
@@ -162,11 +164,11 @@
   <hr>
 
   <div class="row text-center">
-    <div class="col">
+    <div class="col-md-6 col-sm-12">
       <small>Another variant called "Kaodoku"</small>
       <img src="{{ url_for('static', filename='images/sudoku/kaodoku.png') }}" class="sudoku-variant" alt="sudoku">
     </div>
-    <div class="col">
+    <div class="col-md-6 col-sm-12">
       <small>The solution for "Kaodoku"</small>
       <img src="{{ url_for('static', filename='images/sudoku/kaodoku_solution.png') }}" class="sudoku-variant"
            alt="sudoku">
