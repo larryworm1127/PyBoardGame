@@ -5,18 +5,18 @@ Flask "Tic Tac Toe" game blueprint
 @author: Larry Shi
 """
 
-# general imports
+# General imports
 from flask import Blueprint, render_template, jsonify, request
 
 from board_games.game_control.tic_tac_toe.ttt_board import *
 from ..game_control.util import ID_REF, get_id_from_pos
 
-# init blueprint
+# Init blueprint
 bp = Blueprint('ttt', __name__, url_prefix='/games')
 
 
+# Blueprint routing
 @bp.route('/ttt')
-# @login_required
 def tic_tac_toe():
     return render_template('games/tic_tac_toe.html', dim=['one', 'two', 'three'])
 

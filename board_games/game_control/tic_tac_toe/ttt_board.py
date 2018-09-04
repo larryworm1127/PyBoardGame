@@ -7,8 +7,10 @@ Imported from tic-tac-toe-python project with minor modifications
 @author: Larry Shi
 """
 
-# general imports
+# Gneral imports
 from dataclasses import dataclass, field
+
+__all__ = ['TTTBoard', 'EMPTY', 'PLAYERO', 'PLAYERX', 'DRAW', 'STRMAP', 'TTTSetUp', 'switch_player']
 
 # Constants
 EMPTY = 0
@@ -22,6 +24,7 @@ STRMAP = {PLAYERX: 'X',
           EMPTY: ' '}
 
 
+# TTT board class
 class TTTBoard:
     def __init__(self, reverse=False, board=None):
         """
@@ -158,7 +161,7 @@ class TTTBoard:
         return TTTBoard(self._reverse, self._board)
 
 
-# setup class
+# Setup class
 @dataclass
 class TTTSetUp:
     size: int
@@ -181,7 +184,7 @@ class TTTSetUp:
         return get_move(self.board, self.computer)[1]
 
 
-# util function
+# Util function
 def switch_player(player):
     """
     Convenience function to switch players.

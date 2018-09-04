@@ -5,11 +5,13 @@ Sudoku class that keep tracks of various game variables
 @author: Larry Shi
 """
 
-# constants
+__all__ = ['Sudoku', 'CELL_IDX']
+
+# Constants
 CELL_IDX = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
 
 
-# main class
+# Main class
 class Sudoku:
 
     def __init__(self, dim, board=None):
@@ -151,7 +153,7 @@ class Sudoku:
         """
         Verify whether the board is complete
 
-        :return:
+        :return: either the state of the board as a bool or a set of duplicated numbers
         """
         # store all rows, columns, and cells in one list
         row_col_cells = self.get_row_col_cell()

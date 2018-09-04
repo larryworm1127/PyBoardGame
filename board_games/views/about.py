@@ -5,13 +5,14 @@ Flask "About" blueprint
 @author: Larry Shi
 """
 
-# general imports
+# General imports
 from flask import Blueprint, render_template
 
-# init blueprint
+# Init blueprint
 bp = Blueprint('about', __name__, url_prefix='/about')
 
 
+# Blueprint routing
 @bp.route('/ttt')
 def ttt_about():
     return render_template('about/about_ttt.html')

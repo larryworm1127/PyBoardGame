@@ -11,6 +11,7 @@ NUM_REF = {0: 'zero', 1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: '
 ID_REF = {ROW_NUM[row] + '-' + ROW_NUM[col]: (row, col) for row in ROW_NUM.keys() for col in ROW_NUM.keys()}
 
 
+# Util functions
 def get_id_from_pos(pos):
     """
     Util function that get the ID on HTML game board
@@ -19,7 +20,6 @@ def get_id_from_pos(pos):
     :param pos: the position (row, col)
     :return: the ID corresponds to the given position
     """
-
     for key, item in ID_REF.items():
         if item == pos:
             return key

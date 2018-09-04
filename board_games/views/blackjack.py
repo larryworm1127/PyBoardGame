@@ -5,13 +5,14 @@ Flask "Blackjack" game blueprint
 @author: Larry Shi
 """
 
-# general imports
+# General imports
 from flask import Blueprint, render_template
 
-# init blueprint
+# Init blueprint
 bp = Blueprint('blackjack', __name__, url_prefix='/games')
 
 
+# Blueprint routing
 @bp.route('/blackjack')
 def blackjack():
     return render_template('games/blackjack.html')

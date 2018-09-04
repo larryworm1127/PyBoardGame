@@ -5,31 +5,32 @@ Flask app factory
 @author: Larry Shi
 """
 
-# general imports
+# General imports
 import os
 
 from flask import Flask, render_template
 
-# create and configure the app
+# Create and configure the app
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_object('config')
 
-# load the instance config, if it exists
+# Load the instance config, if it exists
 app.config.from_pyfile('config.py', silent=True)
 
-# ensure the instance folder exists
+# Ensure the instance folder exists
 try:
     os.makedirs(app.instance_path)
 except OSError:
     pass
 
 
-# register apps and blueprints
+# Register individual apps
 @app.route('/')
 def index():
     return render_template('index.html')
 
 
+# Register blueprints
 from .views import twenty_forty_eight
 
 app.register_blueprint(twenty_forty_eight.bp)

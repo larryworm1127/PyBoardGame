@@ -7,15 +7,18 @@ Imported from tic-tac-toe-python project with minor modifications
 @author: Larry Shi
 """
 
-# general imports
+# General imports
 from .ttt_board import *
 
-# SCORING VALUES
+__all__ = ['get_move', 'mm_move', 'alpha_beta_pruning_move', 'SCORES']
+
+# Scoring values
 SCORES = {PLAYERX: 1,
           DRAW: 0,
           PLAYERO: -1}
 
 
+# Main functions
 def get_move(board, player):
     """
     Make a move on the board.
