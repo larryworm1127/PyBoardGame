@@ -2,23 +2,22 @@
 Python module to parse existing file containing various
 difficulties of Sudoku puzzles.
 
-Imported from Pydoku project
+Imported from Pydoku project with slight modification
 
 @date: 8/18/2018
 @author: Larry Shi
 """
 
 # General imports
-import os
-
 from collections import namedtuple
 from dataclasses import dataclass, field
 from os.path import join
 
+from board_games import PROJECT_DIR
+
 __all__ = ['Puzzles', 'create_list_data', 'create_readable_data', 'clean_up_data', 'DATA_DIR']
 
 # Constants
-PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = join(PROJECT_DIR, 'assets', 'data')
 
 

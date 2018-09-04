@@ -10,6 +10,9 @@ import os
 
 from flask import Flask, render_template
 
+# Constant
+PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 # Create and configure the app
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_object('config')

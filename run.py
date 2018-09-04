@@ -5,7 +5,7 @@ Main module that runs Flask app
 @author: Larry Shi
 """
 
-# general imports
+# General imports
 from board_games import app
 
 if __name__ == '__main__':
