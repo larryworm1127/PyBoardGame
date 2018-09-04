@@ -189,7 +189,6 @@ function setNum(num) {
         // select current cell with jquery
         var cell = $('#' + game.currentCell);
 
-
         // if pencil feature is toggled, draw penciled number into cell
         if (game.pencil) {
 
@@ -213,7 +212,13 @@ function setNum(num) {
         // if pencil feature isn't on, draw non-penciled number into cell with player move color
         else {
             // check whether the user is trying to enter in the same number
-            if ($('p', cell).html() != num_ref[num][2] && !$('p', cell).attr('class').includes()) {
+            // prevent includes() being called on undefined
+            var innerClass = $('p', cell).attr('class');
+            if (innerClass == undefined) {
+                innerClass = "";
+            }
+
+            if ($('p', cell).html() != num_ref[num][2] && !innerClass.includes('pencil')) {
 
                 // calls function to save this move for undo feature
                 saveMove(game.currentCell, false, game.pencil);
