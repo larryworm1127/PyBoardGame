@@ -30,11 +30,6 @@ def index():
     return render_template('index.html')
 
 
-from .views import auth
-
-app.register_blueprint(auth.bp)
-app.add_url_rule('/', endpoint='index')
-
 from .views import twenty_forty_eight
 
 app.register_blueprint(twenty_forty_eight.bp)
@@ -59,8 +54,3 @@ from .views import about
 
 app.register_blueprint(about.bp)
 app.add_url_rule('/', endpoint='index')
-
-# register database
-from . import db
-
-db.init_app(app)

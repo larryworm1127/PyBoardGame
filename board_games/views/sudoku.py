@@ -8,16 +8,14 @@ Flask "Sudoko" game blueprint
 # general imports
 from flask import Blueprint, render_template, request, jsonify
 
-from ..game_control.sudoku import *
+from ..game_control.sudoku.sudoku_board import *
 from ..game_control.util import ID_REF, get_id_from_pos
-from .auth import login_required
 
 # init blueprint
 bp = Blueprint('sudoku', __name__, url_prefix='/games')
 
 
 @bp.route('/sudoku')
-# @login_required
 def sudoku():
     dim = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
     return render_template('games/sudoku.html', dim=dim)

@@ -1,6 +1,8 @@
 """
 Virtual Tic-Tac-Toe Board
 
+Imported from tic-tac-toe-python project with minor modifications
+
 @date: 7/7/2018
 @author: Larry Shi
 """

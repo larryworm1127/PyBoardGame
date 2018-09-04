@@ -1,5 +1,5 @@
 """
-Test module for sudoku.py
+Test module for sudoku_board.py
 
 @date: 7/27/2018
 @author: Larry Shi

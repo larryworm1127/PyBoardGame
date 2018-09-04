@@ -13,28 +13,6 @@
 
 {% block content %}
 
-  <!-- Warning modal for delete user -->
-  <div class="modal fade" id="warning_modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Delete Account</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p><strong>Are you sure you want to delete this account?</strong></p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <a role="button" class="btn btn-danger" href="{{ url_for('auth.delete_account') }}">Delete Account
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Navigation bar -->
   <div class="container-fluid" id="outer-container">
     <nav class="navbar navbar-expand-md bg-dark navbar-dark">
@@ -63,45 +41,16 @@
             </div>
           </li>
 
-          {% if g.user %}
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                 aria-haspopup="true" aria-expanded="false"><i class="fas fa-gamepad"></i> Games</a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ url_for('ttt.tic_tac_toe') }}">Tic Tac Toe</a>
-                <a class="dropdown-item" href="{{ url_for('2048.twenty_forty_eight') }}">2048</a>
-                <a class="dropdown-item" href="{{ url_for('blackjack.blackjack') }}">Blackjack</a>
-                <a class="dropdown-item" href="{{ url_for('sudoku.sudoku') }}">Sudoko</a>
-              </div>
-            </li>
-
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                 aria-haspopup="true" aria-expanded="false"><i class="fas fa-user"></i> User</a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ url_for('auth.logout') }}"><i class="fas fa-sign-out-alt"></i> Log
-                  out</a>
-                <a class="dropdown-item" data-toggle="modal" data-target="#warning_modal" style="color: red"><i
-                    class="fas fa-trash-alt"></i> Delete Account</a>
-              </div>
-            </li>
-
-          {% else %}
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                 aria-haspopup="true" aria-expanded="false"><i class="fas fa-gamepad"></i> Games</a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="{{ url_for('ttt.tic_tac_toe') }}">Tic Tac Toe</a>
-                <!--a class="dropdown-item" href="{{ url_for('2048.twenty_forty_eight') }}">2048</a>
-                <a class="dropdown-item" href="{{ url_for('blackjack.blackjack') }}">Blackjack</a-->
-                <a class="dropdown-item" href="{{ url_for('sudoku.sudoku') }}">Sudoko</a>
-              </div>
-            </li>
-            <!--li class="nav-item"><a class="nav-link" href="{{ url_for('auth.register') }}"><i
-                class="fas fa-registered"></i> Register</a></li>
-            <li class="nav-item"><a class="nav-link" href="{{ url_for('auth.login') }}"><i
-                class="fas fa-sign-in-alt"></i> Login</a></li-->
-          {% endif %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false"><i class="fas fa-gamepad"></i> Games</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="{{ url_for('ttt.tic_tac_toe') }}">Tic Tac Toe</a>
+              <!--a class="dropdown-item" href="{{ url_for('2048.twenty_forty_eight') }}">2048</a>
+              <a class="dropdown-item" href="{{ url_for('blackjack.blackjack') }}">Blackjack</a-->
+              <a class="dropdown-item" href="{{ url_for('sudoku.sudoku') }}">Sudoko</a>
+            </div>
+          </li>
         </ul>
       </div>
     </nav>

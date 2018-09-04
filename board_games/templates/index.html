@@ -6,14 +6,7 @@
 
   <div class="jumbotron">
     <div class="container subheader">
-      {% if g.user %}
-        <h1>Welcome back <strong>{{ g.user['username'] }}</strong> !</h1>
-      {% else %}
         <h1>Classic Board Games Collection</h1>
-        <!--p class="lead"></p>
-        <p><a class="btn btn-lg btn-success" href="{{ url_for('auth.register') }}" role="button">Sign up today</a>
-        </p-->
-      {% endif %}
     </div>
   </div>
 
