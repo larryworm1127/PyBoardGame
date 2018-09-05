@@ -15,10 +15,11 @@ from os.path import join
 
 from board_games import PROJECT_DIR
 
-__all__ = ['Puzzles', 'create_list_data', 'create_readable_data', 'clean_up_data', 'DATA_DIR']
+__all__ = ['Puzzles', 'create_list_data', 'create_readable_data', 'clean_up_data', 'DATA_DIR', 'LINE_NUM']
 
 # Constants
 DATA_DIR = join(PROJECT_DIR, 'assets', 'data')
+LINE_NUM = 150
 
 
 # Puzzle class

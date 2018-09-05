@@ -7,8 +7,10 @@ Flask "Sudoko" game blueprint
 
 # General imports
 from flask import Blueprint, render_template, request, jsonify
+from random import randrange
 
 from ..game_control.sudoku.sudoku_board import *
+from ..game_control.sudoku.puzzle_parser import Puzzles, LINE_NUM
 from ..game_control.util import ID_REF, get_id_from_pos
 
 # Init blueprint
@@ -28,7 +30,10 @@ def sudoku():
 def setup():
     global game
 
-    game = Sudoku(9)
+    puzzles = Puzzles('easy')
+    board = puzzles.get_list_data()[randrange(0, LINE_NUM)].puzzle
+    print(board)
+    game = Sudoku(9, board=board)
     return jsonify(result=True)
 
 
@@ -100,3 +105,12 @@ def verify():
         id_list.append(get_id_from_pos(pos))
 
     return jsonify(result=result, id_list=id_list)
+
+
+# sudoku render board from existing data
+@bp.route('/sudoku/get_board')
+def get_board():
+    board = game.get_board()
+    print("board", board)
+
+    return jsonify(result=board)
