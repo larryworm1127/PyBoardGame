@@ -34,26 +34,31 @@ def index():
 
 
 # Register blueprints
+# 2048 game blueprint
 from .views import twenty_forty_eight
 
 app.register_blueprint(twenty_forty_eight.bp)
 app.add_url_rule('/', endpoint='index')
 
+# tic-tac-toe game blueprint
 from .views import tic_tac_toe
 
 app.register_blueprint(tic_tac_toe.bp)
 app.add_url_rule('/', endpoint='index')
 
+# blackjack game blueprint
 from .views import blackjack
 
 app.register_blueprint(blackjack.bp)
 app.add_url_rule('/', endpoint='index')
 
+# sudoku game blueprint
 from .views import sudoku
 
 app.register_blueprint(sudoku.bp)
 app.add_url_rule('/', endpoint='index')
 
+# about pages blueprint
 from .views import about
 
 app.register_blueprint(about.bp)

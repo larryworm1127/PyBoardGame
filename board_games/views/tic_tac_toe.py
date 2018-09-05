@@ -16,11 +16,13 @@ bp = Blueprint('ttt', __name__, url_prefix='/games')
 
 
 # Blueprint routing
+# loading tic-tac-toe game template
 @bp.route('/ttt')
 def tic_tac_toe():
     return render_template('games/tic_tac_toe.html', dim=['one', 'two', 'three'])
 
 
+# ttt game board setup routing
 @bp.route('/ttt/setup', methods=['GET', 'POST'])
 def setup():
     global game
@@ -33,6 +35,7 @@ def setup():
     return jsonify(result=str(game))
 
 
+# ttt update game board routing
 @bp.route('/ttt/update', methods=['GET', 'POST'])
 def update():
     try:
@@ -44,6 +47,7 @@ def update():
         return jsonify(result=False)
 
 
+# ttt check win cases routing
 @bp.route('/ttt/check_win', methods=['GET', 'POST'])
 def check_win():
     state = game.board.check_win()
@@ -56,6 +60,7 @@ def check_win():
     return jsonify(state=None)
 
 
+# ttt get computer move routing
 @bp.route('/ttt/get_move', methods=['GET', 'POST'])
 def get_move():
     move = game.get_comp_move()

@@ -13,6 +13,7 @@ bp = Blueprint('blackjack', __name__, url_prefix='/games')
 
 
 # Blueprint routing
+# loading blackjack game template
 @bp.route('/blackjack')
 def blackjack():
     return render_template('games/blackjack.html')
