@@ -5,6 +5,9 @@ Sudoku class that keep tracks of various game variables
 @author: Larry Shi
 """
 
+# General imports
+from typing import NoReturn, Union, Any
+
 __all__ = ['Sudoku', 'CELL_IDX']
 
 # Constants
@@ -14,7 +17,7 @@ CELL_IDX = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
 # Main class
 class Sudoku:
 
-    def __init__(self, dim, board=None):
+    def __init__(self, dim, board=None) -> NoReturn:
         """
         Initialize the Sudoku object.
         """
@@ -30,7 +33,7 @@ class Sudoku:
             self._board = [[board[row][col] for col in range(dim)]
                            for row in range(dim)]
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         Human readable representation of the board.
         """
@@ -47,19 +50,19 @@ class Sudoku:
                 rep += "\n"
         return rep
 
-    def get_dim(self):
+    def get_dim(self) -> int:
         """
         Return the dimension of the board
         """
         return self._dim
 
-    def get_board(self):
+    def get_board(self) -> list:
         """
         Return the board as a 2-dimension list
         """
         return self._board
 
-    def get_square(self, row, col):
+    def get_square(self, row, col) -> Any:
         """
         Get the contents of the board at position (row, col).
 
@@ -69,7 +72,7 @@ class Sudoku:
         """
         return self._board[row][col]
 
-    def get_last_move(self):
+    def get_last_move(self) -> Union[tuple, None]:
         """
         Get the last move made by the user
 
@@ -80,7 +83,7 @@ class Sudoku:
         else:
             return None
 
-    def set_square(self, row, col, num):
+    def set_square(self, row, col, num) -> NoReturn:
         """
         Place number on the board at position (row, col).
 
@@ -90,7 +93,7 @@ class Sudoku:
         """
         self._board[row][col] = num
 
-    def add_move(self, pos, num, pencil):
+    def add_move(self, pos, num, pencil) -> NoReturn:
         """
         Add the ID of the square to moves list
 
@@ -100,7 +103,7 @@ class Sudoku:
         """
         self._moves.append((pos, num, pencil))
 
-    def get_pos_from_num(self, num):
+    def get_pos_from_num(self, num) -> list:
         """
         Get all number: num, positions (row, col) on the board
 
@@ -118,7 +121,7 @@ class Sudoku:
 
         return result
 
-    def get_row_col_cell(self):
+    def get_row_col_cell(self) -> tuple:
         """
         Get all the rows, columns, and cells from board variable
 
@@ -147,9 +150,9 @@ class Sudoku:
                 cells.append(cell)
 
         # return row, column and cell in one 2D-list
-        return [rows, cols, cells]
+        return rows, cols, cells
 
-    def verify_board(self):
+    def verify_board(self) -> Union[bool, set]:
         """
         Verify whether the board is complete
 

@@ -64,11 +64,3 @@ def get_move():
         return jsonify(result=move, id=get_id_from_pos(move))
     except KeyError:
         return jsonify(result=move)
-
-
-@bp.route('/ttt/get_past_moves', methods=['GET', 'POST'])
-def get_past_moves():
-    moves = game.board.get_moves()
-    move_ids = [get_id_from_pos(pos) for pos in moves]
-
-    return jsonify(result=move_ids)

@@ -19,7 +19,7 @@ SCORES = {PLAYERX: 1,
 
 
 # Main functions
-def get_move(board, player):
+def get_move(board, player) -> tuple:
     """
     Make a move on the board.
 
@@ -31,7 +31,7 @@ def get_move(board, player):
     return alpha_beta_pruning_move(board, player, -2, 2)
 
 
-def mm_move(board, player):
+def mm_move(board, player) -> tuple:
     """
     A helper function for get_move that uses minimax algorithm to find the best move
 
@@ -69,7 +69,7 @@ def mm_move(board, player):
     return best_score, best_move
 
 
-def alpha_beta_pruning_move(board, player, alpha, beta):
+def alpha_beta_pruning_move(board, player, alpha, beta) -> tuple:
     """
     A helper function for get_move that uses alpha beta pruning to find
     the best move

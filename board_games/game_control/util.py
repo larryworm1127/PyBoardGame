@@ -12,7 +12,7 @@ ID_REF = {ROW_NUM[row] + '-' + ROW_NUM[col]: (row, col) for row in ROW_NUM.keys(
 
 
 # Util functions
-def get_id_from_pos(pos):
+def get_id_from_pos(pos) -> int:
     """
     Util function that get the ID on HTML game board
     given a position on 2D-list game board

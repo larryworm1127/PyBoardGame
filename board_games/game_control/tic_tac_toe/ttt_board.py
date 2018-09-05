@@ -9,6 +9,7 @@ Imported from tic-tac-toe-python project with minor modifications
 
 # Gneral imports
 from dataclasses import dataclass, field
+from typing import NoReturn, Union, Any
 
 __all__ = ['TTTBoard', 'EMPTY', 'PLAYERO', 'PLAYERX', 'DRAW', 'STRMAP', 'TTTSetUp', 'switch_player']
 
@@ -26,14 +27,13 @@ STRMAP = {PLAYERX: 'X',
 
 # TTT board class
 class TTTBoard:
-    def __init__(self, reverse=False, board=None):
+    def __init__(self, reverse=False, board=None) -> NoReturn:
         """
         Initialize the TTTBoard object with the given dimension and
         whether or not the game should be reversed.
         """
         self._dim = 3
         self._reverse = reverse
-        self._moves = []
 
         if board is None:
             # Create empty board
@@ -44,7 +44,7 @@ class TTTBoard:
             self._board = [[board[row][col] for col in range(3)]
                            for row in range(3)]
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         Human readable representation of the board.
         """
@@ -61,13 +61,13 @@ class TTTBoard:
                 rep += "\n"
         return rep
 
-    def get_dim(self):
+    def get_dim(self) -> int:
         """
         Return the dimension of the board
         """
         return self._dim
 
-    def get_square(self, row, col):
+    def get_square(self, row, col) -> Any:
         """
         Get one of the three constants EMPTY, PLAYERX, or PLAYERO
         that correspond to the contents of the board at position (row, col).
@@ -78,7 +78,7 @@ class TTTBoard:
         """
         return self._board[row][col]
 
-    def get_empty_squares(self):
+    def get_empty_squares(self) -> list:
         """
         Return a list of (row, col) tuples for all empty squares
         """
@@ -90,13 +90,7 @@ class TTTBoard:
 
         return empty
 
-    def get_moves(self):
-        """
-        Returns a list of (row, col) moves made my computer and player
-        """
-        return self._moves
-
-    def move(self, row, col, player):
+    def move(self, row, col, player) -> NoReturn:
         """
         Place player on the board at position (row, col).
         player should be either the constant PLAYERX or PLAYERO.
@@ -108,9 +102,8 @@ class TTTBoard:
         """
         if self._board[row][col] == EMPTY:
             self._board[row][col] = player
-            self._moves.append((row, col))
 
-    def check_win(self):
+    def check_win(self) -> Union[int, None]:
         """
         Returns a constant associated with the state of the game
             If PLAYERX wins, returns PLAYERX.
@@ -154,7 +147,7 @@ class TTTBoard:
         # game is still in progress
         return None
 
-    def clone(self):
+    def clone(self) -> Any:
         """
         Return a copy of the board
         """
@@ -178,14 +171,14 @@ class TTTSetUp:
         """
         self.board = TTTBoard(self.reverse)
 
-    def get_comp_move(self):
+    def get_comp_move(self) -> tuple:
         from .ttt_computer import get_move
 
         return get_move(self.board, self.computer)[1]
 
 
 # Util function
-def switch_player(player):
+def switch_player(player) -> int:
     """
     Convenience function to switch players.
 
