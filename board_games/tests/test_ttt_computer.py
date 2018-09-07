@@ -6,8 +6,8 @@ Test module for ttt_computer.py
 """
 
 # general imports
-from ..game_control.tic_tac_toe.ttt_board import *
-from ..game_control.tic_tac_toe.ttt_computer import *
+from ..tic_tac_toe.ttt_computer import *
+from ..tic_tac_toe.ttt_board import PLAYERX, PLAYERO, EMPTY, TTTBoard
 
 
 # test classes

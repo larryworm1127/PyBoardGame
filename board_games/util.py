@@ -5,6 +5,8 @@ Util module that contains some useful functions for games
 @author: Larry Shi
 """
 
+__all__ = ["ROW_NUM", "NUM_REF", "ID_REF", "get_id_from_pos"]
+
 # Map front-end grid IDs with corresponding (row, col)
 ROW_NUM = {0: 'one', 1: 'two', 2: 'three', 3: 'four', 4: 'five', 5: 'six', 6: 'seven', 7: 'eight', 8: 'nine'}
 NUM_REF = {0: 'zero', 1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six', 7: 'seven', 8: 'eight', 9: 'nine'}

@@ -2,7 +2,8 @@
 [![CircleCI](https://circleci.com/gh/larryworm1127/PyBoardGame.svg?style=svg)](https://circleci.com/gh/larryworm1127/PyBoardGame)
 
 ## About
-The website is a collection of board games.
+The website is a collection of board games written in Python 3.6 with the Flask
+web framework.
 
 https://pyboardgame.herokuapp.com/
 
@@ -24,13 +25,13 @@ Here is a list of features that might be implemented:
 Here are some screenshot of the website:
 
 **_Home Page:_**
-![Image of home page](screenshots/screenshot_home.png)
+![Image of home page](assets/screenshots/screenshot_home.png)
 
 **_About Page (All About page looks the same):_**
-![Image of about page](screenshots/screenshot_about.png)
+![Image of about page](assets/screenshots/screenshot_about.png)
 
 **_Tic Tac Toe:_**
-![Image of Tic Tac Toe](screenshots/screenshot_ttt.png)
+![Image of Tic Tac Toe](assets/screenshots/screenshot_ttt.png)
 
 **_Sudoku:_**
-![Image of Sudoku](screenshots/screenshot_sudoku.png)
+![Image of Sudoku](assets/screenshots/screenshot_sudoku.png)

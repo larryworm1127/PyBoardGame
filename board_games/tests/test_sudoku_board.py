@@ -6,7 +6,7 @@ Test module for sudoku_board.py
 """
 
 # general imports
-from ..game_control.sudoku.sudoku_board import *
+from ..sudoku.sudoku_board import Sudoku
 
 # constants
 SOLVED_BOARD = [

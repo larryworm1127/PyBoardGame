@@ -9,9 +9,9 @@ Flask "Sudoko" game blueprint
 from flask import Blueprint, render_template, request, jsonify
 from random import randrange
 
-from ..game_control.sudoku.sudoku_board import *
-from ..game_control.sudoku.puzzle_parser import Puzzles, LINE_NUM
-from ..game_control.util import ID_REF, get_id_from_pos
+from ..sudoku.sudoku_board import Sudoku
+from ..sudoku.puzzle_parser import Puzzles, LINE_NUM
+from ..util import ID_REF, get_id_from_pos
 
 # Init blueprint
 bp = Blueprint('sudoku', __name__, url_prefix='/games')

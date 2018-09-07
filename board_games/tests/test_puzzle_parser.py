@@ -8,7 +8,7 @@ import pytest
 from collections import namedtuple
 from os.path import join
 
-from ..game_control.sudoku.puzzle_parser import *
+from ..sudoku.puzzle_parser import *
 
 # Global variable
 data_tuple = namedtuple('Test', ['name', 'data', 'fixed_data', 'puzzle_tuple'])

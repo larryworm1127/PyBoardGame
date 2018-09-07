@@ -8,8 +8,8 @@ Flask "Tic Tac Toe" game blueprint
 # General imports
 from flask import Blueprint, render_template, jsonify, request
 
-from board_games.game_control.tic_tac_toe.ttt_board import *
-from ..game_control.util import ID_REF, get_id_from_pos
+from ..util import ID_REF, get_id_from_pos
+from ..tic_tac_toe.ttt_board import *
 
 # Init blueprint
 bp = Blueprint('ttt', __name__, url_prefix='/games')

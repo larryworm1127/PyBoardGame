@@ -6,7 +6,7 @@ Test module for ttt_board.py
 """
 
 # general imports
-from ..game_control.tic_tac_toe.ttt_board import *
+from ..tic_tac_toe.ttt_board import *
 
 
 # test classes
