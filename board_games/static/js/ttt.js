@@ -14,7 +14,7 @@ const user_two = 2;
 const ref = {1: 'one', 2: 'two', 3: 'three'};
 
 // other variables
-symbol = {
+var symbol = {
     'circle': ['<i id="circle" class="far fa-circle"></i>', 'O'],
     'cross': ['<i id="cross" class="fas fa-times"></i>', 'X']
 };
