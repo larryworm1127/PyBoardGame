@@ -12,6 +12,7 @@ Imported from Pydoku project with slight modification
 from collections import namedtuple
 from dataclasses import dataclass, field
 from os.path import join
+from typing import List, Tuple, Union
 
 from board_games import PROJECT_DIR
 
@@ -34,7 +35,7 @@ class Puzzles:
     _data: list = field(init=False)
     _list_data: list = field(init=False)
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         """
         Initialize any variables that requires other var to be initialized
         """
@@ -44,7 +45,7 @@ class Puzzles:
 
         self._list_data = create_list_data(self._data, self._puzzle_tuple)
 
-    def get_list_data(self) -> list:
+    def get_list_data(self) -> List:
         """
         Returns the listed sudoku puzzle data
         """
@@ -58,7 +59,7 @@ class Puzzles:
 
 
 # Helper functions
-def create_list_data(data: list, puzzle_tuple: namedtuple) -> list:
+def create_list_data(data: List[str], puzzle_tuple: namedtuple) -> List[List[int]]:
     """
     Create listed sudoku puzzle data given the file data
 
@@ -84,7 +85,7 @@ def create_list_data(data: list, puzzle_tuple: namedtuple) -> list:
     return result
 
 
-def clean_up_data(data: str) -> tuple:
+def clean_up_data(data: str) -> Tuple[List[int], Union[int, float]]:
     """
     Remove all the extra non-data related characters in the data
 
@@ -110,7 +111,7 @@ def clean_up_data(data: str) -> tuple:
     return puzzle, rating
 
 
-def create_readable_data(data: list) -> list:
+def create_readable_data(data: List[int]) -> List[List[int]]:
     """
     Create a program readable sudoku puzzle given a list of numbers
 

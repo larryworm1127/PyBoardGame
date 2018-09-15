@@ -1,5 +1,4 @@
-"""
-Virtual Tic-Tac-Toe Board
+"""Virtual Tic-Tac-Toe Board
 
 Imported from tic-tac-toe-python project with minor modifications
 
@@ -7,9 +6,9 @@ Imported from tic-tac-toe-python project with minor modifications
 @author: Larry Shi
 """
 
-# Gneral imports
+# General imports
 from dataclasses import dataclass, field
-from typing import NoReturn, Union, Any
+from typing import Union, Any, Tuple, List
 
 __all__ = ['TTTBoard', 'EMPTY', 'PLAYERO', 'PLAYERX', 'DRAW', 'STRMAP', 'TTTSetUp', 'switch_player']
 
@@ -27,7 +26,11 @@ STRMAP = {PLAYERX: 'X',
 
 # TTT board class
 class TTTBoard:
-    def __init__(self, reverse=False, board=None) -> NoReturn:
+
+    reverse: bool
+    board: list
+
+    def __init__(self, reverse=False, board=None) -> None:
         """
         Initialize the TTTBoard object with the given dimension and
         whether or not the game should be reversed.
@@ -67,7 +70,7 @@ class TTTBoard:
         """
         return self._dim
 
-    def get_square(self, row, col) -> Any:
+    def get_square(self, row: int, col: int) -> int:
         """
         Get one of the three constants EMPTY, PLAYERX, or PLAYERO
         that correspond to the contents of the board at position (row, col).
@@ -78,7 +81,7 @@ class TTTBoard:
         """
         return self._board[row][col]
 
-    def get_empty_squares(self) -> list:
+    def get_empty_squares(self) -> List[tuple]:
         """
         Return a list of (row, col) tuples for all empty squares
         """
@@ -90,7 +93,7 @@ class TTTBoard:
 
         return empty
 
-    def move(self, row, col, player) -> NoReturn:
+    def move(self, row: int, col: int, player: int) -> None:
         """
         Place player on the board at position (row, col).
         player should be either the constant PLAYERX or PLAYERO.
@@ -165,20 +168,20 @@ class TTTSetUp:
     pvp: bool = False
     board: TTTBoard = field(init=False)
 
-    def __post_init__(self):
+    def __post_init__(self) -> None:
         """
         Initialize any variables that requires other var to be initialized
         """
         self.board = TTTBoard(self.reverse)
 
-    def get_comp_move(self) -> tuple:
+    def get_comp_move(self) -> Tuple[int, int]:
         from .ttt_computer import get_move
 
         return get_move(self.board, self.computer)[1]
 
 
 # Util function
-def switch_player(player) -> int:
+def switch_player(player: int) -> int:
     """
     Convenience function to switch players.
 

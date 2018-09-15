@@ -6,7 +6,7 @@ Sudoku class that keep tracks of various game variables
 """
 
 # General imports
-from typing import NoReturn, Union, Any
+from typing import Union, Tuple, List
 
 __all__ = ['Sudoku', 'CELL_IDX']
 
@@ -16,8 +16,10 @@ CELL_IDX = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
 
 # Main class
 class Sudoku:
+    _dim: int
+    _moves: List[Tuple[Tuple[int], int, bool]]
 
-    def __init__(self, dim, board=None) -> NoReturn:
+    def __init__(self, dim, board=None) -> None:
         """
         Initialize the Sudoku object.
         """
@@ -56,13 +58,13 @@ class Sudoku:
         """
         return self._dim
 
-    def get_board(self) -> list:
+    def get_board(self) -> List[List[int]]:
         """
         Return the board as a 2-dimension list
         """
         return self._board
 
-    def get_square(self, row, col) -> Any:
+    def get_square(self, row: int, col: int) -> int:
         """
         Get the contents of the board at position (row, col).
 
@@ -83,7 +85,7 @@ class Sudoku:
         else:
             return None
 
-    def set_square(self, row, col, num) -> NoReturn:
+    def set_square(self, row: int, col: int, num: int) -> None:
         """
         Place number on the board at position (row, col).
 
@@ -93,7 +95,7 @@ class Sudoku:
         """
         self._board[row][col] = num
 
-    def add_move(self, pos, num, pencil) -> NoReturn:
+    def add_move(self, pos: Tuple[int], num: int, pencil: bool) -> None:
         """
         Add the ID of the square to moves list
 
@@ -103,7 +105,7 @@ class Sudoku:
         """
         self._moves.append((pos, num, pencil))
 
-    def get_pos_from_num(self, num) -> list:
+    def get_pos_from_num(self, num: int) -> List[Tuple[int, int]]:
         """
         Get all number: num, positions (row, col) on the board
 
@@ -121,7 +123,7 @@ class Sudoku:
 
         return result
 
-    def get_row_col_cell(self) -> tuple:
+    def get_row_col_cell(self) -> Tuple[List[list], List[list], List[list]]:
         """
         Get all the rows, columns, and cells from board variable
 

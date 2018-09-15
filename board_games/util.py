@@ -5,6 +5,9 @@ Util module that contains some useful functions for games
 @author: Larry Shi
 """
 
+# General imports
+from typing import Tuple
+
 __all__ = ["ROW_NUM", "NUM_REF", "ID_REF", "get_id_from_pos"]
 
 # Map front-end grid IDs with corresponding (row, col)
@@ -14,7 +17,7 @@ ID_REF = {ROW_NUM[row] + '-' + ROW_NUM[col]: (row, col) for row in ROW_NUM.keys(
 
 
 # Util functions
-def get_id_from_pos(pos) -> int:
+def get_id_from_pos(pos: Tuple[int, int]) -> int:
     """
     Util function that get the ID on HTML game board
     given a position on 2D-list game board
