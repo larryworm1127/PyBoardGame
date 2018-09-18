@@ -149,3 +149,9 @@ class TestTTTComputer:
         board = TTTBoard(board=game_board)
         move = get_move(board, PLAYERO)[1]
         assert move == (2, 0), "Bad Move: " + str(move)
+
+
+if __name__ == '__main__':
+    import pytest
+
+    pytest.main(["test_ttt_computer.py"])

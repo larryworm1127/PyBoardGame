@@ -121,3 +121,9 @@ class TestTTTBoard:
         board = TTTBoard(board=game_board)
         state = board.check_win()
         assert None is state
+
+
+if __name__ == '__main__':
+    import pytest
+
+    pytest.main(["test_ttt_board.py"])

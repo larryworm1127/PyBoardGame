@@ -105,3 +105,9 @@ class TestSudoku:
         game_board = Sudoku(9, INCOMPLETE_BOARD)
         result = game_board.verify_board()
         assert not result, "board incomplete but not recognized"
+
+
+if __name__ == '__main__':
+    import pytest
+
+    pytest.main(["test_sudoku_board.py"])

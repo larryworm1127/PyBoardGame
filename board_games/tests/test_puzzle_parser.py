@@ -199,3 +199,7 @@ def test_create_list_data(easy_data, easy_expected, medium_data, medium_expected
     # very hard data test
     expected = very_hard_data.puzzle_tuple(very_hard_expected.rating, very_hard_expected.readable_data)
     assert expected in create_list_data(very_hard_data.data, very_hard_data.puzzle_tuple)
+
+
+if __name__ == '__main__':
+    pytest.main(["test_puzzle_parser.py"])
