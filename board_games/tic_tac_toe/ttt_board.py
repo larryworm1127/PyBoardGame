@@ -1,6 +1,9 @@
 """Virtual Tic-Tac-Toe Board
 
-Imported from tic-tac-toe-python project with minor modifications
+=== Module description ===
+Imported from tic-tac-toe-python project with minor modifications.
+This module contains two classes which one of them represents a tic-tac-toe
+game board while the other sets up a tic-tac-toe game
 
 @date: 7/7/2018
 @author: Larry Shi
@@ -10,7 +13,8 @@ Imported from tic-tac-toe-python project with minor modifications
 from dataclasses import dataclass, field
 from typing import Union, Any, Tuple, List
 
-__all__ = ['TTTBoard', 'EMPTY', 'PLAYERO', 'PLAYERX', 'DRAW', 'STRMAP', 'TTTSetUp', 'switch_player']
+__all__ = ['TTTBoard', 'EMPTY', 'PLAYERO', 'PLAYERX', 'DRAW',
+           'STRMAP', 'TTTSetUp', 'switch_player']
 
 # Constants
 EMPTY = 0
@@ -26,15 +30,18 @@ STRMAP = {PLAYERX: 'X',
 
 # TTT board class
 class TTTBoard:
+    """A Tic-Tac-Toe game board
 
+    === Attributes ===
+    dim: the dimension of the board
+    reverse: whether the game should be reversed or not
+    board: a 2D-list representing a tic-tac-toe game board
+    """
+    dim: int
     reverse: bool
     board: list
 
     def __init__(self, reverse=False, board=None) -> None:
-        """
-        Initialize the TTTBoard object with the given dimension and
-        whether or not the game should be reversed.
-        """
         self._dim = 3
         self._reverse = reverse
 
@@ -48,9 +55,7 @@ class TTTBoard:
                            for row in range(3)]
 
     def __str__(self) -> str:
-        """
-        Human readable representation of the board.
-        """
+        """Human readable representation of the board."""
         rep = ""
         for row in range(self._dim):
             for col in range(self._dim):
@@ -65,9 +70,7 @@ class TTTBoard:
         return rep
 
     def get_dim(self) -> int:
-        """
-        Return the dimension of the board
-        """
+        """Return the dimension of the board"""
         return self._dim
 
     def get_square(self, row: int, col: int) -> int:
@@ -75,16 +78,18 @@ class TTTBoard:
         Get one of the three constants EMPTY, PLAYERX, or PLAYERO
         that correspond to the contents of the board at position (row, col).
 
-        :param row: the row on the board
-        :param col: the column on the board
-        :return: the state of the square
+        === Attributes ===
+        row: the row on the board
+        col: the column on the board
+
+        >>> board = TTTBoard()
+        >>> board.get_square(0, 0)
+        0
         """
         return self._board[row][col]
 
     def get_empty_squares(self) -> List[tuple]:
-        """
-        Return a list of (row, col) tuples for all empty squares
-        """
+        """Return a list of (row, col) tuples for all empty squares"""
         empty = []
         for row in range(self._dim):
             for col in range(self._dim):
@@ -99,9 +104,10 @@ class TTTBoard:
         player should be either the constant PLAYERX or PLAYERO.
         Does nothing if board square is not empty.
 
-        :param row: the row of the board
-        :param col: the column of the board
-        :param player: the player that is making the move
+        === Attributes ===
+        row: the row of the board
+        col: the column of the board
+        player: the player that is making the move
         """
         if self._board[row][col] == EMPTY:
             self._board[row][col] = player
@@ -151,9 +157,7 @@ class TTTBoard:
         return None
 
     def clone(self) -> Any:
-        """
-        Return a copy of the board
-        """
+        """Return a copy of the board"""
         return TTTBoard(self._reverse, self._board)
 
 
@@ -169,26 +173,46 @@ class TTTSetUp:
     board: TTTBoard = field(init=False)
 
     def __post_init__(self) -> None:
-        """
-        Initialize any variables that requires other var to be initialized
-        """
+        """Initialize variables in post init phase"""
         self.board = TTTBoard(self.reverse)
 
     def get_comp_move(self) -> Tuple[int, int]:
+        """Call get_move function to get the best move for computer"""
         from .ttt_computer import get_move
 
-        return get_move(self.board, self.computer)[1]
+        return get_move(self.board, self.computer)
+
+    def get_board(self) -> List[list]:
+        """Get all the elements of the current board"""
+        game_board = [[], [], []]
+
+        for row in range(self.size):
+            for col in range(self.size):
+                item = self.board.get_square(row, col)
+                game_board[row].append(item)
+
+        return game_board
 
 
 # Util function
 def switch_player(player: int) -> int:
-    """
-    Convenience function to switch players.
+    """Convenience function to switch players.
 
-    :param player: the player that wishes to be switched
-    :return: other player.
+    === Attributes ===
+    player: the player that wishes to be switched
+
+    >>> switch_player(PLAYERX)
+    2
+    >>> switch_player(PLAYERO)
+    1
     """
     if player == PLAYERX:
         return PLAYERO
     else:
         return PLAYERX
+
+
+if __name__ == '__main__':
+    import doctest
+
+    doctest.testmod()

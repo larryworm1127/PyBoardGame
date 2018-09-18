@@ -19,7 +19,8 @@ bp = Blueprint('ttt', __name__, url_prefix='/games')
 # loading tic-tac-toe game template
 @bp.route('/ttt')
 def tic_tac_toe():
-    return render_template('games/tic_tac_toe.html', dim=['one', 'two', 'three'])
+    dim = ['one', 'two', 'three']
+    return render_template('games/tic_tac_toe.html', dim=dim)
 
 
 # ttt game board setup routing

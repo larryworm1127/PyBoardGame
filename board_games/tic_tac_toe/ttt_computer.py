@@ -1,7 +1,9 @@
-"""
-Mini-max Tic-Tac-Toe Player
+"""Mini-max Tic-Tac-Toe Player
 
-Imported from tic-tac-toe-python project with minor modifications
+=== Module description ===
+Imported from tic-tac-toe-python project with minor modifications.
+This module contains function that uses minimax algorithm to get the
+best move for computer given a board instance
 
 @date: 7/7/2018
 @author: Larry Shi
@@ -21,28 +23,31 @@ SCORES = {PLAYERX: 1,
 
 
 # Main functions
-def get_move(board: TTTBoard, player: int) -> Tuple[int, Tuple[int, int]]:
-    """
-    Make a move on the board.
+def get_move(board: TTTBoard, player: int) -> Tuple[int, int]:
+    """Make a move on the board.
 
-    :param board: the given board object
-    :param player: the player that is making the move
-    :return: a tuple with two elements. (row, col).
+    === Attributes ===
+    board: the given board object
+    player: the player that is making the move
+
+    === Returns ===
+    a tuple with two elements. (row, col).
     """
     # return mm_move(board, player)
-    return mm_move(board, player, -2, 2)
+    return mm_move(board, player, -2, 2)[1]
 
 
-def mm_move(board: TTTBoard, player: int, alpha: int, beta: int) -> Tuple[int, Tuple[int, int]]:
-    """
-    A helper function for get_move that uses alpha beta pruning to find
-    the best move
+def mm_move(board: TTTBoard, player: int, alpha: int, beta: int) -> Tuple:
+    """Uses alpha beta pruning to find the best move
 
-    :param board: the given board object
-    :param player: the player that is making the move
-    :param alpha: the alpha score for the algorithm
-    :param beta: the beta score for the algorithm
-    :return: the score and best move for the current state of the board
+    === Attributes ===
+    board: the given board object
+    player: the player that is making the move
+    alpha: the alpha score for the algorithm
+    beta: the beta score for the algorithm
+
+    === Returns ===
+    the score and best move for the current state of the board
     """
     # initialize local variables
     other_player = switch_player(player)

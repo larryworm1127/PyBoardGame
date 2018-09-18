@@ -21,7 +21,8 @@ bp = Blueprint('sudoku', __name__, url_prefix='/games')
 # loading sudoku game template
 @bp.route('/sudoku')
 def sudoku():
-    dim = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
+    dim = ['one', 'two', 'three', 'four', 'five',
+           'six', 'seven', 'eight', 'nine']
     return render_template('games/sudoku.html', dim=dim)
 
 

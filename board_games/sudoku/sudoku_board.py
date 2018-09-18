@@ -1,5 +1,8 @@
-"""
-Sudoku class that keep tracks of various game variables
+"""Virtual Sudoku Game Board
+
+=== Module description
+This module contains a Sudoku class that keep tracks of various game variables
+and keep track of any errors made my the users
 
 @date: 7/17/2018
 @author: Larry Shi
@@ -16,15 +19,21 @@ CELL_IDX = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
 
 # Main class
 class Sudoku:
+    """A Sudoku game board
+
+    === Attributes ===
+    dim: the dimension of the board
+    moves: a list that stores all the previous moves made by player
+    board: a 2D-list that represents a sudoku game board
+    """
+
     _dim: int
-    _moves: List[Tuple[Tuple[int], int, bool]]
+    moves: List[Tuple[Tuple[int, int], int, bool]]
+    _board: List[List[int]]
 
     def __init__(self, dim, board=None) -> None:
-        """
-        Initialize the Sudoku object.
-        """
         self._dim = dim
-        self._moves = []
+        self.moves = []
 
         if board is None:
             # Create empty board
@@ -36,9 +45,7 @@ class Sudoku:
                            for row in range(dim)]
 
     def __str__(self) -> str:
-        """
-        Human readable representation of the board.
-        """
+        """Human readable representation of the board."""
         rep = ""
         for row in range(self._dim):
             for col in range(self._dim):
@@ -53,64 +60,88 @@ class Sudoku:
         return rep
 
     def get_dim(self) -> int:
-        """
-        Return the dimension of the board
+        """Return the dimension of the board
+
+        >>> game = Sudoku(9)
+        >>> game.get_dim()
+        9
+        >>> game = Sudoku(3)
+        >>> game.get_dim()
+        3
         """
         return self._dim
 
     def get_board(self) -> List[List[int]]:
-        """
-        Return the board as a 2-dimension list
+        """Return the board as a 2-dimension list
+
+        >>> game = Sudoku(3)
+        >>> game.get_board()
+        [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
         """
         return self._board
 
     def get_square(self, row: int, col: int) -> int:
-        """
-        Get the contents of the board at position (row, col).
+        """Get the contents of the board at position (row, col).
 
-        :param row: the row on the board
-        :param col: the column on the board
-        :return: the state of the square
+        === Attributes ===
+        row: the row on the board
+        col: the column on the board
+
+        >>> game = Sudoku(9)
+        >>> game.get_square(1, 1)
+        0
         """
         return self._board[row][col]
 
     def get_last_move(self) -> Union[tuple, None]:
-        """
-        Get the last move made by the user
+        """Get the last move made by the user
 
-        :return: the last ID in the moves list
+        === Returns ===
+        the last ID in the moves list
         """
-        if self._moves:
-            return self._moves.pop()
+        if self.moves:
+            return self.moves.pop()
         else:
             return None
 
     def set_square(self, row: int, col: int, num: int) -> None:
-        """
-        Place number on the board at position (row, col).
+        """Place number on the board at position (row, col).
 
-        :param row: the row of the board
-        :param col: the column of the board
-        :param num: the number that is filled into the square
+        === Attributes ===
+        row: the row of the board
+        col: the column of the board
+        num: the number that is filled into the square
+
+        >>> game = Sudoku(3)
+        >>> game.set_square(1, 1, 3)
+        >>> game.get_square(1, 1)
+        3
         """
         self._board[row][col] = num
 
-    def add_move(self, pos: Tuple[int], num: int, pencil: bool) -> None:
-        """
-        Add the ID of the square to moves list
+    def add_move(self, pos: Tuple[int, int], num: int, pencil: bool) -> None:
+        """Add the ID of the square to moves list
 
-        :param pos: the position of the square
-        :param num: the number placed on the move
-        :param pencil: bool that indicate whether pencil is toggled
+        === Attributes ===
+        pos: the position of the square
+        num: the number placed on the move
+        pencil: bool that indicate whether pencil is toggled
+
+        >>> game = Sudoku(3)
+        >>> game.add_move((1, 1), 3, True)
+        >>> game.moves
+        [((1, 1), 3, True)]
         """
-        self._moves.append((pos, num, pencil))
+        self.moves.append((pos, num, pencil))
 
     def get_pos_from_num(self, num: int) -> List[Tuple[int, int]]:
-        """
-        Get all number: num, positions (row, col) on the board
+        """Get all number: num, positions (row, col) on the board
 
-        :param num: the number that will be searched
-        :return: a list of (row, col) positions
+        === Attributes ===
+        num: the number that will be searched
+
+        === Returns ===
+        a list of (row, col) positions
         """
         # initialize variable
         result = []
@@ -124,10 +155,10 @@ class Sudoku:
         return result
 
     def get_row_col_cell(self) -> Tuple[List[list], List[list], List[list]]:
-        """
-        Get all the rows, columns, and cells from board variable
+        """Get all the rows, columns, and cells from board variable
 
-        :return: rows, columns and cells of the board
+        === Returns ===
+        rows, columns and cells of the board
         """
         # row
         rows = self._board.copy()
@@ -155,10 +186,10 @@ class Sudoku:
         return rows, cols, cells
 
     def verify_board(self) -> Union[bool, set]:
-        """
-        Verify whether the board is complete
+        """Verify whether the board is complete
 
-        :return: either the state of the board as a bool or a set of duplicated numbers
+        === Returns ===
+        the state of the board as a bool or a set of duplicated numbers
         """
         # store all rows, columns, and cells in one list
         row_col_cells = self.get_row_col_cell()
@@ -181,3 +212,9 @@ class Sudoku:
             return state
         else:
             return duplicate_num
+
+
+if __name__ == '__main__':
+    import doctest
+
+    doctest.testmod()
