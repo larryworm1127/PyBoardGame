@@ -182,17 +182,6 @@ class TTTSetUp:
 
         return get_move(self.board, self.computer)
 
-    def get_board(self) -> List[list]:
-        """Get all the elements of the current board"""
-        game_board = [[], [], []]
-
-        for row in range(self.size):
-            for col in range(self.size):
-                item = self.board.get_square(row, col)
-                game_board[row].append(item)
-
-        return game_board
-
 
 # Util function
 def switch_player(player: int) -> int:
