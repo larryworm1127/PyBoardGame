@@ -74,7 +74,7 @@ def test_check_win_computer():
       x   | o   x | x o
     x     | o   x |   x o
 
-    Test if check win method recognizes win situations for computer.
+    Test if check win method recognizes win situations for COMPUTER.
     """
     game_board = [[PLAYERO, PLAYERO, PLAYERO], [EMPTY, PLAYERX, EMPTY],
                   [PLAYERX, EMPTY, EMPTY]]

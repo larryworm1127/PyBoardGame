@@ -2,7 +2,7 @@
 [![CircleCI](https://circleci.com/gh/larryworm1127/PyBoardGame.svg?style=svg)](https://circleci.com/gh/larryworm1127/PyBoardGame)
 
 ## About
-The website is a collection of board games written in Python 3.6 with the Flask
+This website is a collection of board games written in Python 3.6 with the Flask
 web framework.
 
 https://pyboardgame.herokuapp.com/

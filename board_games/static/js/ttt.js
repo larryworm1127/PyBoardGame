@@ -8,10 +8,11 @@ var game = {
 };
 
 // constants
-const computer = 0;
-const user = 1;
-const user_two = 2;
-const ref = {1: 'one', 2: 'two', 3: 'three'};
+const COMPUTER = 0;
+const USER = 1;
+const USER_TWO = 2;
+const HTML_INDEX = 0;
+const SYMBOL_INDEX = 1;
 
 // other variables
 var symbol = {
@@ -19,32 +20,32 @@ var symbol = {
     'cross': ['<i id="cross" class="fas fa-times"></i>', 'X']
 };
 
-// set figures corresponding to user selection
+// Set figures corresponding to user selection
 function setFig(id) {
     if (id === 'start-comp') {
         game.computer = symbol.cross;
         game.user = symbol.circle;
-        game.currentPlayer = computer;
+        game.currentPlayer = COMPUTER;
 
-        $('#prompt').text(promptText(game.computer[1]));
+        $('#prompt').text(promptText(game.computer[SYMBOL_INDEX]));
         setup();
         comp_move()
 
     } else if (id === 'start-human') {
         game.user = symbol.cross;
         game.computer = symbol.circle;
-        game.currentPlayer = user;
+        game.currentPlayer = USER;
 
-        $('#prompt').text(promptText(game.user[1]));
+        $('#prompt').text(promptText(game.user[SYMBOL_INDEX]));
         setup();
 
     } else if (id === 'pvp') {
         game.user = symbol.cross;
         game.user_two = symbol.circle;
-        game.currentPlayer = user;
+        game.currentPlayer = USER;
         game.pvp = true;
 
-        $('#prompt').text(promptText(game.user[1]));
+        $('#prompt').text(promptText(game.user[SYMBOL_INDEX]));
         setup();
     }
 
@@ -56,36 +57,36 @@ function setFig(id) {
     $('#pvp').removeAttr('onclick')
 }
 
-// draw the correct symbol onto the grid
+// Draw the correct symbol onto the grid
 function draw(id) {
     var cell = $('#' + id);
 
-    if (game.currentPlayer === user) {
-        cell.html(game.user[0]);
+    if (game.currentPlayer === USER) {
+        cell.html(game.user[HTML_INDEX]);
         cell.removeAttr('onclick');
 
-        update(id, game.user[1]);
-        switchPlayer(user)
+        update(id, game.user[SYMBOL_INDEX]);
+        switchPlayer(USER)
 
-    } else if (game.currentPlayer === user_two) {
-        cell.html(game.user_two[0]);
+    } else if (game.currentPlayer === USER_TWO) {
+        cell.html(game.user_two[HTML_INDEX]);
         cell.removeAttr('onclick');
 
-        update(id, game.user_two[1]);
-        switchPlayer(user_two);
+        update(id, game.user_two[SYMBOL_INDEX]);
+        switchPlayer(USER_TWO);
 
-    } else if (game.currentPlayer === computer) {
-        cell.html(game.computer[0]);
+    } else if (game.currentPlayer === COMPUTER) {
+        cell.html(game.computer[HTML_INDEX]);
         cell.removeAttr('onclick');
 
-        update(id, game.computer[1]);
-        switchPlayer(computer)
+        update(id, game.computer[SYMBOL_INDEX]);
+        switchPlayer(COMPUTER)
     }
 
     checkWin()
 }
 
-// computer player control functions
+// Computer player control functions
 function comp_move() {
     $(function () {
         $.getJSON("/games/ttt/get_move", {}, function (data) {
@@ -94,22 +95,22 @@ function comp_move() {
     });
 }
 
-/* util functions */
+/* Util functions */
 function switchPlayer(currentUser) {
-    if (currentUser === user) {
+    if (currentUser === USER) {
         if (game.pvp) {
-            game.currentPlayer = user_two;
-            $('#prompt').text(promptText(game.user_two[1]));
+            game.currentPlayer = USER_TWO;
+            $('#prompt').text(promptText(game.user_two[SYMBOL_INDEX]));
         } else {
-            game.currentPlayer = computer;
-            $('#prompt').text(promptText(game.computer[1]));
+            game.currentPlayer = COMPUTER;
+            $('#prompt').text(promptText(game.computer[SYMBOL_INDEX]));
 
             comp_move()
         }
 
-    } else if (currentUser === computer || currentUser === user_two) {
-        game.currentPlayer = user;
-        $('#prompt').text(promptText(game.user[1]));
+    } else if (currentUser === COMPUTER || currentUser === USER_TWO) {
+        game.currentPlayer = USER;
+        $('#prompt').text(promptText(game.user[SYMBOL_INDEX]));
     }
 }
 
@@ -125,7 +126,7 @@ function endGame() {
     $('#pvp').attr('onclick', 'reset()')
 }
 
-/* back-end functions */
+/* Back-end functions */
 function update(id, symbol) {
     $(function () {
         $.getJSON("/games/ttt/update", {
@@ -140,7 +141,7 @@ function update(id, symbol) {
 function setup() {
     $(function () {
         $.get("/games/ttt/setup", {
-            human: game.user[1],
+            human: game.user[SYMBOL_INDEX],
             pvp: game.pvp
         })
     });
@@ -159,7 +160,7 @@ function checkWin() {
     });
 }
 
-/* reset function */
+/* Reset function */
 function reset() {
     reset_game_var();
     var gameField = $('.game-field');

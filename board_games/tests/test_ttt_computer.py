@@ -17,7 +17,7 @@ def test_minimax_win_row():
       x x |   o o | x x o
     o   o | x   x | x
 
-    Test if computer can win game with win case on a row of the board.
+    Test if COMPUTER can win game with win case on a row of the board.
     """
     game_board = [[PLAYERX, PLAYERX, PLAYERO], [EMPTY, PLAYERX, PLAYERX],
                   [PLAYERO, EMPTY, PLAYERO]]
@@ -44,7 +44,7 @@ def test_minimax_win_col():
     o o x |     x |   o x
     x o x | x o o | x
 
-    Test if computer can win game with win case on a column of the board.
+    Test if COMPUTER can win game with win case on a column of the board.
     """
     game_board = [[PLAYERX, EMPTY, EMPTY], [PLAYERO, PLAYERO, PLAYERX],
                   [PLAYERX, PLAYERO, PLAYERX]]
@@ -71,7 +71,7 @@ def test_minimax_win_diag():
     o o x | x o   |   x o |   x o
     o     | o     |   o   |   o x
 
-    Test if computer can win game with win case on a diagonal of the board.
+    Test if COMPUTER can win game with win case on a diagonal of the board.
     """
     game_board = [[PLAYERX, PLAYERX, EMPTY], [PLAYERO, PLAYERO, PLAYERX],
                   [PLAYERO, EMPTY, EMPTY]]
@@ -104,7 +104,7 @@ def test_minimax_def_row():
     x o   | x x   | o
     o o x | o o x | x x
 
-    Test if computer can defend with a lose case on a row of the board.
+    Test if COMPUTER can defend with a lose case on a row of the board.
     """
     game_board = [[PLAYERX, PLAYERX, EMPTY], [PLAYERX, PLAYERO, EMPTY],
                   [PLAYERO, PLAYERO, PLAYERX]]
@@ -131,7 +131,7 @@ def test_minimax_def_col():
     x x o | x x o | x o x
         o |     x |   x
 
-    Test if computer can defend with a lose case on a column of the board.
+    Test if COMPUTER can defend with a lose case on a column of the board.
     """
     game_board = [[PLAYERX, PLAYERO, PLAYERX], [PLAYERX, PLAYERX, PLAYERO],
                   [EMPTY, EMPTY, PLAYERO]]
@@ -158,7 +158,7 @@ def test_minimax_def_diag():
     x x o | x x o
     o     |     x
 
-    Test if computer can defend with lose case on a diagonal of the board.
+    Test if COMPUTER can defend with lose case on a diagonal of the board.
     """
     game_board = [[PLAYERX, PLAYERO, PLAYERX], [PLAYERX, PLAYERX, PLAYERO],
                   [PLAYERO, EMPTY, EMPTY]]

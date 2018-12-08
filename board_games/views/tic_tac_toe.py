@@ -61,7 +61,7 @@ def check_win():
     return jsonify(state=None)
 
 
-# ttt get computer move routing
+# ttt get COMPUTER move routing
 @bp.route('/ttt/get_move', methods=['GET', 'POST'])
 def get_move():
     move = game.get_comp_move()

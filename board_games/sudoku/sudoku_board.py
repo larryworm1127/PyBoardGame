@@ -94,7 +94,7 @@ class Sudoku:
         return self._board[row][col]
 
     def get_last_move(self) -> Union[tuple, None]:
-        """Get the last move made by the user
+        """Get the last move made by the user.
 
         === Returns ===
         the last ID in the moves list
