@@ -8,7 +8,7 @@ Flask app factory
 # General imports
 import os
 
-from flask import Flask, render_template, send_from_directory
+from flask import Flask, render_template
 
 # Constant
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -31,11 +31,6 @@ except OSError:
 @app.route('/')
 def index():
     return render_template('index.html')
-
-
-@app.route('/ads.txt')
-def ads():
-    return send_from_directory('static', 'ads.txt')
 
 
 # Register blueprints
