@@ -4,13 +4,12 @@ Flask "Sudoko" game blueprint
 @date: 7/11/2018
 @author: Larry Shi
 """
-
-# General imports
-from flask import Blueprint, render_template, request, jsonify
 from random import randrange
 
-from ..sudoku.sudoku_board import Sudoku
+from flask import Blueprint, render_template, request, jsonify
+
 from ..sudoku.puzzle_parser import Puzzles, LINE_NUM
+from ..sudoku.sudoku_board import Sudoku
 from ..util import ID_REF, get_id_from_pos
 
 # Init blueprint

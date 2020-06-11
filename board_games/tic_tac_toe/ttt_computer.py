@@ -8,8 +8,6 @@ best move for computer given a board instance
 @date: 7/7/2018
 @author: Larry Shi
 """
-
-# General imports
 from typing import Tuple
 
 from .ttt_board import *

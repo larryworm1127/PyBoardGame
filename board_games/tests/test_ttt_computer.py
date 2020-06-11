@@ -4,10 +4,8 @@ Test module for ttt_computer.py
 @date: 7/7/2018
 @author: Larry Shi
 """
-
-# general imports
-from ..tic_tac_toe.ttt_computer import *
 from ..tic_tac_toe.ttt_board import PLAYERX, PLAYERO, EMPTY, TTTBoard
+from ..tic_tac_toe.ttt_computer import *
 
 
 # test classes

@@ -8,8 +8,6 @@ of Sudoku puzzles.
 @date: 8/18/2018
 @author: Larry Shi
 """
-
-# General imports
 from collections import namedtuple
 from dataclasses import dataclass, field
 from os.path import join
@@ -17,8 +15,14 @@ from typing import List, Tuple, Union
 
 from board_games import PROJECT_DIR
 
-__all__ = ['Puzzles', 'create_list_data', 'create_readable_data',
-           'clean_up_data', 'DATA_DIR', 'LINE_NUM']
+__all__ = [
+    'Puzzles',
+    'create_list_data',
+    'create_readable_data',
+    'clean_up_data',
+    'DATA_DIR',
+    'LINE_NUM'
+]
 
 # Constants
 DATA_DIR = join(PROJECT_DIR, 'assets', 'data')
@@ -28,7 +32,7 @@ LINE_NUM = 150
 # Puzzle class
 @dataclass
 class Puzzles:
-    """Class handling all the Sudoku puzzle
+    """Class handling all the Sudoku puzzle.
 
     === Attributes ===
     difficulty: the difficulty of the puzzle
@@ -36,7 +40,6 @@ class Puzzles:
     data: the original data read from file
     list_data: the parsed puzzle data
     """
-
     _difficulty: str
     _puzzle_tuple: namedtuple = namedtuple('Puzzles', ['rating', 'puzzle'])
     _data: list = field(init=False)
@@ -70,13 +73,11 @@ def create_list_data(data: List[str], puzzle_tuple: namedtuple) -> List:
     === Returns ===
     the created listed data
     """
-    # create variables
     result = []
-    length = len(data)
 
     # loop through every line in the data file and extract the rating and puzzle
-    for index in range(length):
-        puzzle, rating = clean_up_data(data[index])
+    for line in data:
+        puzzle, rating = clean_up_data(line)
 
         # add namedtuple into result list containing the rating and the puzzle
         fixed_data = create_readable_data(puzzle)
@@ -99,10 +100,9 @@ def clean_up_data(data: str) -> Tuple[List[int], Union[int, float]]:
     """
     puzzle = []
     rating = 1
-    line = data.split(' ')
 
     # loop through every single item in the line
-    for item in line:
+    for item in data.split(' '):
         # extract rating
         if '\t' in item or '\n' in item:
             puzzle.append(int(item[0]))
@@ -125,14 +125,6 @@ def create_readable_data(data: List[int]) -> List[list]:
     === Returns ===
     a readable sudoku puzzle
     """
-    # create result variables
-    result = [[] for _ in range(9)]
-
-    # loop through all number in data to create readable data
-    index = 0
-    for row in range(9):
-        for _ in range(9):
-            result[row].append(data[index])
-            index += 1
-
+    result = [[data[col + 9 * row] for col in range(9)]
+              for row in range(9)]
     return result

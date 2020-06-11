@@ -8,13 +8,19 @@ game board while the other sets up a tic-tac-toe game
 @date: 7/7/2018
 @author: Larry Shi
 """
-
-# General imports
 from dataclasses import dataclass, field
 from typing import Union, Any, Tuple, List
 
-__all__ = ['TTTBoard', 'EMPTY', 'PLAYERO', 'PLAYERX', 'DRAW',
-           'STRMAP', 'TTTSetUp', 'switch_player']
+__all__ = [
+    'TTTBoard',
+    'EMPTY',
+    'PLAYERO',
+    'PLAYERX',
+    'DRAW',
+    'STRMAP',
+    'TTTSetUp',
+    'switch_player'
+]
 
 # Constants
 EMPTY = 0
@@ -23,9 +29,11 @@ PLAYERO = 2
 DRAW = 3
 
 # Map player constants to letters for printing
-STRMAP = {PLAYERX: 'X',
-          PLAYERO: 'O',
-          EMPTY: ' '}
+STRMAP = {
+    PLAYERX: 'X',
+    PLAYERO: 'O',
+    EMPTY: ' '
+}
 
 
 # TTT board class

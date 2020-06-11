@@ -4,12 +4,10 @@ Flask app factory
 @date: 6/12/2018
 @author: Larry Shi
 """
-
-# General imports
 import os
 
-from flask import Flask, render_template
 from dotenv import load_dotenv
+from flask import Flask, render_template
 
 # Constant
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

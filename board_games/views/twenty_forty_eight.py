@@ -4,8 +4,6 @@ Flask "2048" game blueprint
 @date: 7/11/2018
 @author: Larry Shi
 """
-
-# General imports
 from flask import Blueprint, render_template
 
 # Init blueprint

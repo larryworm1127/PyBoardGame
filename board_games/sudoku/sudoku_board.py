@@ -7,8 +7,6 @@ and keep track of any errors made my the users
 @date: 7/17/2018
 @author: Larry Shi
 """
-
-# General imports
 from typing import Union, Tuple, List
 
 __all__ = ['Sudoku', 'CELL_IDX']

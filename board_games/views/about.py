@@ -4,8 +4,6 @@ Flask "About" blueprint
 @date: 8/1/2018
 @author: Larry Shi
 """
-
-# General imports
 from flask import Blueprint, render_template
 
 # Init blueprint

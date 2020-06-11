@@ -1,12 +1,10 @@
 """
 Test module for puzzle_parser.py
 """
-
-# General imports
-import pytest
-
 from collections import namedtuple
 from os.path import join
+
+import pytest
 
 from ..sudoku.puzzle_parser import *
 
