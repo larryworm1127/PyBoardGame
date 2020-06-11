@@ -17,7 +17,7 @@ Here is a list of possible features that will be implemented:
     - [x] Sudoko
     - [ ] Blackjack
     - [ ] Etc.
-- A leveling and coin system
+- [ ] A leveling and coin system
 
 ## Screenshots
 Here are some screenshot of the website:
