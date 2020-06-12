@@ -6,7 +6,7 @@ Util module that contains some useful functions for games
 """
 from typing import Tuple
 
-__all__ = ["get_id_from_pos"]
+__all__ = ["ID_REF", "get_id_from_pos"]
 
 # Map front-end grid IDs with corresponding (row, col)
 ROW_NUM = {
