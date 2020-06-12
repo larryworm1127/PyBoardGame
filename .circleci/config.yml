@@ -33,6 +33,11 @@ jobs:
             echo $(python3 --version)
             pipenv sync
 
+      - run:
+          name: set and echo
+          command: |
+            echo 'export APP_SETTINGS=config.DevelopmentConfig' >> $BASH_ENV
+
       - save_cache:
           paths:
             - ~/.local
