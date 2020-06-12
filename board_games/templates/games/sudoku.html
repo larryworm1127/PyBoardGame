@@ -52,15 +52,15 @@
       </div>
       <br>
 
-      <a class="pencil-toggle" role="button" id="pencil-toggle" onclick="togglePencil()">
+      <a class="pencil-toggle" role="button" id="pencil-toggle">
         <i class="fas fa-pencil-alt fa-2x m-1"></i>Pencil
       </a>
       <div class="space"></div>
-      <a class="erase" role="button" id="erase" onclick="erase()">
+      <a class="erase" role="button" id="erase">
         <i class="fas fa-eraser fa-2x m-1"></i>Erase
       </a>
       <div class="space"></div>
-      <a class="undo" role="button" id="undo" onclick="getLastMove()">
+      <a class="undo" role="button" id="undo">
         <i class="fas fa-undo fa-2x m-1"></i>Undo
       </a>
     </div>
@@ -86,7 +86,7 @@
       <h3 class="subheader" id="difficulty">Difficulty: Easy</h3>
       <h3 class="subheader" id="numUndo">Undo: 0</h3>
     </div>
-    <button type="button" id="new-game" class="btn btn-primary" onclick="newGame()">New Game</button>
+    <button type="button" id="new-game" class="btn btn-primary">New Game</button>
   </div>
 
   <!-- Numpad -->
@@ -102,5 +102,5 @@
   </div>
 
   <!-- Game Script -->
-  <script src="{{ url_for('static', filename='js/sudoku.js') }}"></script>
+  <script defer src="{{ url_for('static', filename='js/sudoku.js') }}"></script>
 {% endblock %}

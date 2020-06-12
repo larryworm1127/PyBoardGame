@@ -46,8 +46,8 @@ function verifyBoard() {
     clearError();
 
     // call back-end to see the state of the board
-    $(function () {
-        $.getJSON("/games/sudoku/verify", {}, function (data) {
+    $(() => {
+        $.getJSON("/games/sudoku/verify", {}, (data) => {
             // get the data passed in from back-end
             const result = data['result'];
             const id_list = data['id_list'];
@@ -116,17 +116,17 @@ This function commit a number of actions to get a game started
  */
 function start() {
     // assign event handlers to side-bar number pad and game board cells
-    $('.num').attr('onclick', 'setNum(this.id)');
-    $('.game-field').attr('onclick', 'selectCell(this.id)');
+    $('.num').click(setNum);
+    $('.game-field').click(selectCell);
 
     // calls back-end to setup sudoku board in back-end
-    $(function () {
+    $(() => {
         $.get("/games/sudoku/setup")
     });
 
     // calls helper functions generate puzzle and render it
-    $(function () {
-        $.getJSON("/games/sudoku/get_board", {}, function (data) {
+    $(() => {
+        $.getJSON("/games/sudoku/get_board", {}, (data) => {
             renderBoard(data.result);
         })
     });
@@ -269,26 +269,26 @@ function selectCell(id) {
 /*
 This function links with pencil toggle button. It turns pencil feature on or off
  */
-function togglePencil() {
+$('#pencil-toggle').click(() => {
     game.pencil = !game.pencil;
 
     // update info pad
     updateInfo()
-}
+});
 
 /*
 This function links with new game button. It resets board and start a new game
  */
-function newGame() {
+$('#new-game').click(() => {
     reset();
-    start()
-}
+    start();
+})
 
 /*
 This function links with erase button. It erase number in currently selected cell
 and update the back-end board, and verifies the new board.
  */
-function erase() {
+$('#erase').click(() => {
     // select current cell with jquery
     const currentCell = $('#' + game.currentCell);
 
@@ -312,7 +312,7 @@ function erase() {
 
     // calls function to verify the board
     verifyBoard()
-}
+});
 
 /*
 This function links with undo button. It undoes player's last move
@@ -371,7 +371,7 @@ function updateInfo() {
 
 /* Back-end link function that save move passed in for undo feature */
 function saveMove(id, num, pencil) {
-    $(function () {
+    $(() => {
         $.get("/games/sudoku/save_move", {
             id: id,
             num: num,
@@ -382,7 +382,7 @@ function saveMove(id, num, pencil) {
 
 /* Back-end link function that add move passed in to update back-end board */
 function addMove(id, num) {
-    $(function () {
+    $(() => {
         $.get("/games/sudoku/add_move", {
             id: id,
             num: num
@@ -391,10 +391,10 @@ function addMove(id, num) {
 }
 
 /* Back-end link function that get the last move made by the player for undo feature */
-function getLastMove() {
-    $(function () {
-        $.getJSON("/games/sudoku/get_move", {}, function (data) {
+$('#undo').click(() => {
+    $(() => {
+        $.getJSON("/games/sudoku/get_move", {}, (data) => {
             undo(data.result, data.num, data.pencil)
         });
     });
-}
+});
