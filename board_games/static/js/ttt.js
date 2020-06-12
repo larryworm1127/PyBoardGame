@@ -1,5 +1,7 @@
+'use strict'
+
 // game variable storing useful information
-var game = {
+const game = {
     user: '',
     user_two: '',
     computer: '',
@@ -15,7 +17,7 @@ const HTML_INDEX = 0;
 const SYMBOL_INDEX = 1;
 
 // other variables
-var symbol = {
+const symbol = {
     'circle': ['<i id="circle" class="far fa-circle"></i>', 'O'],
     'cross': ['<i id="cross" class="fas fa-times"></i>', 'X']
 };
@@ -59,7 +61,7 @@ function setFig(id) {
 
 // Draw the correct symbol onto the grid
 function draw(id) {
-    var cell = $('#' + id);
+    const cell = $('#' + id);
 
     if (game.currentPlayer === USER) {
         cell.html(game.user[HTML_INDEX]);
@@ -163,7 +165,7 @@ function checkWin() {
 /* Reset function */
 function reset() {
     reset_game_var();
-    var gameField = $('.game-field');
+    const gameField = $('.game-field');
     gameField.html('');
     $('#prompt').text('Who will start over?');
 
