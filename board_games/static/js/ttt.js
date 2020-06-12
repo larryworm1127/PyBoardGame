@@ -22,41 +22,54 @@ const symbol = {
     'cross': ['<i id="cross" class="fas fa-times"></i>', 'X']
 };
 
+// selected elements
+const prompt = $('#prompt');
+const gameField = $('.game-field');
+
+const startHumanButton = $('#start-human');
+const startCompButton = $('#start-comp');
+const startPvp = $('#pvp');
+$('#surrender').click(reset);
+startHumanButton.click(setFig);
+startCompButton.click(setFig);
+startPvp.click(setFig);
+
 // Set figures corresponding to user selection
-function setFig(id) {
-    if (id === 'start-comp') {
+function setFig(e) {
+    const id = e.target.id;
+    if (id === 'start-comp' || id === 'comp-icon') {
         game.computer = symbol.cross;
         game.user = symbol.circle;
         game.currentPlayer = COMPUTER;
 
-        $('#prompt').text(promptText(game.computer[SYMBOL_INDEX]));
+        prompt.text(promptText(game.computer[SYMBOL_INDEX]));
         setup();
         comp_move()
 
-    } else if (id === 'start-human') {
+    } else if (id === 'start-human' || id === 'human-icon') {
         game.user = symbol.cross;
         game.computer = symbol.circle;
         game.currentPlayer = USER;
 
-        $('#prompt').text(promptText(game.user[SYMBOL_INDEX]));
+        prompt.text(promptText(game.user[SYMBOL_INDEX]));
         setup();
 
-    } else if (id === 'pvp') {
+    } else if (id === 'pvp' || id === 'pvp-icon') {
         game.user = symbol.cross;
         game.user_two = symbol.circle;
         game.currentPlayer = USER;
         game.pvp = true;
 
-        $('#prompt').text(promptText(game.user[SYMBOL_INDEX]));
+        prompt.text(promptText(game.user[SYMBOL_INDEX]));
         setup();
     }
 
-    $('.game-field').attr('onclick', 'draw(this.id)');
+    gameField.attr('onclick', 'draw(this.id)');
 
     // disable other options
-    $('#start-human').removeAttr('onclick');
-    $('#start-comp').removeAttr('onclick');
-    $('#pvp').removeAttr('onclick')
+    startHumanButton.removeAttr('onclick');
+    startCompButton.removeAttr('onclick');
+    startPvp.removeAttr('onclick')
 }
 
 // Draw the correct symbol onto the grid
@@ -90,10 +103,8 @@ function draw(id) {
 
 // Computer player control functions
 function comp_move() {
-    $(function () {
-        $.getJSON("/games/ttt/get_move", {}, function (data) {
-            draw(data.id)
-        });
+    $.getJSON("/games/ttt/get_move", {}, function (data) {
+        draw(data.id)
     });
 }
 
@@ -102,17 +113,17 @@ function switchPlayer(currentUser) {
     if (currentUser === USER) {
         if (game.pvp) {
             game.currentPlayer = USER_TWO;
-            $('#prompt').text(promptText(game.user_two[SYMBOL_INDEX]));
+            prompt.text(promptText(game.user_two[SYMBOL_INDEX]));
         } else {
             game.currentPlayer = COMPUTER;
-            $('#prompt').text(promptText(game.computer[SYMBOL_INDEX]));
+            prompt.text(promptText(game.computer[SYMBOL_INDEX]));
 
             comp_move()
         }
 
     } else if (currentUser === COMPUTER || currentUser === USER_TWO) {
         game.currentPlayer = USER;
-        $('#prompt').text(promptText(game.user[SYMBOL_INDEX]));
+        prompt.text(promptText(game.user[SYMBOL_INDEX]));
     }
 }
 
@@ -121,57 +132,47 @@ function promptText(symbol) {
 }
 
 function endGame() {
-    $('.game-field').removeAttr('onclick');
+    gameField.removeAttr('onclick');
 
-    $('#start-human').attr('onclick', 'reset()');
-    $('#start-comp').attr('onclick', 'reset()');
-    $('#pvp').attr('onclick', 'reset()')
+    startHumanButton.click(reset);
+    startCompButton.click(reset);
+    startPvp.click(reset);
 }
 
 /* Back-end functions */
 function update(id, symbol) {
-    $(function () {
-        $.getJSON("/games/ttt/update", {
-            id: id,
-            symbol: symbol
-        }, function (data) {
-            console.log(data.result)
-        });
+    $.getJSON("/games/ttt/update", {
+        id: id,
+        symbol: symbol
     });
 }
 
 function setup() {
-    $(function () {
-        $.get("/games/ttt/setup", {
-            human: game.user[SYMBOL_INDEX],
-            pvp: game.pvp
-        })
+    $.get("/games/ttt/setup", {
+        human: game.user[SYMBOL_INDEX],
+        pvp: game.pvp
     });
 }
 
 function checkWin() {
-    $(function () {
-        $.getJSON("/games/ttt/check_win", {}, function (data) {
-            if (data.state === 'end') {
-                console.log(data.result);
-                $('#prompt').text(data.result + '\nPress any figure to restart.');
-                reset_game_var();
-                endGame()
-            }
-        });
+    $.getJSON("/games/ttt/check_win", {}, function (data) {
+        if (data.state === 'end') {
+            prompt.text(data.result + '\nPress any figure to restart.');
+            reset_game_var();
+            endGame();
+        }
     });
 }
 
 /* Reset function */
 function reset() {
     reset_game_var();
-    const gameField = $('.game-field');
     gameField.html('');
-    $('#prompt').text('Who will start over?');
+    prompt.text('Who will start over?');
 
-    $('#start-human').attr('onclick', 'setFig(this.id)');
-    $('#start-comp').attr('onclick', 'setFig(this.id)');
-    $('#pvp').attr('onclick', 'setFig(this.id)');
+    startHumanButton.click(setFig);
+    startCompButton.click(setFig);
+    startPvp.click(setFig);
 }
 
 function reset_game_var() {

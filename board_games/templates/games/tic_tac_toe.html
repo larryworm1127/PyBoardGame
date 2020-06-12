@@ -11,13 +11,13 @@
 {% block game_content %}
   <!-- Icons -->
   <div class="col-md-2 col-sm-12 text-center side-col" id="icons">
-    <a class="computer" id="start-comp" onclick="setFig(this.id)"><i class="fas fa-laptop m-2" id="comp-icon"></i>
+    <a class="computer" id="start-comp"><i class="fas fa-laptop m-2" id="comp-icon"></i>
       <p>You Start</p>
     </a><br>
-    <a class="human" id="start-human" onclick="setFig(this.id)"><i class="fas fa-user m-2" id="human-icon"></i>
+    <a class="human" id="start-human"><i class="fas fa-user m-2" id="human-icon"></i>
       <p>I'll Start</p>
     </a><br>
-    <a class="pvp" id="pvp" onclick="setFig(this.id)"><i class="fas fa-users m-2" id="pvp-icon"></i>
+    <a class="pvp" id="pvp"><i class="fas fa-users m-2" id="pvp-icon"></i>
       <p>PVP</p>
     </a>
   </div>
@@ -40,13 +40,13 @@
       <h3 class="subheader" id="prompt">Who starts?</h3>
     </div>
     <div class="container">
-      <a class="surrender" id="surrender" onclick="reset()"><i class="fas fa-handshake" id="surr-icon"></i>
+      <a class="surrender" id="surrender"><i class="fas fa-handshake" id="surr-icon"></i>
         <p>Surrender</p>
       </a>
     </div>
   </div>
 
   <!-- Game Script -->
-  <script src="{{ url_for('static', filename='js/ttt.js') }}"></script>
+  <script defer src="{{ url_for('static', filename='js/ttt.js') }}"></script>
 
 {% endblock %}
