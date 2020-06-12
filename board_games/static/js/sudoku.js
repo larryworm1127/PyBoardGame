@@ -119,16 +119,9 @@ function start() {
     $('.num').click(setNum);
     $('.game-field').click(selectCell);
 
-    // calls back-end to setup sudoku board in back-end
-    $(() => {
-        $.get("/games/sudoku/setup")
-    });
-
-    // calls helper functions generate puzzle and render it
-    $(() => {
-        $.getJSON("/games/sudoku/get_board", {}, (data) => {
-            renderBoard(data.result);
-        })
+    // calls back-end to setup sudoku board and render the puzzle
+    $.getJSON("/games/sudoku/setup", {}, (data) => {
+        renderBoard(data['board']);
     });
 }
 
@@ -194,7 +187,9 @@ function renderBoard(board) {
 This function is linked with all number pad numbers. It draws the
 selected number into the cell that is currently selected by user
  */
-function setNum(num) {
+function setNum(e) {
+    const targetId = e.target.id;
+
     // run following only if a cell is selected
     if (game.currentCell !== 'None') {
         // select current cell with jquery
@@ -206,12 +201,12 @@ function setNum(num) {
             // if the original element is null, then save move with a different way
             if ($('p', cell).html() == null) {
                 saveMove(game.currentCell, false, false);
-                cell.html(num_ref[num][1]);
+                cell.html(num_ref[targetId][1]);
             }
             // if the original element is penciled, then save move with the pencil way
             else {
                 // draw
-                cell.html(num_ref[num][1]);
+                cell.html(num_ref[targetId][1]);
 
                 // calls function to save this move for undo feature
                 const innerEle = $('p', cell);
@@ -228,13 +223,13 @@ function setNum(num) {
                 innerClass = "";
             }
 
-            if ($('p', cell).html() !== num_ref[num][2] && !innerClass.includes('pencil')) {
+            if ($('p', cell).html() !== num_ref[targetId][2] && !innerClass.includes('pencil')) {
 
                 // calls function to save this move for undo feature
                 saveMove(game.currentCell, false, game.pencil);
 
                 // draw
-                cell.html(num_ref[num][0]);
+                cell.html(num_ref[targetId][0]);
 
                 // add player color to number
                 const innerEle = $('p', cell);
@@ -242,10 +237,10 @@ function setNum(num) {
                 innerEle.addClass('player-con');
 
                 // call function to update back-end board
-                addMove(game.currentCell, num_ref[num][2]);
+                addMove(game.currentCell, num_ref[targetId][2]);
 
                 // call function to verify board
-                verifyBoard()
+                verifyBoard();
             }
         }
     }
@@ -255,15 +250,17 @@ function setNum(num) {
 This function links with all the cells on the game board.
 It updates game variable and highlight currently selected cell.
  */
-function selectCell(id) {
-    // if there is already a cell being selected, remove the highlighting on that cell
-    if (game.currentCell !== 'None') {
-        $('#' + game.currentCell).removeClass('selected')
-    }
+function selectCell(e) {
+    if (e.target.id !== "") {
+        // remove the highlighting on that current selected cell
+        if (game.currentCell !== 'None') {
+            $('#' + game.currentCell).removeClass('selected');
+        }
 
-    // highlight current selected cell and save it to game variable
-    $('#' + id).addClass('selected');
-    game.currentCell = id
+        // highlight target cell and save it to game variable
+        $('#' + e.target.id).addClass('selected');
+        game.currentCell = e.target.id;
+    }
 }
 
 /*
@@ -273,16 +270,19 @@ $('#pencil-toggle').click(() => {
     game.pencil = !game.pencil;
 
     // update info pad
-    updateInfo()
+    updateInfo();
 });
 
 /*
 This function links with new game button. It resets board and start a new game
  */
-$('#new-game').click(() => {
+const newGame = function () {
     reset();
     start();
-})
+}
+
+$('#new-game').click(newGame);
+$('#restart').click(newGame);
 
 /*
 This function links with erase button. It erase number in currently selected cell
@@ -311,7 +311,7 @@ $('#erase').click(() => {
     currentCell.html('');
 
     // calls function to verify the board
-    verifyBoard()
+    verifyBoard();
 });
 
 /*
@@ -335,7 +335,7 @@ function undo(id, num, pencil) {
             // if pencil passed in is false, then draw number in cell without pencil
             else {
                 $('#' + id).html(num_ref[ref[num]][0]);
-                $('p', '#' + id).addClass('player')
+                $('p', '#' + id).addClass('player');
             }
         }
         // if number passed in is 0, then empty the cell
@@ -344,7 +344,7 @@ function undo(id, num, pencil) {
         }
 
         // calls function to verify the board
-        verifyBoard()
+        verifyBoard();
     }
 }
 
@@ -355,7 +355,7 @@ function undo(id, num, pencil) {
 /* End game function that toggles the end game modal */
 function endGame() {
     reset();
-    $('#win-modal').modal('show')
+    $('#win-modal').modal('show');
 }
 
 /* Update info function that re-draws the info pad with updated info */
@@ -363,38 +363,32 @@ function updateInfo() {
     $('#numUndo').text("Undo: " + game.undo);
 
     if (game.pencil) {
-        $('#pencilOn').text("Pencil: On")
+        $('#pencilOn').text("Pencil: On");
     } else {
-        $('#pencilOn').text("Pencil: Off")
+        $('#pencilOn').text("Pencil: Off");
     }
 }
 
 /* Back-end link function that save move passed in for undo feature */
 function saveMove(id, num, pencil) {
-    $(() => {
-        $.get("/games/sudoku/save_move", {
-            id: id,
-            num: num,
-            pencil: pencil
-        })
+    $.get("/games/sudoku/save_move", {
+        id: id,
+        num: num,
+        pencil: pencil
     });
 }
 
 /* Back-end link function that add move passed in to update back-end board */
 function addMove(id, num) {
-    $(() => {
-        $.get("/games/sudoku/add_move", {
-            id: id,
-            num: num
-        });
+    $.get("/games/sudoku/add_move", {
+        id: id,
+        num: num
     });
 }
 
 /* Back-end link function that get the last move made by the player for undo feature */
 $('#undo').click(() => {
-    $(() => {
-        $.getJSON("/games/sudoku/get_move", {}, (data) => {
-            undo(data.result, data.num, data.pencil)
-        });
+    $.getJSON("/games/sudoku/get_move", {}, (data) => {
+        undo(data['result'], data['num'], data['pencil']);
     });
 });

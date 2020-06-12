@@ -91,7 +91,7 @@ class Sudoku:
         """
         return self._board[row][col]
 
-    def get_last_move(self) -> Union[tuple, None]:
+    def get_last_move(self) -> Union[Tuple, None]:
         """Get the last move made by the user.
 
         === Returns ===

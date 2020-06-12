@@ -5,6 +5,7 @@ Flask "Sudoko" game blueprint
 @author: Larry Shi
 """
 from random import randrange
+from typing import Dict
 
 from flask import Blueprint, render_template, request, jsonify
 
@@ -14,6 +15,9 @@ from ..util import ID_REF, get_id_from_pos
 
 # Init blueprint
 bp = Blueprint('sudoku', __name__, url_prefix='/games')
+
+# Other constants
+game: Dict[str, Sudoku] = {}
 
 
 # Blueprint routing
@@ -26,19 +30,16 @@ def sudoku():
 
 
 # sudoku board setup routing
-@bp.route('/sudoku/setup')
+@bp.route('/sudoku/setup', methods=['GET', 'POST'])
 def setup():
-    global game
-
     puzzles = Puzzles('easy')
     board = puzzles.get_list_data()[randrange(0, LINE_NUM)].puzzle
-    print(board)
-    game = Sudoku(9, board=board)
-    return jsonify(result=True)
+    game['inst'] = Sudoku(9, board=board)
+    return jsonify(board=game['inst'].get_board())
 
 
 # sudoku save current move routing
-@bp.route('/sudoku/save_move')
+@bp.route('/sudoku/save_move', methods=['GET', 'POST'])
 def save_move():
     cell_id = request.args.get('id', 0, type=str)
     pencil = True if request.args.get('pencil') == 'true' else False
@@ -48,15 +49,15 @@ def save_move():
         if pencil:
             num = request.args.get('num', 0, type=int)
         else:
-            num = game.get_square(pos[0], pos[1])
+            num = game['inst'].get_square(pos[0], pos[1])
 
-        game.add_move(pos, num, pencil)
+        game['inst'].add_move(pos, num, pencil)
 
     return jsonify(result=True)
 
 
 # sudoku update board with new move routing
-@bp.route('/sudoku/add_move')
+@bp.route('/sudoku/add_move', methods=['GET', 'POST'])
 def add_move():
     cell_id = request.args.get('id', 0, type=str)
     num = request.args.get('num', 0, type=int)
@@ -64,40 +65,41 @@ def add_move():
     if cell_id != 'None':
         row = ID_REF[cell_id][0]
         col = ID_REF[cell_id][1]
-        game.set_square(row, col, num)
+        game['inst'].set_square(row, col, num)
 
     return jsonify(result=True)
 
 
 # sudoku get previous move routing
-@bp.route('/sudoku/get_move')
+@bp.route('/sudoku/get_move', methods=['GET', 'POST'])
 def get_move():
-    last_move = game.get_last_move()
+    last_move = game['inst'].get_last_move()
 
     # only run following if there are previous moves
-    if last_move:
-        if not last_move[2]:
-            game.set_square(last_move[0][0], last_move[0][1], last_move[1])
+    if last_move and not last_move[2]:
+        game['inst'].set_square(last_move[0][0], last_move[0][1], last_move[1])
 
-        return jsonify(result=get_id_from_pos(last_move[0]),
-                       num=last_move[1],
-                       pencil=last_move[2])
+        return jsonify(
+            result=get_id_from_pos(last_move[0]),
+            num=last_move[1],
+            pencil=last_move[2]
+        )
 
     # return False if there are no more moves to undo
     return jsonify(result=False)
 
 
 # sudoku verify game board routing
-@bp.route('/sudoku/verify')
+@bp.route('/sudoku/verify', methods=['GET', 'POST'])
 def verify():
-    result = game.verify_board()
+    result = game['inst'].verify_board()
 
     # get all the incorrect numbers and their position
     pos_list = []
     if type(result) != bool:
         result = list(result)
         for num in result:
-            pos_list.extend(game.get_pos_from_num(num))
+            pos_list.extend(game['inst'].get_pos_from_num(num))
 
     # get the corresponding id with the position
     id_list = []
@@ -105,12 +107,3 @@ def verify():
         id_list.append(get_id_from_pos(pos))
 
     return jsonify(result=result, id_list=id_list)
-
-
-# sudoku render board from existing data
-@bp.route('/sudoku/get_board')
-def get_board():
-    board = game.get_board()
-    print("board", board)
-
-    return jsonify(result=board)
