@@ -6,19 +6,18 @@ Flask app factory
 """
 import os
 
-from dotenv import load_dotenv
 from flask import Flask, render_template
 
 # Constant
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Load environment variables
-load_dotenv()
-
 
 def create_app():
     flask_app = Flask(__name__)
-    flask_app.config.from_object(os.environ['APP_SETTINGS'])
+    if 'APP_SETTINGS' in os.environ:
+        flask_app.config.from_object(os.environ['APP_SETTINGS'])
+    else:
+        flask_app.config.from_object('config.DevelopmentConfig')
 
     # Register individual apps
     @flask_app.route('/')
@@ -26,25 +25,13 @@ def create_app():
         return render_template('index.html')
 
     # Register blueprints
-    from .views import twenty_forty_eight
+    from board_games.views import (
+        twenty_forty_eight, tic_tac_toe, blackjack, sudoku
+    )
     flask_app.register_blueprint(twenty_forty_eight.bp)
-    flask_app.add_url_rule('/', endpoint='index')
-
-    from .views import tic_tac_toe
     flask_app.register_blueprint(tic_tac_toe.bp)
-    flask_app.add_url_rule('/', endpoint='index')
-
-    from .views import blackjack
     flask_app.register_blueprint(blackjack.bp)
-    flask_app.add_url_rule('/', endpoint='index')
-
-    from .views import sudoku
     flask_app.register_blueprint(sudoku.bp)
-    flask_app.add_url_rule('/', endpoint='index')
-
-    from .views import about
-    flask_app.register_blueprint(about.bp)
-    flask_app.add_url_rule('/', endpoint='index')
 
     return flask_app
 
