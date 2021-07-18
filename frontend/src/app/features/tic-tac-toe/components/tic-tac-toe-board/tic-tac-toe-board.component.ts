@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TicTacToeService } from '../../services/tic-tac-toe.service';
-import { GameStates } from '../../enums/game-states';
-import { GameModes } from '../../enums/game-modes';
 
 @Component({
   selector: 'app-tic-tac-toe-board',

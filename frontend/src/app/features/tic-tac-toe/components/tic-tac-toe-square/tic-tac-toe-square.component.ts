@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TicTacToeService } from '../../services/tic-tac-toe.service';
-import { SafeHtml } from '@angular/platform-browser';
 import { Players } from '../../enums/players';
 import { GameStates } from '../../enums/game-states';
 
@@ -13,8 +12,7 @@ export class TicTacToeSquareComponent implements OnInit {
 
   @Input() square: any;
 
-  constructor(public gameService: TicTacToeService) {
-  }
+  constructor(public gameService: TicTacToeService) { }
 
   ngOnInit(): void {
   }

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { GameStates } from '@features/tic-tac-toe/enums/game-states';
 import { GameModes } from '@features/tic-tac-toe/enums/game-modes';
 import { TicTacToeService } from '@features/tic-tac-toe/services/tic-tac-toe.service';
 
