@@ -1,0 +1,51 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-6 col-sm-12 text-center" id="game-head-content">
+      <h1>Tic Tac Toe</h1>
+      <a class="home m-3" id="home" href="#"><i class="fas fa-home fa-2x"></i></a>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Icons -->
+    <div class="col-md-2 col-sm-12 text-center side-col" id="icons">
+      <a class="computer" id="start-comp" (click)="startGame(1)">
+        <i class="fas fa-laptop m-2" id="comp-icon"></i>
+        <p>You Start</p>
+      </a>
+      <br>
+      <a class="human" id="start-human" (click)="startGame(2)">
+        <i class="fas fa-user m-2" id="human-icon"></i>
+        <p>I'll Start</p>
+      </a>
+      <br>
+      <a class="pvp" id="pvp" (click)="startGame(3)">
+        <i class="fas fa-users m-2" id="pvp-icon"></i>
+        <p>PVP</p>
+      </a>
+    </div>
+
+    <!-- Tic Tac Toe grid -->
+    <div class="col-md-6 col-sm-12 text-center" id="grid">
+      <div class="game" id="wrapper">
+        <app-tic-tac-toe-square [square]="square" *ngFor="let square of boardService.board"></app-tic-tac-toe-square>
+      </div>
+    </div>
+
+    <!-- Messages -->
+    <div class="col-sm-4 side-col" id="messages">
+      <h2>Message Box</h2>
+      <div class="jumbotron">
+        <h3 class="subheader" id="prompt">{{boardService.displayMessage}}</h3>
+      </div>
+      <div class="container">
+        <a class="surrender" id="surrender">
+          <i class="fas fa-handshake" id="surr-icon"></i>
+          <p>Surrender</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
