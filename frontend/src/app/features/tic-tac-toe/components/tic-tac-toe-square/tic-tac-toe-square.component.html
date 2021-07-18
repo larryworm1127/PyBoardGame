@@ -2,5 +2,5 @@
      class="game-field"
      (click)="makeMove()"
 >
-  <div *ngIf="square.state != null" [innerHTML]="drawCircleCross()"></div>
+  <div *ngIf="square.state != 'Empty'" [innerHTML]="drawCircleCross()"></div>
 </div>

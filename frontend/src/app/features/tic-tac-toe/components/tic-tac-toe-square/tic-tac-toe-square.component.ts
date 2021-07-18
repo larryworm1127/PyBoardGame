@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { GameStates, Players, TicTacToeService } from '../tic-tac-toe.service';
+import { TicTacToeService } from '../../services/tic-tac-toe.service';
 import { SafeHtml } from '@angular/platform-browser';
+import { Players } from '../../enums/players';
+import { GameStates } from '../../enums/game-states';
 
 @Component({
   selector: 'app-tic-tac-toe-square',
@@ -24,7 +26,7 @@ export class TicTacToeSquareComponent implements OnInit {
   }
 
   makeMove(): void {
-    if (this.gameService.gameState == GameStates.Running && this.square.state === null) {
+    if (this.gameService.gameState == GameStates.Running && this.square.state === Players.Empty) {
       this.square.state = this.gameService.gameTurn;
       this.gameService.makeMove(this.square);
     }

@@ -1,13 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { TicTacToeComponent } from './tic-tac-toe/tic-tac-toe.component';
 
 const routes: Routes = [
-  { path: '*', component: TicTacToeComponent }
+  {
+    path: '',
+    loadChildren: () => import('./pages/tic-tac-toe-page/tic-tac-toe-page.module').then((m) => m.TicTacToePageModule)
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

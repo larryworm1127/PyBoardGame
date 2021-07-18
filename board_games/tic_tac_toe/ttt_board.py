@@ -1,9 +1,9 @@
 """Virtual Tic-Tac-Toe Board
 
 === Module description ===
-Imported from tic-tac-toe-python project with minor modifications.
-This module contains two classes which one of them represents a tic-tac-toe
-game board while the other sets up a tic-tac-toe game
+Imported from tic-tac-toe-board-python project with minor modifications.
+This module contains two classes which one of them represents a tic-tac-toe-board
+game board while the other sets up a tic-tac-toe-board game
 
 @date: 7/7/2018
 @author: Larry Shi
@@ -43,7 +43,7 @@ class TTTBoard:
     === Attributes ===
     dim: the dimension of the board
     reverse: whether the game should be reversed or not
-    board: a 2D-list representing a tic-tac-toe game board
+    board: a 2D-list representing a tic-tac-toe-board game board
     """
     dim: int
     reverse: bool

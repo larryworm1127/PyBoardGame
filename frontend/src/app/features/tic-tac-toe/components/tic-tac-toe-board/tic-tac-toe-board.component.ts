@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { GameStates, GameType, TicTacToeService } from '../tic-tac-toe.service';
+import { TicTacToeService } from '../../services/tic-tac-toe.service';
+import { GameStates } from '../../enums/game-states';
+import { GameModes } from '../../enums/game-modes';
 
 @Component({
-  selector: 'app-tic-tac-toe',
-  templateUrl: './tic-tac-toe.component.html',
-  styleUrls: ['./tic-tac-toe.component.css']
+  selector: 'app-tic-tac-toe-board',
+  templateUrl: './tic-tac-toe-board.component.html',
+  styleUrls: ['./tic-tac-toe-board.component.css']
 })
-export class TicTacToeComponent implements OnInit {
+export class TicTacToeBoardComponent implements OnInit {
 
   constructor(public boardService: TicTacToeService) { }
 
@@ -29,13 +31,13 @@ export class TicTacToeComponent implements OnInit {
   private newGame(type: number) {
     switch (type) {
       case 1:  // type 1 = computer start
-        this.boardService.newGame(GameType.ComputerStart);
+        this.boardService.newGame(GameModes.ComputerStart);
         break;
       case 2:  // type 2 = human start
-        this.boardService.newGame(GameType.HumanStart);
+        this.boardService.newGame(GameModes.HumanStart);
         break;
       case 3:  // type 3 = pvp
-        this.boardService.newGame(GameType.Pvp);
+        this.boardService.newGame(GameModes.Pvp);
     }
   }
 }

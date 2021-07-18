@@ -1,7 +1,7 @@
 """Mini-max Tic-Tac-Toe Player
 
 === Module description ===
-Imported from tic-tac-toe-python project with minor modifications.
+Imported from tic-tac-toe-board-python project with minor modifications.
 This module contains function that uses minimax algorithm to get the
 best move for computer given a board instance
 
