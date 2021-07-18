@@ -29,14 +29,15 @@ square6 | square7 | square8
 }
 
 /* Game Character */
-#circle {
+.circle {
   color: slategrey;
   position: relative;
   right: 16%;
   line-height: 1.25em;
+  bottom: 5px;
 }
 
-#cross {
+.cross {
   color: slategrey;
   position: relative;
   line-height: 1.25em;

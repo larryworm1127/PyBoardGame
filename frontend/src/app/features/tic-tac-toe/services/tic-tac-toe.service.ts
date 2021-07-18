@@ -20,6 +20,19 @@ export class TicTacToeService {
     this.gameBoard = new TicTacToeBoard();
   }
 
+  startGame(type: GameModes): void {
+    switch (this.gameState) {
+      case GameStates.XWin:
+      case GameStates.OWin:
+      case GameStates.Draw:
+        this.resetGame();
+        break;
+      case GameStates.Stopped:
+        this.newGame(type);
+        break;
+    }
+  }
+
   newGame(gameType: GameModes): void {
     this.gameType = gameType;
     this.currentState = GameStates.Running;

@@ -2,5 +2,12 @@
      class="game-field"
      (click)="makeMove()"
 >
-  <div *ngIf="square.state != 'Empty'" [innerHTML]="drawCircleCross()"></div>
+  <div *ngIf="square.state != 'Empty'">
+    <span *ngIf="square.state === 'X' else circle">
+      <i class="fas fa-times cross"></i>
+    </span>
+    <ng-template #circle>
+      <i class="far fa-circle circle"></i>
+    </ng-template>
+  </div>
 </div>

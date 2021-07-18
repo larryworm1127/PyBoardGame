@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TicTacToeBoardComponent } from './components/tic-tac-toe-board/tic-tac-toe-board.component';
 import { TicTacToeSquareComponent } from './components/tic-tac-toe-square/tic-tac-toe-square.component';
+import { TicTacToeLeftPanelComponent } from './components/tic-tac-toe-left-panel/tic-tac-toe-left-panel.component';
+import { TicTacToeRightPanelComponent } from './components/tic-tac-toe-right-panel/tic-tac-toe-right-panel.component';
 
 
 
@@ -9,13 +11,17 @@ import { TicTacToeSquareComponent } from './components/tic-tac-toe-square/tic-ta
   declarations: [
     TicTacToeBoardComponent,
     TicTacToeSquareComponent,
+    TicTacToeLeftPanelComponent,
+    TicTacToeRightPanelComponent,
   ],
   imports: [
     CommonModule
   ],
   exports: [
     TicTacToeBoardComponent,
-    TicTacToeSquareComponent
+    TicTacToeSquareComponent,
+    TicTacToeLeftPanelComponent,
+    TicTacToeRightPanelComponent
   ]
 })
 export class TicTacToeModule { }

@@ -12,17 +12,11 @@ import { GameStates } from '../../enums/game-states';
 export class TicTacToeSquareComponent implements OnInit {
 
   @Input() square: any;
-  xHtml: SafeHtml = '<i id="cross" class="fas fa-times"></i>';
-  oHtml: SafeHtml = '<i id="circle" class="far fa-circle"></i>';
 
   constructor(public gameService: TicTacToeService) {
   }
 
   ngOnInit(): void {
-  }
-
-  drawCircleCross(): SafeHtml {
-    return (this.square.state === Players.PlayerX) ? this.xHtml : this.oHtml;
   }
 
   makeMove(): void {
