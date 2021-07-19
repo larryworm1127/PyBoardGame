@@ -8,6 +8,29 @@
   </div>
 
   <div class="row">
+    <!-- Numpad and Buttons -->
+    <div class="col-md-1 col-sm-12 text-center">
+      <div class="space-2"></div>
+      <div class="container">
+        <app-sudoku-numpad></app-sudoku-numpad>
+        <br>
+
+        <app-sudoku-controls></app-sudoku-controls>
+      </div>
+    </div>
+
+    <!-- Game Grid -->
+    <div class="col-md-7 col-sm-12 text-center">
+      <div class="game" id="wrapper">
+        <div id="" class="game-field text-center"></div>
+      </div>
+    </div>
+
+    <!-- Message Box -->
+    <div class="col-md-4 col-sm-12" id="messages">
+      <div class="space-2"></div>
+      <app-sudoku-right-panel></app-sudoku-right-panel>
+    </div>
 
   </div>
 </div>
