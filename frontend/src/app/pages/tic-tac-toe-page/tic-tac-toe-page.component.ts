@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TicTacToePageComponent implements OnInit {
 
+  gameName: string = "Tic Tac Toe";
+
   constructor() { }
 
   ngOnInit(): void {

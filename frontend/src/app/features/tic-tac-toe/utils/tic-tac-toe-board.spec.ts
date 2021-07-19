@@ -6,7 +6,10 @@ describe('TicTacToeBoard', () => {
   it('should create an instance', () => {
     expect(new TicTacToeBoard()).toBeTruthy();
   });
+});
 
+
+describe('TicTacToeBoard.checkWin()', () => {
   /**
    * Detect win for following boards:
    *
@@ -14,7 +17,7 @@ describe('TicTacToeBoard', () => {
    *     o   | x   o | o x
    *   o     | x   o |   o x
    */
-  it('should detect win for player X', () => {
+  it('should detect win for player X.', () => {
     let boardInstance = new TicTacToeBoard()
 
     let boards = [
@@ -48,7 +51,7 @@ describe('TicTacToeBoard', () => {
    *     x   | o   x | x o
    *   x     | o   x |   x o
    */
-  it('should detect win for player X', () => {
+  it('should detect win for player O.', () => {
     let boardInstance = new TicTacToeBoard()
 
     let boards = [
@@ -82,7 +85,7 @@ describe('TicTacToeBoard', () => {
    *   o o x | x o x
    *   x x o | o x o
    */
-  it('should detect win for player X', () => {
+  it('should detect draw.', () => {
     let boardInstance = new TicTacToeBoard()
 
     let boards = [
@@ -111,7 +114,7 @@ describe('TicTacToeBoard', () => {
    *   o   x | o x
    *   o     | o   o
    */
-  it('should detect win for player X', () => {
+  it('should detect game is still playing.', () => {
     let boardInstance = new TicTacToeBoard()
 
     let boards = [
@@ -132,4 +135,4 @@ describe('TicTacToeBoard', () => {
       expect(boardInstance.checkWin()).toEqual(GameStates.Running);
     }
   });
-});
+})
