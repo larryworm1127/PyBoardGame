@@ -4,11 +4,15 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./modules/home/home.module').then((m) => m.HomeModule)
+    loadChildren: () => import('@modules/home/home.module').then((m) => m.HomeModule)
   },
   {
     path: 'ttt',
-    loadChildren: () => import('./modules/tic-tac-toe/tic-tac-toe.module').then((m) => m.TicTacToeModule)
+    loadChildren: () => import('@modules/tic-tac-toe/tic-tac-toe.module').then((m) => m.TicTacToeModule)
+  },
+  {
+    path: 'sudoku',
+    loadChildren: () => import('@modules/sudoku/sudoku.module').then((m) => m.SudokuModule)
   }
 ];
 
@@ -16,5 +20,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule { }

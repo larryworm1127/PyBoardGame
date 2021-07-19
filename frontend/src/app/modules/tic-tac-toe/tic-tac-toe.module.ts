@@ -8,7 +8,6 @@ import { TicTacToeRoutingModule } from './tic-tac-toe-routing.module';
 import { TicTacToeComponent } from './pages/tic-tac-toe.page';
 
 
-
 @NgModule({
   declarations: [
     TicTacToeBoardComponent,
