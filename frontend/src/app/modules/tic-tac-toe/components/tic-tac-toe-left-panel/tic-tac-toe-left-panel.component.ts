@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { GameModes } from '@features/tic-tac-toe/enums/game-modes';
-import { TicTacToeService } from '@features/tic-tac-toe/services/tic-tac-toe.service';
+import { GameModes } from '@modules/tic-tac-toe/enums/game-modes';
+import { TicTacToeService } from '@modules/tic-tac-toe/services/tic-tac-toe.service';
 
 @Component({
   selector: 'app-tic-tac-toe-left-panel',

@@ -4,6 +4,8 @@ import { TicTacToeBoardComponent } from './components/tic-tac-toe-board/tic-tac-
 import { TicTacToeSquareComponent } from './components/tic-tac-toe-square/tic-tac-toe-square.component';
 import { TicTacToeLeftPanelComponent } from './components/tic-tac-toe-left-panel/tic-tac-toe-left-panel.component';
 import { TicTacToeRightPanelComponent } from './components/tic-tac-toe-right-panel/tic-tac-toe-right-panel.component';
+import { TicTacToeRoutingModule } from './tic-tac-toe-routing.module';
+import { TicTacToeComponent } from './pages/tic-tac-toe.page';
 
 
 
@@ -13,15 +15,14 @@ import { TicTacToeRightPanelComponent } from './components/tic-tac-toe-right-pan
     TicTacToeSquareComponent,
     TicTacToeLeftPanelComponent,
     TicTacToeRightPanelComponent,
+    TicTacToeComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    TicTacToeRoutingModule
   ],
   exports: [
-    TicTacToeBoardComponent,
-    TicTacToeSquareComponent,
-    TicTacToeLeftPanelComponent,
-    TicTacToeRightPanelComponent
+    TicTacToeComponent
   ]
 })
 export class TicTacToeModule { }

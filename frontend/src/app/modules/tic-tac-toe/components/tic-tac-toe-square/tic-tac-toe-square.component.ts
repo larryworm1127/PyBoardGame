@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { TicTacToeService } from '../../services/tic-tac-toe.service';
+import { TicTacToeService } from '@modules/tic-tac-toe/services/tic-tac-toe.service';
 import { Players } from '../../enums/players';
 import { GameStates } from '../../enums/game-states';
 

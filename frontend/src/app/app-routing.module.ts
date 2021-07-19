@@ -4,11 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./pages/home-page/home-page.module').then((m) => m.HomePageModule)
+    loadChildren: () => import('./modules/home/home.module').then((m) => m.HomeModule)
   },
   {
     path: 'ttt',
-    loadChildren: () => import('./pages/tic-tac-toe-page/tic-tac-toe-page.module').then((m) => m.TicTacToePageModule)
+    loadChildren: () => import('./modules/tic-tac-toe/tic-tac-toe.module').then((m) => m.TicTacToeModule)
   }
 ];
 
