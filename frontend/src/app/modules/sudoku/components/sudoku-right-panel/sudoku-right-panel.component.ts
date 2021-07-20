@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SudokuService } from '@modules/sudoku/services/sudoku.service';
 
 @Component({
   selector: 'app-sudoku-right-panel',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SudokuRightPanelComponent implements OnInit {
 
-  constructor() { }
+  constructor(public boardService: SudokuService) { }
 
   ngOnInit(): void {
   }

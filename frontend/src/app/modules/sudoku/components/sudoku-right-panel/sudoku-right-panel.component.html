@@ -1,7 +1,7 @@
 <h2>Game Info</h2>
 <div class="jumbotron" id="stats">
-  <h3 class="subheader" id="pencilOn">Pencil: Off</h3>
+  <h3 class="subheader" id="pencilOn">Pencil: {{ boardService.pencilEnabled ? "On" : "Off" }}</h3>
   <h3 class="subheader" id="difficulty">Difficulty: Easy</h3>
-  <h3 class="subheader" id="numUndo">Undo: 0</h3>
+  <h3 class="subheader" id="numUndo">Undo: {{ boardService.numUndo }}</h3>
 </div>
 <button type="button" id="new-game" class="btn btn-primary">New Game</button>

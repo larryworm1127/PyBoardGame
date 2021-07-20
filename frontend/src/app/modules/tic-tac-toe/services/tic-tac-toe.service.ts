@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { GameStates } from '../enums/game-states';
 import { GameModes } from '../enums/game-modes';
 import { Players } from '../enums/players';
-import { Square, TicTacToeBoard } from '../utils/tic-tac-toe-board';
+import { Square, TicTacToeBoard } from '../logic/tic-tac-toe-board';
 
 
 @Injectable({
-  providedIn: 'any'
+  providedIn: 'root'
 })
 export class TicTacToeService {
 

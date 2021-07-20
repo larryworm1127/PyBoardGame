@@ -10,7 +10,7 @@ export type Square = {
 
 export class TicTacToeBoard {
 
-  private board: Square[] = [];
+  private board: Square[];
   private boardDim: number = 9;
 
   constructor() {
@@ -25,7 +25,7 @@ export class TicTacToeBoard {
     this.board = [...value];
   }
 
-  createBoard(): Square[] {
+  private createBoard(): Square[] {
     let board = [];
     for (let i = 0; i < this.boardDim; i++) {
       board.push({ id: i, state: Players.Empty });

@@ -1,1 +1,7 @@
-<p>sudoku-cell works!</p>
+<div id="square{{cell.id}}"
+     class="game-field text-center"
+     [ngClass]="{'selected': cell.isSelected}"
+     (click)="onSelect()"
+>
+
+</div>
