@@ -3,5 +3,10 @@
      [ngClass]="{'selected': cell.isSelected}"
      (click)="onSelect()"
 >
-
+  <p [ngClass]="{'pencil': cell.isPencil,
+                 'not-pencil': cell.isFixed,
+                 'player': !cell.isPencil && !cell.isFixed,
+                 'error': cell.hasError}">
+    {{cell.value}}
+  </p>
 </div>

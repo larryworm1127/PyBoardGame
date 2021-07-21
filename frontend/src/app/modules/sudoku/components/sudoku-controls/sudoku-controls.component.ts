@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SudokuService } from '@modules/sudoku/services/sudoku.service';
 
 @Component({
   selector: 'app-sudoku-controls',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SudokuControlsComponent implements OnInit {
 
-  constructor() { }
+  constructor(public boardService: SudokuService) { }
 
   ngOnInit(): void {
   }
 
+  togglePencil(): void {
+    this.boardService.pencilEnabled = (!this.boardService.pencilEnabled);
+  }
 }

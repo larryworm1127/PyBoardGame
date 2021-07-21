@@ -12,7 +12,7 @@ export class SudokuBoard {
   private board: SudokuCell[];
   private boardDim: number = 81;
   private boardSideLength: number = 9;
-  private moves: SudokuCell[] = [];
+  moves: SudokuCell[] = [];
 
   constructor() {
     this.board = this.createBoard();
@@ -22,16 +22,14 @@ export class SudokuBoard {
     return this.board;
   }
 
-  get previousMoves(): SudokuCell[] {
-    return this.moves;
-  }
-
   set boardContent(value: SudokuCell[]) {
     this.board = [...value];
   }
 
-  updateSelectedCell(oldId: number, newId: number): void {
-    this.board[oldId].isSelected = false;
+  updateSelectedCell(newId: number, oldId?: number): void {
+    if (oldId !== undefined) {
+      this.board[oldId].isSelected = false;
+    }
     this.board[newId].isSelected = true;
   }
 
@@ -43,11 +41,17 @@ export class SudokuBoard {
     return board;
   }
 
-  makeMove(cell: SudokuCell): UpdateResult {
-    this.board[cell.id].isPencil = cell.isPencil;
-    this.board[cell.id].value = cell.value;
-    if (!cell.isPencil) {
-      this.moves.push(cell);
+  eraseCellValue(id: number): UpdateResult {
+    this.board[id].isPencil = false;
+    this.board[id].value = null;
+    return this.verifyBoard();
+  }
+
+  makeMove(id: number, value: SudokuNum, isPencil: boolean): UpdateResult {
+    this.board[id].isPencil = isPencil;
+    this.board[id].value = value;
+    if (!isPencil) {
+      this.moves.push(new SudokuCell(id, isPencil, value));
     }
     return this.verifyBoard();
   }

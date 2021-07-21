@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SudokuService } from '@modules/sudoku/services/sudoku.service';
+import { SudokuNum } from '@modules/sudoku/logic/sudoku-cell';
 
 @Component({
   selector: 'app-sudoku-numpad',
@@ -7,11 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SudokuNumpadComponent implements OnInit {
 
-  numbers: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  numbers: SudokuNum[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-  constructor() { }
+  constructor(public boardService: SudokuService) { }
 
   ngOnInit(): void {
   }
 
+  onClick(value: SudokuNum): void {
+    this.boardService.onNumpadClick(value);
+  }
 }
