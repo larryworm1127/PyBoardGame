@@ -12,7 +12,6 @@ export class SudokuBoard {
   private board: SudokuCell[];
   private boardDim: number = 81;
   private boardSideLength: number = 9;
-  moves: SudokuCell[] = [];
 
   constructor() {
     this.board = this.createBoard();
@@ -41,18 +40,9 @@ export class SudokuBoard {
     return board;
   }
 
-  eraseCellValue(id: number): UpdateResult {
-    this.board[id].isPencil = false;
-    this.board[id].value = null;
-    return this.verifyBoard();
-  }
-
-  makeMove(id: number, value: number, isPencil: boolean): UpdateResult {
+  makeMove(id: number, value: number | null = null, isPencil: boolean = false): UpdateResult {
     this.board[id].isPencil = isPencil;
     this.board[id].value = value;
-    if (!isPencil) {
-      this.moves.push(new SudokuCell(id, value, false, isPencil));
-    }
     return this.verifyBoard();
   }
 

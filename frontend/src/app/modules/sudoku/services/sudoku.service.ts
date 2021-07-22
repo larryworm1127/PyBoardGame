@@ -24,6 +24,7 @@ export class SudokuService {
 
   private gameBoard: SudokuBoard;
   private selectedCell: number = -1;
+  private moves: SudokuCell[] = [];
   numUndo: number = 0;
   pencilEnabled: boolean = false;
   difficulty: Difficulty = Difficulty.Easy;
@@ -70,6 +71,10 @@ export class SudokuService {
       return;
     }
 
+    // Record cell info before the move for undo
+    this.moves.push(this.boardContent[this.selectedCell].clone());
+
+    // Update board and check for error
     let result = this.gameBoard.makeMove(this.selectedCell, value, this.pencilEnabled);
     this.updateErrorToDuplicates(result);
   }
@@ -79,27 +84,34 @@ export class SudokuService {
       return;
     }
 
-    // TODO: add erase move to undo as well
-    let result = this.gameBoard.eraseCellValue(this.selectedCell);
-    console.log(result)
+    // Record cell info before the move for undo
+    this.moves.push(this.boardContent[this.selectedCell].clone());
+
+    // Update board and check for error
+    let result = this.gameBoard.makeMove(this.selectedCell);
     this.updateErrorToDuplicates(result);
+  }
+
+  undo(): void {
+    if (!this.gameStarted || this.moves.length === 0) {
+      return;
+    }
+
+    // @ts-ignore
+    let { id, isPencil, value } = this.moves.pop();
+    let result = this.gameBoard.makeMove(id, value, isPencil);
+    this.updateErrorToDuplicates(result);
+    this.numUndo++;
   }
 
   private updateErrorToDuplicates(verifyResult: UpdateResult): void {
     if (verifyResult.isComplete) {
+      // TODO: add action when player won
       return;
     }
 
     for (let cell of this.boardContent) {
       cell.hasError = cell.value !== null && verifyResult.duplicates.includes(cell.value) && !cell.isPencil;
     }
-  }
-
-  undo(): void {
-    if (!this.gameStarted || this.gameBoard.moves.length === 0) {
-      return;
-    }
-
-    this.numUndo++;
   }
 }

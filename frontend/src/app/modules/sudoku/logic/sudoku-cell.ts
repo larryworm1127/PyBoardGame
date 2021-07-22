@@ -12,4 +12,15 @@ export class SudokuCell {
   get properValue(): number | null {
     return (this.isPencil) ? null : this.value;
   }
+
+  clone(): SudokuCell {
+    return new SudokuCell(
+      this.id,
+      this.value,
+      this.isFixed,
+      this.isPencil,
+      this.isSelected,
+      this.hasError
+    )
+  }
 }
