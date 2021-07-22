@@ -5,3 +5,9 @@
   <h3 class="subheader" id="numUndo">Undo: {{ boardService.numUndo }}</h3>
 </div>
 <button type="button" id="new-game" class="btn btn-primary" (click)="boardService.newGame()">New Game</button>
+<button type="button" class="btn btn-primary dropdown-toggle m-2" data-toggle="dropdown">{{ boardService.difficulty }}</button>
+<div class="dropdown-menu">
+  <a class="dropdown-item" (click)="selectDifficulty('Easy')">Easy</a>
+  <a class="dropdown-item" (click)="selectDifficulty('Medium')">Medium</a>
+  <a class="dropdown-item" (click)="selectDifficulty('Hard')">Hard</a>
+</div>

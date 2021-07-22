@@ -4,8 +4,8 @@
      (click)="onSelect()"
 >
   <p [ngClass]="{'pencil': cell.isPencil,
-                 'not-pencil': cell.isFixed,
-                 'player': !cell.isPencil && !cell.isFixed,
+                 'not-pencil': cell.isFixed && !cell.hasError,
+                 'player': !cell.isPencil && !cell.isFixed && !cell.hasError,
                  'error': cell.hasError}">
     {{cell.value}}
   </p>

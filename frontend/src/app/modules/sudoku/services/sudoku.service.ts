@@ -1,7 +1,21 @@
 import { Injectable } from '@angular/core';
-import { SudokuBoard } from '@modules/sudoku/logic/sudoku-board';
-import { SudokuCell, SudokuNum } from '@modules/sudoku/logic/sudoku-cell';
+import { SudokuBoard, UpdateResult } from '@modules/sudoku/logic/sudoku-board';
+import { SudokuCell } from '@modules/sudoku/logic/sudoku-cell';
 import { Difficulty } from '@modules/sudoku/enums/difficulty';
+
+
+const tempBoard = [
+  0, 1, 0, 0, 4, 0, 5, 6, 0,
+  2, 3, 0, 6, 1, 5, 0, 8, 0,
+  0, 0, 0, 8, 0, 0, 1, 0, 0,
+  0, 5, 0, 0, 2, 0, 0, 0, 8,
+  6, 0, 0, 7, 8, 1, 0, 0, 5,
+  9, 0, 0, 0, 6, 0, 0, 2, 0,
+  0, 0, 6, 0, 0, 8, 0, 0, 0,
+  0, 8, 0, 4, 7, 3, 0, 5, 6,
+  0, 4, 5, 0, 9, 0, 0, 1, 0
+]
+
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +39,13 @@ export class SudokuService {
 
   newGame(): void {
     this.gameStarted = true;
+    this.gameBoard.boardContent = tempBoard.map((value, index) =>
+      new SudokuCell(
+        index,
+        (value !== 0) ? value : null,
+        value !== 0
+      )
+    )
   }
 
   selectedNewCell(cell: SudokuCell): void {
@@ -44,12 +65,13 @@ export class SudokuService {
     }
   }
 
-  onNumpadClick(value: SudokuNum): void {
+  onNumpadClick(value: number): void {
     if (!this.gameStarted || this.selectedCell === -1) {
       return;
     }
 
     let result = this.gameBoard.makeMove(this.selectedCell, value, this.pencilEnabled);
+    this.updateErrorToDuplicates(result);
   }
 
   erase(): void {
@@ -59,6 +81,18 @@ export class SudokuService {
 
     // TODO: add erase move to undo as well
     let result = this.gameBoard.eraseCellValue(this.selectedCell);
+    console.log(result)
+    this.updateErrorToDuplicates(result);
+  }
+
+  private updateErrorToDuplicates(verifyResult: UpdateResult): void {
+    if (verifyResult.isComplete) {
+      return;
+    }
+
+    for (let cell of this.boardContent) {
+      cell.hasError = cell.value !== null && verifyResult.duplicates.includes(cell.value) && !cell.isPencil;
+    }
   }
 
   undo(): void {

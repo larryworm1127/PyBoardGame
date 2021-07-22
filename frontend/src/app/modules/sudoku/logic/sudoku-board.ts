@@ -1,8 +1,8 @@
-import { SudokuCell, SudokuNum } from '@modules/sudoku/logic/sudoku-cell';
+import { SudokuCell } from '@modules/sudoku/logic/sudoku-cell';
 
 
 export type UpdateResult = {
-  duplicates: SudokuNum[],
+  duplicates: number[],
   isComplete: boolean
 }
 
@@ -47,20 +47,20 @@ export class SudokuBoard {
     return this.verifyBoard();
   }
 
-  makeMove(id: number, value: SudokuNum, isPencil: boolean): UpdateResult {
+  makeMove(id: number, value: number, isPencil: boolean): UpdateResult {
     this.board[id].isPencil = isPencil;
     this.board[id].value = value;
     if (!isPencil) {
-      this.moves.push(new SudokuCell(id, isPencil, value));
+      this.moves.push(new SudokuCell(id, value, false, isPencil));
     }
     return this.verifyBoard();
   }
 
-  private getRowsColsCells(): (SudokuNum | null)[][] {
+  private getRowsColsCells(): (number | null)[][] {
     let result = [];
 
     // Rows
-    let row: (SudokuNum | null)[] = [];
+    let row: (number | null)[] = [];
     for (let i = 0; i < this.boardDim; i++) {
       if (i % this.boardSideLength === 0) {
         result.push(row);
@@ -71,7 +71,7 @@ export class SudokuBoard {
 
     // Columns
     for (let i = 0; i < this.boardSideLength; i++) {
-      let column: (SudokuNum | null)[] = [];
+      let column: (number | null)[] = [];
       for (let j = 0; j < this.boardSideLength; j++) {
         column.push(this.board[j * this.boardSideLength + i].properValue);
       }
@@ -81,7 +81,7 @@ export class SudokuBoard {
     // 3 x 3 cells
     for (let i of [[0, 1, 2], [3, 4, 5], [6, 7, 8]]) {
       for (let j of [[0, 1, 2], [3, 4, 5], [6, 7, 8]]) {
-        let threeCell: (SudokuNum | null)[] = [];
+        let threeCell: (number | null)[] = [];
         for (let row of i) {
           for (let col of j) {
             threeCell.push(this.board[row * this.boardSideLength + col].properValue);
@@ -101,10 +101,10 @@ export class SudokuBoard {
     let state = this.board.every(value => value.properValue !== null);
 
     // Check for duplicate number
-    let duplicates: SudokuNum[] = [];
+    let duplicates: number[] = [];
     for (let line of allLines) {
       for (let num of new Set(line)) {
-        if (num !== null && line.filter(item => item != num).length > 1 && !duplicates.includes(num)) {
+        if (num !== null && line.filter(item => item == num).length > 1 && !duplicates.includes(num)) {
           duplicates.push(num);
         }
       }
