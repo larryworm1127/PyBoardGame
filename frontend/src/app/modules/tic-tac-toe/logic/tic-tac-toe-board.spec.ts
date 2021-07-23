@@ -1,6 +1,6 @@
 import { TicTacToeBoard } from './tic-tac-toe-board';
-import { Players } from '@features/tic-tac-toe/enums/players';
-import { GameStates } from '@features/tic-tac-toe/enums/game-states';
+import { Players } from '@modules/tic-tac-toe/enums/players';
+import { GameStates } from '@modules/tic-tac-toe/enums/game-states';
 
 describe('TicTacToeBoard', () => {
   it('should create an instance', () => {

@@ -7,6 +7,7 @@ import { SudokuNumpadComponent } from './components/sudoku-numpad/sudoku-numpad.
 import { SudokuCellComponent } from './components/sudoku-cell/sudoku-cell.component';
 import { SudokuRightPanelComponent } from './components/sudoku-right-panel/sudoku-right-panel.component';
 import { SudokuControlsComponent } from './components/sudoku-controls/sudoku-controls.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { SudokuControlsComponent } from './components/sudoku-controls/sudoku-con
   ],
   imports: [
     CommonModule,
-    SudokuRoutingModule
+    SudokuRoutingModule,
+    NgbModule
   ]
 })
 export class SudokuModule { }

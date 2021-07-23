@@ -9,10 +9,10 @@ describe('SudokuCell', () => {
 
 describe('SudokuCell.properValue', () => {
   it('should give correct value when isPencil is true', () => {
-    expect(new SudokuCell(1, true, 5).properValue).toEqual(null);
+    expect(new SudokuCell(1,  5, false, true).properValue).toEqual(null);
   })
 
   it('should give correct value when isPencil is false', () => {
-    expect(new SudokuCell(1, false, 5).properValue).toEqual(5);
+    expect(new SudokuCell(1, 5, false, false).properValue).toEqual(5);
   })
 })

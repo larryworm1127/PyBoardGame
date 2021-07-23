@@ -2,28 +2,21 @@
 <div class="container-fluid" id="outer-container">
   <nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <!-- Brand -->
-    <strong><a class="navbar-brand" href="#">PyBoardGames</a></strong>
+    <strong><a class="navbar-brand" [routerLink]="'.'">PyBoardGames</a></strong>
 
     <!-- Toggler/collapsibe Button -->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-bar">
+    <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="nav-bar">
+    <div class="collapse navbar-collapse" id="nav-bar" [ngbCollapse]="isMenuCollapsed">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/ttt']">Tic Tac Toe</a>
         </li>
 
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false"><i class="fas fa-gamepad"></i> Games</a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/ttt">Tic Tac Toe</a>
-            <!--a class="dropdown-item" href="{{ url_for('2048.twenty_forty_eight') }}">2048</a>
-            <a class="dropdown-item" href="{{ url_for('blackjack.blackjack') }}">Blackjack</a-->
-            <a class="dropdown-item" href="/sudoku">Sudoku</a>
-          </div>
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/sudoku']">Sudoku</a>
         </li>
       </ul>
     </div>
