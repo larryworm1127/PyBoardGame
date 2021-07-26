@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { SudokuBoard, UpdateResult } from '@modules/sudoku/logic/sudoku-board';
 import { SudokuCell } from '@modules/sudoku/logic/sudoku-cell';
 import { Difficulty } from '@modules/sudoku/enums/difficulty';
+import { GameStates } from '@modules/sudoku/enums/game-states';
 
 
 const tempBoard = [
@@ -28,7 +29,8 @@ export class SudokuService {
   numUndo: number = 0;
   pencilEnabled: boolean = false;
   difficulty: Difficulty = Difficulty.Easy;
-  gameStarted: boolean = false;
+  state: GameStates = GameStates.GameStopped;
+  modalListener: ((state: GameStates) => void) | null = null;
 
   constructor() {
     this.gameBoard = new SudokuBoard();
@@ -38,8 +40,19 @@ export class SudokuService {
     return this.gameBoard.boardContent;
   }
 
+  private set gameState(value: GameStates) {
+    this.state = value;
+    if (this.modalListener !== null) {
+      this.modalListener(this.state);
+    }
+  }
+
+  private get gameState(): GameStates {
+    return this.state;
+  }
+
   newGame(): void {
-    this.gameStarted = true;
+    this.gameState = GameStates.GameRunning;
     this.gameBoard.boardContent = tempBoard.map((value, index) =>
       new SudokuCell(
         index,
@@ -51,7 +64,7 @@ export class SudokuService {
 
   selectedNewCell(cell: SudokuCell): void {
     // Do nothing if game hasn't started
-    if (!this.gameStarted) {
+    if (this.gameState !== GameStates.GameRunning) {
       return;
     }
 
@@ -67,7 +80,7 @@ export class SudokuService {
   }
 
   onNumpadClick(value: number): void {
-    if (!this.gameStarted || this.selectedCell === -1) {
+    if (this.gameState !== GameStates.GameRunning || this.selectedCell === -1) {
       return;
     }
 
@@ -80,7 +93,7 @@ export class SudokuService {
   }
 
   erase(): void {
-    if (!this.gameStarted || this.selectedCell === -1) {
+    if (this.gameState !== GameStates.GameRunning || this.selectedCell === -1) {
       return;
     }
 
@@ -93,7 +106,7 @@ export class SudokuService {
   }
 
   undo(): void {
-    if (!this.gameStarted || this.moves.length === 0) {
+    if (this.gameState !== GameStates.GameRunning || this.moves.length === 0) {
       return;
     }
 
@@ -106,7 +119,7 @@ export class SudokuService {
 
   private updateErrorToDuplicates(verifyResult: UpdateResult): void {
     if (verifyResult.isComplete) {
-      // TODO: add action when player won
+      this.gameState = GameStates.GameWon;
       return;
     }
 

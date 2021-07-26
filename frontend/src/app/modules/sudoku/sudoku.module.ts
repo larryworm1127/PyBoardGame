@@ -8,6 +8,7 @@ import { SudokuCellComponent } from './components/sudoku-cell/sudoku-cell.compon
 import { SudokuRightPanelComponent } from './components/sudoku-right-panel/sudoku-right-panel.component';
 import { SudokuControlsComponent } from './components/sudoku-controls/sudoku-controls.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SudokuWinModalComponent } from './components/sudoku-win-modal/sudoku-win-modal.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SudokuNumpadComponent,
     SudokuCellComponent,
     SudokuRightPanelComponent,
-    SudokuControlsComponent
+    SudokuControlsComponent,
+    SudokuWinModalComponent
   ],
   imports: [
     CommonModule,
