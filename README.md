@@ -7,6 +7,8 @@ The web app is built using Python 3 Flask web framework, along with JavaScript a
 
 The website is hosted on Heroku, here is the link: https://pyboardgame.herokuapp.com/
 
+NOTE: This repo is no longer being maintained. An updated version is at: https://github.com/larryworm1127/classic-games
+
 ## Features
 Here is a list of possible features that will be implemented:
 - [ ] A secure database user authentication.
